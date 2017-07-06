@@ -11,7 +11,7 @@ Module Mod_Global
                 Dim Att As New Attachment("\\server-raid\TmpFinagil\" & Attach)
                 Mensage.Attachments.Add(Att)
             End If
-            'Cliente.Send(Mensage)
+            Cliente.Send(Mensage)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)

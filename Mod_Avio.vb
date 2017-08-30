@@ -41,13 +41,12 @@
         Dim Mensaje As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-        solicitudAVIO.PasaCC()
+        'solicitudAVIO.PasaCC()
         solicitudAVIO.FillVobo(tsol)
 
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
 
             correos.Fill(Tmail, "JEFE_" & r.Nombre_Sucursal.Trim)
-
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux = rrr.Correo.Split("<")
                 Aux = Aux(1).Split("@")
@@ -62,12 +61,12 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
+            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")" & r.TipoCredito, "Avio@Finagil.com.mx")
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
 
@@ -103,12 +102,12 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
+            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
 

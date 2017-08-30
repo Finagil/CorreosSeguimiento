@@ -11313,13 +11313,12 @@ Namespace ProduccionDSTableAdapters
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Fondeotit"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFIN"& _ 
                 "AGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        "& _ 
-                "(mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar <> N'C') AND (Vw_Anexos.Tipar <> N'"& _ 
-                "A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                  (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar <> N'C') AND (Vw_"& _ 
-                "Anexos.Tipar = N'A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'E"& _ 
-                "fectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, "& _ 
-                "Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.A"& _ 
-                "nexo, Vw_Anexos.Fondeotit"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "(mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar <> N'A') AND (mFINAGIL.Procesado = "& _ 
+                "0) AND (mFINAGIL.Documento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Vo"& _ 
+                "bo IS NULL) AND (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Procesado = 0) AND (mFINA"& _ 
+                "GIL.Documento <> N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagar"& _ 
+                "e, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.Tipo"& _ 
+                "Credito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection

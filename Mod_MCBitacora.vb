@@ -37,15 +37,15 @@
             Select Case Trim(r.Solicito)
                 Case "vcruz", "cjuarez"
                     If r.AuditoriaExterna = False Then
-                        Vobo = "vgomez"
-                        Autoriza = "vgomez"
+                        Vobo = "epineda"
+                        Autoriza = "epineda"
                     Else
                         Vobo = "epineda"
-                        Autoriza = "vgomez"
+                        Autoriza = "epineda"
                     End If
                 Case "asagar"
-                    Vobo = "vgomez"
-                    Autoriza = "vgomez"
+                    Vobo = "epineda"
+                    Autoriza = "epineda"
                 Case "gramirez"
                     Vobo = "epineda"
                     Autoriza = "epineda"
@@ -54,14 +54,14 @@
                     Autoriza = "atorres"
                 Case Else
                     If correos.ScalarDepto(r.Solicito) = "PROMOCION" Then
-                        Vobo = "mleal"
-                        Autoriza = "vgomez"
+                        Vobo = "epineda"
+                        Autoriza = "epineda"
                     ElseIf correos.ScalarDepto(r.Solicito) = "JURIDICO" Then
                         Vobo = "jjavier"
                         Autoriza = "jjavier"
                     Else
                         Vobo = "lmercado"
-                        Autoriza = "vgomez"
+                        Autoriza = "epineda"
                     End If
 
             End Select

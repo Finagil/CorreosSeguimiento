@@ -308,13 +308,14 @@
         solicitudAVIO.FillByTESO(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere Dispersión de Ministraciones (" & tsol.Rows.Count & " solicitudes)"
-            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td></tr>"
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td><td><strong>Ciclo Pagaré</strong></td></tr>"
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
                 Mensaje += "<td>" & r.Descr.Trim & "</td>"
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
                 Mensaje += "<td>" & r.TipoCredito & "</td>"
                 Mensaje += "<td>" & r.Nombre_Sucursal & "</td></tr>"
+                Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
             Next
             Mensaje += "</table>"
 
@@ -413,11 +414,12 @@
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 EnviaCorreoAvio_PAG_FIRA(r.Nombre_Sucursal.Trim)
                 Asunto = "Ministraciones liberadas por Tesoreria (" & tsol.Rows.Count & " solicitudes)  "
-                Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
+                Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Ciclo Pagaré</strong></td></tr>"
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
                 Mensaje += "<td>" & r.Descr.Trim & "</td>"
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
                 Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
+                Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
                 Mensaje += "</table>"
                 EnviacORREO(solicitudAVIO.CorreoPromo(r.Anexo), Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")
                 EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")

@@ -11544,10 +11544,12 @@ Namespace ProduccionDSTableAdapters
                 "'C') AND (Vw_Anexos.Tipar <> N'A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Do"& _ 
                 "cumento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Vobo = 'ESTRATEGIAS')"& _ 
                 " AND (Vw_Anexos.Tipar <> N'C') AND (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Proces"& _ 
-                "ado = 0) AND (mFINAGIL.Documento <> N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, V"& _ 
-                "w_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cult"& _ 
-                "ivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minis"& _ 
-                "tracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "ado = 0) AND (mFINAGIL.Documento <> N'Efectivo') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (m"& _ 
+                "FINAGIL.Vobo = 'ESTRATEGIAS') AND (Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesa"& _ 
+                "do = 0) AND (mFINAGIL.Documento = N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_"& _ 
+                "Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultiv"& _ 
+                "o, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministr"& _ 
+                "acion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(15) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(15).Connection = Me.Connection

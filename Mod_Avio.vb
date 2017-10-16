@@ -9,8 +9,13 @@
             EnviaCorreoAvio_SUB()
             Console.WriteLine("DG")
             EnviaCorreoAvio_DG()
+
+            Console.WriteLine("CRE")
+            EnviaCorreoAvio_CRE()
+
             Console.WriteLine("MC")
             EnviaCorreoAvio_MC()
+
             Console.WriteLine("Sucursales")
             EnviaCorreoAvio_SUC("Irapuato")
             EnviaCorreoAvio_SUC("Navojoa")
@@ -110,6 +115,39 @@
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
+
+    End Sub
+
+    Private Sub EnviaCorreoAvio_CRE()
+        '************Solucitud Avio********************
+        Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
+        Dim tsol As New ProduccionDS.AviosVoboRESDataTable
+        Dim Anexo As String = ""
+        Dim Mensaje As String = ""
+        Dim Asunto As String = ""
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        solicitudAVIO.FillByCRED(tsol)
+        solicitudAVIO.Pasa_CRED()
+
+        If tsol.Rows.Count > 0 Then
+            Asunto = "Se requiere revisión de CREDITO para Ministración (" & tsol.Rows.Count & " solicitudes)"
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
+            For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+                Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
+                Mensaje += "<td>" & r.Descr.Trim & "</td>"
+                Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
+                Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
+            Next
+            Mensaje += "</table>"
+
+            correos.Fill(Tmail, "CREDITO_AV")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            solicitudAVIO.CRED_mail()
+        End If
 
     End Sub
 

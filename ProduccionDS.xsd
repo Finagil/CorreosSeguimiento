@@ -684,12 +684,12 @@ GROUP BY Promotores.Correo</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CRE_mail" Modifier="Public" Name="CRE_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="CRE_mail">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CRED_mail" Modifier="Public" Name="CRED_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="CRED_mail">
                 <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       mFINAGIL
-SET                Autoriza = 'Credito'
-WHERE        (Autoriza = 'CreditoX') AND (AutorizaAut = 0)</CommandText>
+SET                Credito = 'Credito'
+WHERE        (Credito = 'CreditoX') AND (CreditoAut = 0)</CommandText>
                     <Parameters />
                   </DbCommand>
                 </UpdateCommand>
@@ -722,14 +722,14 @@ ORDER BY Vw_Anexos.AnexoCon</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByCRE" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCRE" GeneratorSourceName="FillByCRE" GetMethodModifier="Public" GetMethodName="GetDataByCRE" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCRE" UserSourceName="FillByCRE">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByCRED" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCRED" GeneratorSourceName="FillByCRED" GetMethodModifier="Public" GetMethodName="GetDataByCRED" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCRED" UserSourceName="FillByCRED">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, 
                          mFINAGIL.Ministracion
 FROM            mFINAGIL INNER JOIN
                          Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo
-WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Autoriza = 'CreditoX') AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.MesaControlAut = 1) AND (mFINAGIL.Documento = N'efectivo')
+WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.VoboAut = 1) AND (mFINAGIL.Credito = 'creditoX') AND (mFINAGIL.CreditoAut = 0) AND (mFINAGIL.Documento = N'efectivo')
 GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion
 ORDER BY Vw_Anexos.AnexoCon</CommandText>
                     <Parameters />
@@ -840,7 +840,7 @@ ORDER BY Vw_Anexos.AnexoCon</CommandText>
                          mFINAGIL.Ministracion
 FROM            mFINAGIL INNER JOIN
                          Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo
-WHERE        (mFINAGIL.MesaControl = 'MesaControlX') AND (mFINAGIL.MesaControlAut = 0) AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.VoboAut = 1)
+WHERE        (mFINAGIL.MesaControl = 'MesaControlX') AND (mFINAGIL.MesaControlAut = 0) AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.CreditoAut = 1)
 GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion
 ORDER BY Vw_Anexos.AnexoCon</CommandText>
                     <Parameters />
@@ -950,7 +950,22 @@ WHERE        (mFINAGIL.TesoreriaPAG = 1) AND (mFINAGIL.Notas IS NULL OR
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="PasaCC" Modifier="Public" Name="PasaCC" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="PasaCC">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Pasa_CRED" Modifier="Public" Name="Pasa_CRED" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="Pasa_CRED">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       mFINAGIL
+SET                Credito = 'CRED', CreditoAut = 1, MesaControl = 'MesaControlX'
+FROM            mFINAGIL INNER JOIN
+                         Avios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo
+WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento &lt;&gt; N'Efectivo') AND (Avios.Tipar = N'H') AND (mFINAGIL.Credito = 'Credito' OR
+                         mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) OR
+                         (mFINAGIL.Procesado = 0) AND (Avios.Tipar &lt;&gt; N'H') AND (mFINAGIL.Credito = 'Credito' OR
+                         mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="PasaCC" Modifier="Public" Name="PasaCC" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="PasaCC">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       mFINAGIL
@@ -962,7 +977,7 @@ WHERE        (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="QuitaGastos_CRE" Modifier="Public" Name="QuitaGastos_CRE" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="QuitaGastos_CRE">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="QuitaGastos_CRE" Modifier="Public" Name="QuitaGastos_CRE" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="QuitaGastos_CRE">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>UPDATE       mFINAGIL
@@ -973,7 +988,7 @@ WHERE        (Autoriza = 'CreditoX' OR
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SUB_mail" Modifier="Public" Name="SUB_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="SUB_mail">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SUB_mail" Modifier="Public" Name="SUB_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="SUB_mail">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>UPDATE       mFINAGIL
@@ -986,7 +1001,7 @@ WHERE        (Anexo = @Anexo)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SUC_mail" Modifier="Public" Name="SUC_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="SUC_mail">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SUC_mail" Modifier="Public" Name="SUC_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="SUC_mail">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>UPDATE       mFINAGIL
@@ -998,7 +1013,7 @@ WHERE        (Autoriza = 'CreditoZ') AND (AutorizaAut = 0) AND (Anexo = @Anexo) 
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TESO_mail" Modifier="Public" Name="TESO_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="TESO_mail">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TESO_mail" Modifier="Public" Name="TESO_mail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="TESO_mail">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>UPDATE       mFINAGIL
@@ -1008,7 +1023,7 @@ WHERE        (Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TESO_mail_NoEfectivo" Modifier="Public" Name="TESO_mail_NoEfectivo" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="TESO_mail_NoEfectivo">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TESO_mail_NoEfectivo" Modifier="Public" Name="TESO_mail_NoEfectivo" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="TESO_mail_NoEfectivo">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       mFINAGIL
@@ -1018,7 +1033,7 @@ WHERE        (Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1) AND (Documento &lt
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="VoboMail" Modifier="Public" Name="VoboMail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="VoboMail">
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="VoboMail" Modifier="Public" Name="VoboMail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="VoboMail">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>UPDATE       mFINAGIL

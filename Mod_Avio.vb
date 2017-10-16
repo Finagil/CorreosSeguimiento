@@ -127,9 +127,9 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-        solicitudAVIO.FillByCRED(tsol)
-        solicitudAVIO.Pasa_CRED()
 
+        solicitudAVIO.Pasa_CRED()
+        solicitudAVIO.FillByCRED(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión de CREDITO para Ministración (" & tsol.Rows.Count & " solicitudes)"
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"

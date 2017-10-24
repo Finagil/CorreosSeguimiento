@@ -8,18 +8,22 @@
             Console.WriteLine("Sub")
             EnviaCorreoAvio_SUB()
             Console.WriteLine("DG")
+            EnviaCorreoAvio_DG_CRED()
             EnviaCorreoAvio_DG()
 
             Console.WriteLine("CRE")
             EnviaCorreoAvio_CRE()
+            EnviaCorreoAvio_SUC_CRED("Irapuato")
+            EnviaCorreoAvio_SUC_CRED("Navojoa")
+            EnviaCorreoAvio_SUC_CRED("Mexicali")
 
             Console.WriteLine("MC")
             EnviaCorreoAvio_MC()
 
             Console.WriteLine("Sucursales")
-            EnviaCorreoAvio_SUC("Irapuato")
-            EnviaCorreoAvio_SUC("Navojoa")
-            EnviaCorreoAvio_SUC("Mexicali")
+            EnviaCorreoAvio_SUC_MC("Irapuato")
+            EnviaCorreoAvio_SUC_MC("Navojoa")
+            EnviaCorreoAvio_SUC_MC("Mexicali")
             Console.WriteLine("Fira")
             EnviaCorreoAvio_FIRA()
             Console.WriteLine("Tesoreria")
@@ -129,6 +133,12 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
         solicitudAVIO.Pasa_CRED()
+        ''pasa los de segunda ministracion
+        'solicitudAVIO.FillBy2daMinistracion(tsol)
+        'For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+        '    solicitudAVIO.Pasa_CRED2(r.Anexo, r.Ciclo, r.Ministracion)
+        'Next
+
         solicitudAVIO.FillByCRED(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión de CREDITO para Ministración (" & tsol.Rows.Count & " solicitudes)"
@@ -182,7 +192,7 @@
 
     End Sub
 
-    Private Sub EnviaCorreoAvio_SUC(Sucursal As String)
+    Private Sub EnviaCorreoAvio_SUC_MC(Sucursal As String)
         '************Solucitud Avio********************
         Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
         Dim tsol As New ProduccionDS.AviosVoboRESDataTable
@@ -191,7 +201,7 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-        solicitudAVIO.FillBySUC(tsol, Sucursal)
+        solicitudAVIO.FillBySUC_MC(tsol, Sucursal)
         If tsol.Rows.Count > 0 Then
             Asunto = "Ministraciones liberadas por MC (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
@@ -257,6 +267,46 @@
             Next
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
             solicitudAVIO.SUB_mail(Aux(0), r.Anexo)
+        Next
+
+    End Sub
+
+    Private Sub EnviaCorreoAvio_DG_CRED()
+        '************Solucitud Avio********************
+        Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
+        Dim tsol As New ProduccionDS.AviosVoboRESDataTable
+        Dim DetAvio As New ProduccionDSTableAdapters.AviosVoboTableAdapter
+        Dim tAnex As New ProduccionDS.AviosVoboDataTable
+        Dim Aux(10) As String
+        Dim Anexo As String = ""
+        Dim Mensaje As String = ""
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        solicitudAVIO.FillByDG_CRED(tsol)
+
+        For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+            correos.Fill(Tmail, "DG")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                Aux = rrr.Correo.Split("<")
+                Aux = Aux(1).Split("@")
+            Next
+
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+
+            DetAvio.FillByDGX(tAnex, r.Anexo)
+            For Each rr As ProduccionDS.AviosVoboRow In tAnex.Rows
+                Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
+            Next
+            Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
+            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-DGxo.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Avio (enviado por Crédito).</A>"
+
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            solicitudAVIO.DG_mail_CRED(Aux(0), r.Anexo)
         Next
 
     End Sub
@@ -352,7 +402,7 @@
                 Mensaje += "<td>" & r.Descr.Trim & "</td>"
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
                 Mensaje += "<td>" & r.TipoCredito & "</td>"
-                Mensaje += "<td>" & r.Nombre_Sucursal & "</td></tr>"
+                Mensaje += "<td>" & r.Nombre_Sucursal & "</td>"
                 Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
             Next
             Mensaje += "</table>"
@@ -456,7 +506,7 @@
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
                 Mensaje += "<td>" & r.Descr.Trim & "</td>"
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
-                Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
+                Mensaje += "<td>" & r.TipoCredito & "</td>"
                 Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
                 Mensaje += "</table>"
                 EnviacORREO(solicitudAVIO.CorreoPromo(r.Anexo), Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")
@@ -468,6 +518,46 @@
             Next
             solicitudAVIO.PAG_CC()
         End If
+    End Sub
+
+    Private Sub EnviaCorreoAvio_SUC_CRED(Sucursal As String)
+        '************Solucitud Avio********************
+        Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
+        Dim tsol As New ProduccionDS.AviosVoboRESDataTable
+        Dim Anexo As String = ""
+        Dim Mensaje As String = ""
+        Dim Asunto As String = ""
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        solicitudAVIO.FillBySUC_CRED(tsol, Sucursal)
+        If tsol.Rows.Count > 0 Then
+            Asunto = "Ministraciones liberadas por CREDITO (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Observaciones</strong></td></tr>"
+            For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+                Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
+                Mensaje += "<td>" & r.Descr.Trim & "</td>"
+                Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
+                Mensaje += "<td>" & r.TipoCredito & "</td>"
+                Mensaje += "<td>" & r.NotasCredito.Trim & "</td></tr>"
+                solicitudAVIO.SUC_mail(r.Anexo)
+            Next
+            Mensaje += "</table>"
+
+            correos.Fill(Tmail, Sucursal)
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            correos.Fill(Tmail, "CREDITO_AV")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            correos.Fill(Tmail, "CREDITOX")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+        End If
+
     End Sub
 
 

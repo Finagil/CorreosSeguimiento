@@ -4465,6 +4465,12 @@ Partial Public Class ProduccionDS
         
         Private columnMinistracion As Global.System.Data.DataColumn
         
+        Private columnCiclo As Global.System.Data.DataColumn
+        
+        Private columnNotas As Global.System.Data.DataColumn
+        
+        Private columnNotasCredito As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -4581,6 +4587,30 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CicloColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCiclo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NotasColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNotas
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NotasCreditoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNotasCredito
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4617,9 +4647,9 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddAviosVoboRESRow(ByVal AnexoCon As String, ByVal CicloPagare As String, ByVal Descr As String, ByVal Nombre_Sucursal As String, ByVal Importe As Decimal, ByVal Cultivo As String, ByVal TipoCredito As String, ByVal Anexo As String, ByVal Fondeotit As String, ByVal Ministracion As Byte) As AviosVoboRESRow
+        Public Overloads Function AddAviosVoboRESRow(ByVal AnexoCon As String, ByVal CicloPagare As String, ByVal Descr As String, ByVal Nombre_Sucursal As String, ByVal Importe As Decimal, ByVal Cultivo As String, ByVal TipoCredito As String, ByVal Anexo As String, ByVal Fondeotit As String, ByVal Ministracion As Byte, ByVal Ciclo As String, ByVal Notas As String, ByVal NotasCredito As String) As AviosVoboRESRow
             Dim rowAviosVoboRESRow As AviosVoboRESRow = CType(Me.NewRow,AviosVoboRESRow)
-            Dim columnValuesArray() As Object = New Object() {AnexoCon, CicloPagare, Descr, Nombre_Sucursal, Importe, Cultivo, TipoCredito, Anexo, Fondeotit, Ministracion}
+            Dim columnValuesArray() As Object = New Object() {AnexoCon, CicloPagare, Descr, Nombre_Sucursal, Importe, Cultivo, TipoCredito, Anexo, Fondeotit, Ministracion, Ciclo, Notas, NotasCredito}
             rowAviosVoboRESRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowAviosVoboRESRow)
             Return rowAviosVoboRESRow
@@ -4652,6 +4682,9 @@ Partial Public Class ProduccionDS
             Me.columnAnexo = MyBase.Columns("Anexo")
             Me.columnFondeotit = MyBase.Columns("Fondeotit")
             Me.columnMinistracion = MyBase.Columns("Ministracion")
+            Me.columnCiclo = MyBase.Columns("Ciclo")
+            Me.columnNotas = MyBase.Columns("Notas")
+            Me.columnNotasCredito = MyBase.Columns("NotasCredito")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4677,6 +4710,12 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnFondeotit)
             Me.columnMinistracion = New Global.System.Data.DataColumn("Ministracion", GetType(Byte), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMinistracion)
+            Me.columnCiclo = New Global.System.Data.DataColumn("Ciclo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCiclo)
+            Me.columnNotas = New Global.System.Data.DataColumn("Notas", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNotas)
+            Me.columnNotasCredito = New Global.System.Data.DataColumn("NotasCredito", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNotasCredito)
             Me.columnAnexoCon.MaxLength = 11
             Me.columnCicloPagare.MaxLength = 14
             Me.columnDescr.AllowDBNull = false
@@ -4689,6 +4728,10 @@ Partial Public Class ProduccionDS
             Me.columnFondeotit.AllowDBNull = false
             Me.columnFondeotit.MaxLength = 7
             Me.columnMinistracion.ReadOnly = true
+            Me.columnCiclo.AllowDBNull = false
+            Me.columnCiclo.MaxLength = 2
+            Me.columnNotas.MaxLength = 1000
+            Me.columnNotasCredito.MaxLength = 500
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7774,6 +7817,47 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Ciclo() As String
+            Get
+                Return CType(Me(Me.tableAviosVoboRES.CicloColumn),String)
+            End Get
+            Set
+                Me(Me.tableAviosVoboRES.CicloColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Notas() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAviosVoboRES.NotasColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Notas' de la tabla 'AviosVoboRES' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAviosVoboRES.NotasColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NotasCredito() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAviosVoboRES.NotasCreditoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'NotasCredito' de la tabla 'AviosVoboRES' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAviosVoboRES.NotasCreditoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAnexoConNull() As Boolean
             Return Me.IsNull(Me.tableAviosVoboRES.AnexoConColumn)
         End Function
@@ -7854,6 +7938,30 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetMinistracionNull()
             Me(Me.tableAviosVoboRES.MinistracionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNotasNull() As Boolean
+            Return Me.IsNull(Me.tableAviosVoboRES.NotasColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNotasNull()
+            Me(Me.tableAviosVoboRES.NotasColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNotasCreditoNull() As Boolean
+            Return Me.IsNull(Me.tableAviosVoboRES.NotasCreditoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNotasCreditoNull()
+            Me(Me.tableAviosVoboRES.NotasCreditoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -10673,7 +10781,7 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
@@ -10700,13 +10808,25 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, mFINAGIL.Importe, CONVERT(datetime, mFINAGIL.FechaAlta, 112)"& _ 
+                " AS FechaAlta, Vw_Anexos.Cultivo, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "    Vw_Anexos.TipoCredito, mFINAGIL.Usuario AS Solicito, Vw_Anexos.Anexo, mFINAG"& _ 
+                "IL.Documento"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_A"& _ 
+                "nexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "WHERE        (Vw_Anexos.Anexo = @anexo) AND (Vw_Anexos.Tipar = N'H') AND (mFINAG"& _ 
+                "IL.Procesado = 0) AND (mFINAGIL.Credito = 'DGX')"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
+                "os.Nombre_Sucursal, mFINAGIL.Importe, CONVERT(datetime, mFINAGIL.FechaAlta, 112)"& _ 
                 " AS FechaAlta, Vw_Anexos.Cultivo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Ministraci"& _ 
                 "on, Vw_Anexos.TipoCredito, mFINAGIL.Usuario AS Solicito, Vw_Anexos.Anexo, mFINAG"& _ 
                 "IL.Documento"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_A"& _ 
                 "nexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
                 "WHERE        (mFINAGIL.MesaControl = 'MesaControl') AND (mFINAGIL.MesaControlAut"& _ 
                 " = 0)"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10771,8 +10891,42 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillMC(ByVal dataTable As ProduccionDS.AviosVoboDataTable) As Integer
+        Public Overloads Overridable Function FillByDGX(ByVal dataTable As ProduccionDS.AviosVoboDataTable, ByVal anexo As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("anexo")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(anexo,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByDGX(ByVal anexo As String) As ProduccionDS.AviosVoboDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("anexo")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(anexo,String)
+            End If
+            Dim dataTable As ProduccionDS.AviosVoboDataTable = New ProduccionDS.AviosVoboDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillMC(ByVal dataTable As ProduccionDS.AviosVoboDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -10785,7 +10939,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataMC() As ProduccionDS.AviosVoboDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Dim dataTable As ProduccionDS.AviosVoboDataTable = New ProduccionDS.AviosVoboDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11334,6 +11488,9 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Anexo", "Anexo")
             tableMapping.ColumnMappings.Add("Fondeotit", "Fondeotit")
             tableMapping.ColumnMappings.Add("Ministracion", "Ministracion")
+            tableMapping.ColumnMappings.Add("Ciclo", "Ciclo")
+            tableMapping.ColumnMappings.Add("Notas", "Notas")
+            tableMapping.ColumnMappings.Add("NotasCredito", "NotasCredito")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -11348,21 +11505,23 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(27) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(32) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " MAX(mFINAGIL.Ministracion) AS Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFI"& _ 
-                "NAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Vobo IS NULL) AND (Vw_Anex"& _ 
-                "os.Tipar <> N'A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Nada"& _ 
-                "') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar = N"& _ 
-                "'A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP"& _ 
-                " BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre"& _ 
-                "_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos."& _ 
-                "Fondeotit"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " MAX(mFINAGIL.Ministracion) AS Ministracion, Vw_Anexos.Ciclo, mFINAGIL.Notas, mF"& _ 
+                "INAGIL.NotasCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "   Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos."& _ 
+                "Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar <> N'A') AND (m"& _ 
+                "FINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Proce"& _ 
+                "sado = 0) AND (mFINAGIL.Documento <> N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, "& _ 
+                "Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cul"& _ 
+                "tivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexos.Cic"& _ 
+                "lo, mFINAGIL.Notas, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.NotasCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY V"& _ 
+                "w_Anexos.AnexoCon"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -11385,186 +11544,246 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
-                "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
-                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Tesoreria <> '= Te"& _ 
-                "soreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.TesoreriaPAG = 1) AND (m"& _ 
-                "FINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') A"& _ 
-                "ND (Vw_Anexos.TipoCredito = 'CUENTA CORRIENTE')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw"& _ 
-                "_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Culti"& _ 
-                "vo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minist"& _ 
-                "racion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+            Me._commandCollection(4).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Credito = @Vobo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = "& _ 
+                "@Anexo)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Credito", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
             Me._commandCollection(5).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.VoboAut = 1) AND ("& _ 
-                "mFINAGIL.Credito = 'creditoX') AND (mFINAGIL.CreditoAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
-                "         mFINAGIL.CreditoAut IS NULL) AND (mFINAGIL.Documento = N'efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GR"& _ 
-                "OUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nom"& _ 
-                "bre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anex"& _ 
-                "os.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DetalleFINAGIL ON"& _ 
+                " Vw_Anexos.Anexo = DetalleFINAGIL.Anexo AND Vw_Anexos.Ciclo = DetalleFINAGIL.Cic"& _ 
+                "lo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.VoboAut = 1) AND (mFINAG"& _ 
+                "IL.Credito = 'credito') AND (mFINAGIL.CreditoAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  mFINAGIL.CreditoAut IS NULL) AND (mFINAGIL.Documento = N'efectivo') AND (Detal"& _ 
+                "leFINAGIL.Concepto = N'efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloP"& _ 
+                "agare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos."& _ 
+                "TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Ane"& _ 
+                "xos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
             Me._commandCollection(6).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Procesado = 0) AND"& _ 
-                " (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.Autoriza = 'DG') AND (mFINAGIL.Documen"& _ 
-                "to = N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos"& _ 
-                ".Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_"& _ 
-                "Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.Ane"& _ 
-                "xoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
+                "esoreria <> '= Tesoreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.Tesorer"& _ 
+                "iaPAG = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Not"& _ 
+                "as <> 'PAGADO') AND (Vw_Anexos.TipoCredito = 'CUENTA CORRIENTE')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_An"& _ 
+                "exos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal"& _ 
+                ", Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit"& _ 
+                ", mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
             Me._commandCollection(7).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Autoriza = 'FiraZ'"& _ 
-                ") AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.MesaControlAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_"& _ 
-                "Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucurs"& _ 
-                "al, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeot"& _ 
-                "it, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.V"& _ 
+                "oboAut = 1) AND (mFINAGIL.Credito = 'creditoX') AND (mFINAGIL.CreditoAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.CreditoAut IS NULL) AND (mFINAGIL.Documento ="& _ 
+                " N'efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Des"& _ 
+                "cr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anex"& _ 
+                "os.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY "& _ 
+                "Vw_Anexos.AnexoCon"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
             Me._commandCollection(8).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Tesoreria <> '= Te"& _ 
-                "soreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.TesoreriaPAG = 1) AND (m"& _ 
-                "FINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') A"& _ 
-                "ND (Vw_Anexos.Nombre_Sucursal = @Sucursal)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anex"& _ 
-                "os.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, V"& _ 
-                "w_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracio"& _ 
-                "n"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.P"& _ 
+                "rocesado = 0) AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.Autoriza = 'DG') AND "& _ 
+                "(mFINAGIL.Documento = N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.Ciclo"& _ 
+                "Pagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos"& _ 
+                ".TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_An"& _ 
+                "exos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(9).Connection = Me.Connection
             Me._commandCollection(9).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Tesoreria <> 'Teso"& _ 
-                "reria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.TesoreriaPAG = 1) AND (mFI"& _ 
-                "NAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') AND"& _ 
-                " (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento = N'EFECTIVO') "& _ 
-                "AND (mFINAGIL.AutorizaAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Procesado "& _ 
-                "= 0) AND (mFINAGIL.TesoreriaAut = 0) AND (mFINAGIL.TesoreriaPAG = 0) AND (mFINAG"& _ 
-                "IL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') AND (V"& _ 
-                "w_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento <> N'EFECTIVO') AN"& _ 
-                "D (mFINAGIL.AutorizaAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare"& _ 
-                ", Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoC"& _ 
-                "redito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw"& _ 
-                "_Anexos.AnexoCon"
+                " MAX(mFINAGIL.Ministracion) AS Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mF"& _ 
+                "INAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Ane"& _ 
+                "xos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = "& _ 
+                "N'H') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'EFECTIVO') AND (m"& _ 
+                "FINAGIL.CreditoAut = 0) AND (mFINAGIL.Credito = 'DGX')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.Anexo"& _ 
+                "Con, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexo"& _ 
+                "s.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexo"& _ 
+                "s.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(10) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(10).Connection = Me.Connection
             Me._commandCollection(10).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Autoriza = 'Credit"& _ 
-                "oZ') AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.MesaControlAut = 1) AND (mFINA"& _ 
-                "GIL.Documento = N'efectivo') AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Vw_Anexos.Nombre_Su"& _ 
-                "cursal = @Sucursal) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Procesado = 0) AND (m"& _ 
-                "FINAGIL.Autoriza = 'fira') AND (mFINAGIL.AutorizaAut = 1) AND (mFINAGIL.MesaCont"& _ 
-                "rolAut = 1) AND (mFINAGIL.Documento = N'efectivo') AND (Vw_Anexos.Nombre_Sucursa"& _ 
-                "l = @Sucursal) AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Tesoreria = 'TeroreriaX'"& _ 
-                ")"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexo"& _ 
-                "s.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw"& _ 
-                "_Anexos.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.A"& _ 
+                "utoriza = 'FiraZ') AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.MesaControlAut ="& _ 
+                " 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Ane"& _ 
+                "xos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, "& _ 
+                "Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos."& _ 
+                "AnexoCon"
             Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(11) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(11).Connection = Me.Connection
             Me._commandCollection(11).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Tesoreria = 'Tesor"& _ 
-                "eriaX') AND (mFINAGIL.AutorizaAut = 1) AND (mFINAGIL.Documento = N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"G"& _ 
-                "ROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.No"& _ 
-                "mbre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Ane"& _ 
-                "xos.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
+                "esoreria <> '= Tesoreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.Tesorer"& _ 
+                "iaPAG = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Not"& _ 
+                "as <> 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos."& _ 
+                "AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_"& _ 
+                "Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFI"& _ 
+                "NAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(12) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(12).Connection = Me.Connection
             Me._commandCollection(12).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.MesaControl = 'MesaControlX') AND (mFINAGIL.Mes"& _ 
-                "aControlAut = 0) AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.CreditoAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GRO"& _ 
-                "UP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nomb"& _ 
-                "re_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexo"& _ 
-                "s.Fondeotit, mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
+                "esoreria <> 'Tesoreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.Tesoreria"& _ 
+                "PAG = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas"& _ 
+                " <> 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Document"& _ 
+                "o = N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mF"& _ 
+                "INAGIL.Procesado = 0) AND (mFINAGIL.TesoreriaAut = 0) AND (mFINAGIL.TesoreriaPAG"& _ 
+                " = 0) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <>"& _ 
+                " 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento <"& _ 
+                "> N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_A"& _ 
+                "nexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo"& _ 
+                ", Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministra"& _ 
+                "cion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(12).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(12).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(13) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(13).Connection = Me.Connection
             Me._commandCollection(13).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Procesado = 0) AND"& _ 
-                " (mFINAGIL.Vobo IS NULL) AND (mFINAGIL.Documento = N'efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Ane"& _ 
-                "xos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal,"& _ 
-                " Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit,"& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo, mFINAGIL.Notas, ISNULL(mFINAGIL.NotasCr"& _ 
+                "edito, '') AS NotasCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_"& _ 
+                "Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'"& _ 
+                "efectivo') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.CreditoAut "& _ 
+                "= 1) AND (mFINAGIL.MesaControl = 'MesaControlX')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, V"& _ 
+                "w_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cult"& _ 
+                "ivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minis"& _ 
+                "tracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo, mFINAGIL.Notas, ISNULL(mFIN"& _ 
+                "AGIL.NotasCredito, '')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(13).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(14) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(14).Connection = Me.Connection
             Me._commandCollection(14).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
                 "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
                 "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                " mFINAGIL.Ministracion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anex"& _ 
-                "os.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Vobo = 'ESTRATEGIAS') AND (Vw_Anexos.Tipar <> N"& _ 
-                "'C') AND (Vw_Anexos.Tipar <> N'A') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Do"& _ 
-                "cumento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Vobo = 'ESTRATEGIAS')"& _ 
-                " AND (Vw_Anexos.Tipar <> N'C') AND (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Proces"& _ 
-                "ado = 0) AND (mFINAGIL.Documento <> N'Efectivo') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (m"& _ 
-                "FINAGIL.Vobo = 'ESTRATEGIAS') AND (Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesa"& _ 
-                "do = 0) AND (mFINAGIL.Documento = N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_"& _ 
-                "Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultiv"& _ 
-                "o, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministr"& _ 
-                "acion"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.A"& _ 
+                "utoriza = 'CreditoZ') AND (mFINAGIL.AutorizaAut = 0) AND (mFINAGIL.MesaControlAu"& _ 
+                "t = 1) AND (mFINAGIL.Documento = N'efectivo') AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Vw"& _ 
+                "_Anexos.Nombre_Sucursal = @Sucursal) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Proc"& _ 
+                "esado = 0) AND (mFINAGIL.Autoriza = 'fira') AND (mFINAGIL.AutorizaAut = 1) AND ("& _ 
+                "mFINAGIL.MesaControlAut = 1) AND (mFINAGIL.Documento = N'efectivo') AND (Vw_Anex"& _ 
+                "os.Nombre_Sucursal = @Sucursal) AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Tesorer"& _ 
+                "ia = 'TeroreriaX')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexo"& _ 
+                "s.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw"& _ 
+                "_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDE"& _ 
+                "R BY Vw_Anexos.AnexoCon"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(15).Connection = Me.Connection
-            Me._commandCollection(15).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'Fira'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Autori"& _ 
-                "za = 'FiraZ') AND (AutorizaAut = 0)"
+            Me._commandCollection(15).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
+                "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
+                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
+                "esoreria = 'TesoreriaX') AND (mFINAGIL.AutorizaAut = 1) AND (mFINAGIL.Documento "& _ 
+                "= N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.De"& _ 
+                "scr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Ane"& _ 
+                "xos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
+                " Vw_Anexos.AnexoCon"
             Me._commandCollection(15).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(16) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(16).Connection = Me.Connection
-            Me._commandCollection(16).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                MesaControl = 'MesaControl'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
-                "   (MesaControl = 'MesaControlX') AND (MesaControlAut = 0)"
+            Me._commandCollection(16).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
+                "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
+                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.MesaControl = 'MesaControlX') "& _ 
+                "AND (mFINAGIL.MesaControlAut = 0) AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Cre"& _ 
+                "ditoAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Desc"& _ 
+                "r, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexo"& _ 
+                "s.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY V"& _ 
+                "w_Anexos.AnexoCon"
             Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(17) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(17).Connection = Me.Connection
-            Me._commandCollection(17).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
+            Me._commandCollection(17).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
+                "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
+                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.P"& _ 
+                "rocesado = 0) AND (mFINAGIL.Vobo IS NULL) AND (mFINAGIL.Documento = N'efectivo')"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos"& _ 
+                ".Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_"& _ 
+                "Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.Ane"& _ 
+                "xoCon"
+            Me._commandCollection(17).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(18) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(18).Connection = Me.Connection
+            Me._commandCollection(18).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anex"& _ 
+                "os.Nombre_Sucursal, SUM(mFINAGIL.Importe) AS Importe, Vw_Anexos.Cultivo, Vw_Anex"& _ 
+                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
+                "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Vobo = 'ESTRATEGIAS') AND (Vw_"& _ 
+                "Anexos.Tipar <> N'C') AND (Vw_Anexos.Tipar <> N'A') AND (mFINAGIL.Procesado = 0)"& _ 
+                " AND (mFINAGIL.Documento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Vobo"& _ 
+                " = 'ESTRATEGIAS') AND (Vw_Anexos.Tipar <> N'C') AND (Vw_Anexos.Tipar = N'A') AND"& _ 
+                " (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Efectivo') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               (mFINAGIL.Vobo = 'ESTRATEGIAS') AND (Vw_Anexos.Tipar = N'C') AND "& _ 
+                "(mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Ane"& _ 
+                "xos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal,"& _ 
+                " Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit,"& _ 
+                " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+            Me._commandCollection(18).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(19) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(19).Connection = Me.Connection
+            Me._commandCollection(19).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'Fira'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Autori"& _ 
+                "za = 'FiraZ') AND (AutorizaAut = 0)"
+            Me._commandCollection(19).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(20) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(20).Connection = Me.Connection
+            Me._commandCollection(20).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                MesaControl = 'MesaControl'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
+                "   (MesaControl = 'MesaControlX') AND (MesaControlAut = 0)"
+            Me._commandCollection(20).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(21) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(21).Connection = Me.Connection
+            Me._commandCollection(21).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
                 "GIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos"& _ 
                 ".Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.TesoreriaPAG"& _ 
                 " = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <>"& _ 
@@ -11574,10 +11793,10 @@ Namespace ProduccionDSTableAdapters
                 "ULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') AND (mFINAGIL.Proce"& _ 
                 "sado = 0) AND (mFINAGIL.Documento <> N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1)"& _ 
                 " AND (Vw_Anexos.TipoCredito = 'cuenta corriente')"
-            Me._commandCollection(17).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(18) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(18).Connection = Me.Connection
-            Me._commandCollection(18).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
+            Me._commandCollection(21).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(22) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(22).Connection = Me.Connection
+            Me._commandCollection(22).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
                 "GIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos"& _ 
                 ".Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.TesoreriaPAG"& _ 
                 " = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <>"& _ 
@@ -11587,11 +11806,11 @@ Namespace ProduccionDSTableAdapters
                 "R"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <> 'PAGADO') AND (mFINAGIL.Procesado "& _ 
                 "= 0) AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento <> N'EF"& _ 
                 "ECTIVO') AND (mFINAGIL.AutorizaAut = 1)"
-            Me._commandCollection(18).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(18).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(19) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(19).Connection = Me.Connection
-            Me._commandCollection(19).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
+            Me._commandCollection(22).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(22).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(23) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(23).Connection = Me.Connection
+            Me._commandCollection(23).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Notas = 'PAGADO'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINA"& _ 
                 "GIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos"& _ 
                 ".Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.TesoreriaPAG"& _ 
                 " = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <>"& _ 
@@ -11604,13 +11823,13 @@ Namespace ProduccionDSTableAdapters
                 "INAGIL.Documento <> N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1) AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               (Vw_Anexos.CicloPagare = @CicloPag) AND (Vw_Anexos.AnexoCon = @An"& _ 
                 "exoCon)"
-            Me._commandCollection(19).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(19).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(19).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CicloPag", Global.System.Data.SqlDbType.NVarChar, 14, Global.System.Data.ParameterDirection.Input, 0, 0, "CicloPagare", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(19).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(20) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(20).Connection = Me.Connection
-            Me._commandCollection(20).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Credito = 'CRED', CreditoAut = 1, MesaC"& _ 
+            Me._commandCollection(23).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(23).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(23).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CicloPag", Global.System.Data.SqlDbType.NVarChar, 14, Global.System.Data.ParameterDirection.Input, 0, 0, "CicloPagare", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(23).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(24) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(24).Connection = Me.Connection
+            Me._commandCollection(24).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Credito = 'CRED', CreditoAut = 1, MesaC"& _ 
                 "ontrol = 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
                 "       Avios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"W"& _ 
                 "HERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Efectivo') AND"& _ 
@@ -11619,53 +11838,62 @@ Namespace ProduccionDSTableAdapters
                 "            (mFINAGIL.Procesado = 0) AND (Avios.Tipar <> N'H') AND (mFINAGIL.Cre"& _ 
                 "dito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = 'CreditoX') AND"& _ 
                 " (mFINAGIL.VoboAut = 1)"
-            Me._commandCollection(20).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(21) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(21).Connection = Me.Connection
-            Me._commandCollection(21).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = 'CC', VoboAut = 1, MesaControl ="& _ 
+            Me._commandCollection(24).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(25) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(25).Connection = Me.Connection
+            Me._commandCollection(25).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Credito = 'CRED2', CreditoAut = 1, Mesa"& _ 
+                "Control = 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @Anexo) AND (Ciclo = @ciclo) AND"& _ 
+                " (Ministracion = @ministracion)"
+            Me._commandCollection(25).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(25).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(25).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ciclo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(25).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ministracion", Global.System.Data.SqlDbType.TinyInt, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "Ministracion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(26) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(26).Connection = Me.Connection
+            Me._commandCollection(26).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = 'CC', VoboAut = 1, MesaControl ="& _ 
                 " 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         A"& _ 
                 "vios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
                 "    (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo IS NULL)"& _ 
                 ""
-            Me._commandCollection(21).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(22) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(22).Connection = Me.Connection
-            Me._commandCollection(22).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'Credito', AutorizaAut = 1, "& _ 
-                "Tesoreria = 'Tesoreria', TesoreriaAut = 1, TesoreriaPAG = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Autor"& _ 
-                "iza = 'CreditoX' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Autoriza = 'FiraX') AND (AutorizaA"& _ 
-                "ut = 0) AND (Documento <> N'Efectivo')"
-            Me._commandCollection(22).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(23) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(23).Connection = Me.Connection
-            Me._commandCollection(23).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                vobo = @Vobo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @An"& _ 
-                "exo)"
-            Me._commandCollection(23).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(23).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(23).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(24) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(24).Connection = Me.Connection
-            Me._commandCollection(24).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'CreditoX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Au"& _ 
-                "toriza = 'CreditoZ') AND (AutorizaAut = 0) AND (Anexo = @Anexo) "
-            Me._commandCollection(24).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(24).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(25) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(25).Connection = Me.Connection
-            Me._commandCollection(25).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'Tesoreria'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
-                "Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1)"
-            Me._commandCollection(25).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(26) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(26).Connection = Me.Connection
-            Me._commandCollection(26).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'Tesoreria', Notas = 'PAGAD"& _ 
-                "O'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1) AND (Documento"& _ 
-                " <> N'efectivo')"
             Me._commandCollection(26).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(27) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(27).Connection = Me.Connection
-            Me._commandCollection(27).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = @Vobo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @An"& _ 
-                "exo)"
+            Me._commandCollection(27).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'Credito', AutorizaAut = 1, "& _ 
+                "Tesoreria = 'Tesoreria', TesoreriaAut = 1, TesoreriaPAG = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Autor"& _ 
+                "iza = 'CreditoX' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Autoriza = 'FiraX') AND (AutorizaA"& _ 
+                "ut = 0) AND (Documento <> N'Efectivo')"
             Me._commandCollection(27).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(27).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(27).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(28) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(28).Connection = Me.Connection
+            Me._commandCollection(28).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                vobo = @Vobo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @An"& _ 
+                "exo)"
+            Me._commandCollection(28).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(28).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(28).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(29) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(29).Connection = Me.Connection
+            Me._commandCollection(29).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = 'CreditoX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Au"& _ 
+                "toriza = 'CreditoZ') AND (AutorizaAut = 0) AND (Anexo = @Anexo) "
+            Me._commandCollection(29).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(29).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(30) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(30).Connection = Me.Connection
+            Me._commandCollection(30).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'Tesoreria'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
+                "Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1)"
+            Me._commandCollection(30).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(31) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(31).Connection = Me.Connection
+            Me._commandCollection(31).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'Tesoreria', Notas = 'PAGAD"& _ 
+                "O'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1) AND (Documento"& _ 
+                " <> N'efectivo')"
+            Me._commandCollection(31).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(32) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(32).Connection = Me.Connection
+            Me._commandCollection(32).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = @Vobo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @An"& _ 
+                "exo)"
+            Me._commandCollection(32).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(32).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(32).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11696,8 +11924,32 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy2daMinistracion(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy2daMinistracion() As ProduccionDS.AviosVoboRESDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByCC(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11710,7 +11962,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByCC() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(6)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11721,7 +11973,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByCRED(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11734,7 +11986,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByCRED() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand = Me.CommandCollection(7)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11745,7 +11997,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByDG(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11758,7 +12010,31 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByDG() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(6)
+            Me.Adapter.SelectCommand = Me.CommandCollection(8)
+            Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByDG_CRED(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(9)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByDG_CRED() As ProduccionDS.AviosVoboRESDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(9)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11769,7 +12045,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByFira(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            Me.Adapter.SelectCommand = Me.CommandCollection(10)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11782,7 +12058,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByFira() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(7)
+            Me.Adapter.SelectCommand = Me.CommandCollection(10)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11793,7 +12069,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByPAG(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable, ByVal Sucursal As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(8)
+            Me.Adapter.SelectCommand = Me.CommandCollection(11)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11811,7 +12087,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByPAG(ByVal Sucursal As String) As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(8)
+            Me.Adapter.SelectCommand = Me.CommandCollection(11)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11827,7 +12103,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByPAG_FIRA(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable, ByVal Sucursal As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(9)
+            Me.Adapter.SelectCommand = Me.CommandCollection(12)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11845,7 +12121,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByPAG_FIRA(ByVal Sucursal As String) As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(9)
+            Me.Adapter.SelectCommand = Me.CommandCollection(12)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11860,8 +12136,8 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBySUC(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable, ByVal Sucursal As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(10)
+        Public Overloads Overridable Function FillBySUC_CRED(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable, ByVal Sucursal As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(13)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11878,8 +12154,42 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataBySUC(ByVal Sucursal As String) As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(10)
+        Public Overloads Overridable Function GetDataBySUC_CRED(ByVal Sucursal As String) As ProduccionDS.AviosVoboRESDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(13)
+            If (Sucursal Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Sucursal,String)
+            End If
+            Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBySUC_MC(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable, ByVal Sucursal As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(14)
+            If (Sucursal Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Sucursal,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBySUC_MC(ByVal Sucursal As String) As ProduccionDS.AviosVoboRESDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(14)
             If (Sucursal Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11895,7 +12205,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByTESO(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(11)
+            Me.Adapter.SelectCommand = Me.CommandCollection(15)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11908,7 +12218,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByTESO() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(11)
+            Me.Adapter.SelectCommand = Me.CommandCollection(15)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11919,7 +12229,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillMC(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(12)
+            Me.Adapter.SelectCommand = Me.CommandCollection(16)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11932,7 +12242,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataMC() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(12)
+            Me.Adapter.SelectCommand = Me.CommandCollection(16)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11943,7 +12253,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillSUB(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(13)
+            Me.Adapter.SelectCommand = Me.CommandCollection(17)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11956,7 +12266,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBySUB() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(13)
+            Me.Adapter.SelectCommand = Me.CommandCollection(17)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -11967,7 +12277,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillVobo2(ByVal dataTable As ProduccionDS.AviosVoboRESDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(14)
+            Me.Adapter.SelectCommand = Me.CommandCollection(18)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -11980,7 +12290,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataVobo2() As ProduccionDS.AviosVoboRESDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(14)
+            Me.Adapter.SelectCommand = Me.CommandCollection(18)
             Dim dataTable As ProduccionDS.AviosVoboRESDataTable = New ProduccionDS.AviosVoboRESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -12075,8 +12385,40 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function DG_mail_CRED(ByVal Vobo As String, ByVal Anexo As String) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            If (Vobo Is Nothing) Then
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(Vobo,String)
+            End If
+            If (Anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Anexo")
+            Else
+                command.Parameters(1).Value = CType(Anexo,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function Fira_mail() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(15)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(19)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12098,7 +12440,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function MC_mail() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(16)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(20)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12120,7 +12462,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function PAG_CC() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(17)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(21)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12142,7 +12484,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function PAG_mail(ByVal Sucursal As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(18)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(22)
             If (Sucursal Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -12169,7 +12511,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function PAG_mail_Fira(ByVal Sucursal As String, ByVal CicloPag As String, ByVal AnexoCon As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(19)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(23)
             If (Sucursal Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -12206,7 +12548,40 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function Pasa_CRED() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(20)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(24)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function Pasa_CRED2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Byte) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(25)
+            If (Anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Anexo")
+            Else
+                command.Parameters(0).Value = CType(Anexo,String)
+            End If
+            If (ciclo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ciclo")
+            Else
+                command.Parameters(1).Value = CType(ciclo,String)
+            End If
+            command.Parameters(2).Value = CType(ministracion,Byte)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12228,7 +12603,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function PasaCC() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(21)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(26)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12250,7 +12625,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function QuitaGastos_CRE() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(22)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(27)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12272,7 +12647,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function SUB_mail(ByVal Vobo As String, ByVal Anexo As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(23)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(28)
             If (Vobo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -12304,7 +12679,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function SUC_mail(ByVal Anexo As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(24)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(29)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
@@ -12331,7 +12706,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function TESO_mail() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(25)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(30)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12353,7 +12728,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function TESO_mail_NoEfectivo() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(26)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(31)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -12375,7 +12750,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function VoboMail(ByVal Vobo As String, ByVal Anexo As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(27)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(32)
             If (Vobo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else

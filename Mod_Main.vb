@@ -9,8 +9,8 @@ Module Mod_Main
         Try
             Console.WriteLine("Cierre Diario")
             Call EnviaCorreoCierreDiario()
-            Console.WriteLine("Factoraje 15")
             EnviaCorreoNotificaFACTOR(15)
+            Console.WriteLine("Factoraje 15")
             Console.WriteLine("Factoraje 30")
             EnviaCorreoNotificaFACTOR(30)
             Console.WriteLine("Bloqueo de Tasas")

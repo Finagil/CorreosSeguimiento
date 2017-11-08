@@ -14,6 +14,10 @@
             Console.WriteLine("PLD")
             EnviaCorreoAvio_PLD()
 
+            EnviaCorreoAvio_SUC_PLD("Irapuato")
+            EnviaCorreoAvio_SUC_PLD("Navojoa")
+            EnviaCorreoAvio_SUC_PLD("Mexicali")
+
             Console.WriteLine("CRE")
             EnviaCorreoAvio_CRE()
 
@@ -213,6 +217,7 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        solicitudAVIO.Pasa_PLD_DG()
         solicitudAVIO.FillMC(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión para Ministración MC(" & tsol.Rows.Count & " solicitudes)"
@@ -582,7 +587,7 @@
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
                 Mensaje += "<td>" & r.TipoCredito & "</td>"
                 Mensaje += "<td>" & r.NotasCredito.Trim & "</td></tr>"
-                solicitudAVIO.SUC_mail(r.Anexo)
+                solicitudAVIO.SUC_mail_CRED(r.Anexo)
             Next
             Mensaje += "</table>"
 
@@ -591,6 +596,46 @@
                 EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
             Next
             correos.Fill(Tmail, "CREDITO_AV")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            correos.Fill(Tmail, "CREDITOX")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+        End If
+
+    End Sub
+
+    Private Sub EnviaCorreoAvio_SUC_PLD(Sucursal As String)
+        '************Solucitud Avio********************
+        Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
+        Dim tsol As New ProduccionDS.AviosVoboRESDataTable
+        Dim Anexo As String = ""
+        Dim Mensaje As String = ""
+        Dim Asunto As String = ""
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        solicitudAVIO.FillBySUC_PLD(tsol, Sucursal)
+        If tsol.Rows.Count > 0 Then
+            Asunto = "Ministraciones liberadas por PLD (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Observaciones</strong></td></tr>"
+            For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+                Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
+                Mensaje += "<td>" & r.Descr.Trim & "</td>"
+                Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
+                Mensaje += "<td>" & r.TipoCredito & "</td>"
+                Mensaje += "<td>" & r.NotasCredito.Trim & "</td></tr>"
+                solicitudAVIO.SUC_mail_PLD(r.Anexo)
+            Next
+            Mensaje += "</table>"
+
+            correos.Fill(Tmail, Sucursal)
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            correos.Fill(Tmail, "PLD")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
             Next

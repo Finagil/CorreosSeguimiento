@@ -24,6 +24,7 @@ Module Mod_Main
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos", "Correos@finagil.com.mx")
         End Try
 
         'EnviaCorreoCarta()

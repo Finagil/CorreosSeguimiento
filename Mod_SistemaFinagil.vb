@@ -8,9 +8,9 @@
         For Each r In t.Rows
             Correos = r.Para.Split(";")
             For X As Integer = 0 To Correos.Length - 1
-                EnviacORREO(Correos(X), r.Mensaje, r.Asunto, r.De, r.Attach)
+                If Correos(X).Length > 0 Then EnviacORREO(Correos(X), r.Mensaje, r.Asunto, r.De, r.Attach)
             Next
-            taCorreos.Enviado(r.id_Correo, r.id_Correo)
+            taCorreos.Enviado(r.id_Correo)
         Next
     End Sub
 

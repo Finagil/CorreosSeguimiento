@@ -217,7 +217,7 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-        solicitudAVIO.Pasa_PLD_DG()
+        'solicitudAVIO.Pasa_PLD_DG()
         solicitudAVIO.FillMC(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión para Ministración MC(" & tsol.Rows.Count & " solicitudes)"

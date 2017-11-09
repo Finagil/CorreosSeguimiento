@@ -11347,20 +11347,18 @@ Namespace ProduccionDSTableAdapters
                 " (Avios.Tipar = N'H') AND (mFINAGIL.Credito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
                 "     mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
                 "            (mFINAGIL.Procesado = 0) AND (Avios.Tipar <> N'H') AND (mFINAGIL.Cre"& _ 
-                "dito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = 'CreditoX') AND"& _ 
-                " (mFINAGIL.VoboAut = 1)"
+                "dito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = 'CreditoX' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         mFINAGIL.Credito = 'isnull') AND (mFINAGIL.VoboAut = 1)"& _ 
+                ""
             Me._commandCollection(26).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(27) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(27).Connection = Me.Connection
             Me._commandCollection(27).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Pld = 'Pld', PldAut = 1, MesaControl = "& _ 
                 "'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Av"& _ 
                 "ios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
-                "   (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Efectivo') AND (Avios.T"& _ 
-                "ipar = N'H') AND (mFINAGIL.VoboAut = 1) AND (mFINAGIL.Pld = 'Pld' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               mFINAGIL.Pld = 'PldX') AND (mFINAGIL.PldAut = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
-                "             (mFINAGIL.Procesado = 0) AND (Avios.Tipar <> N'H') AND (mFINAGIL.Vo"& _ 
-                "boAut = 1) AND (mFINAGIL.Pld = 'Pld' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Pld ="& _ 
-                " 'PldX') AND (mFINAGIL.PldAut = 0)"
+                "   (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Efectivo') AND (mFINAGI"& _ 
+                "L.VoboAut = 1) AND (mFINAGIL.Pld = 'Pld' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.P"& _ 
+                "ld = 'PldX') AND (mFINAGIL.PldAut = 0)"
             Me._commandCollection(27).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(28) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(28).Connection = Me.Connection

@@ -11157,12 +11157,12 @@ Namespace ProduccionDSTableAdapters
                 " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
                 "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
                 "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.V"& _ 
-                "oboAut = 1) AND (mFINAGIL.Documento = N'efectivo') AND (mFINAGIL.Pld = 'PldX') A"& _ 
-                "ND (mFINAGIL.PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.PldAut IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"G"& _ 
-                "ROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.No"& _ 
-                "mbre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Ane"& _ 
-                "xos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "oboAut = 1) AND (mFINAGIL.Documento = N'efectivo') AND (mFINAGIL.Pld = 'PldX' OR"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Pld IS NULL) AND (mFINAGIL.PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       mFINAGIL.PldAut IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw"& _ 
+                "_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Culti"& _ 
+                "vo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minist"& _ 
+                "racion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(14) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(14).Connection = Me.Connection
@@ -11348,8 +11348,7 @@ Namespace ProduccionDSTableAdapters
                 "     mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
                 "            (mFINAGIL.Procesado = 0) AND (Avios.Tipar <> N'H') AND (mFINAGIL.Cre"& _ 
                 "dito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = 'CreditoX' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "                         mFINAGIL.Credito = 'isnull') AND (mFINAGIL.VoboAut = 1)"& _ 
-                ""
+                "                         mFINAGIL.Credito IS NULL) AND (mFINAGIL.VoboAut = 1)"
             Me._commandCollection(26).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(27) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(27).Connection = Me.Connection
@@ -11384,7 +11383,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(31) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(31).Connection = Me.Connection
             Me._commandCollection(31).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Pld = 'Pld'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Pld = 'PldX'"& _ 
-                ") AND (PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PldAut IS NULL)"
+                " OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pld IS NULL) AND (PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        PldAut IS NULL)"
             Me._commandCollection(31).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(32) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(32).Connection = Me.Connection

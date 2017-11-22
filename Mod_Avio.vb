@@ -141,6 +141,7 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
         solicitudAVIO.Pasa_PLD()
+        solicitudAVIO.Pasa_PLD_Aut()
         'pasa los de segunda ministracion
         solicitudAVIO.FillBy2daMinistracion(tsol)
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
@@ -391,7 +392,7 @@
             Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-DGxa.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Anticipo.</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
             Next
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
             solicitudAVIO.DG_mail(Aux(0), r.Anexo)

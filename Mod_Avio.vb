@@ -143,7 +143,7 @@
         solicitudAVIO.Pasa_PLD()
         solicitudAVIO.Pasa_PLD_Aut()
         'pasa los de segunda ministracion
-        solicitudAVIO.FillBy2daMinistracion(tsol)
+        solicitudAVIO.FillBy2daMinistracionPLD(tsol)
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
             solicitudAVIO.Pasa_PLD2(r.Anexo, r.Ciclo, r.Ministracion)
         Next
@@ -181,11 +181,11 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
         solicitudAVIO.Pasa_CRED()
-        ''pasa los de segunda ministracion
-        'solicitudAVIO.FillBy2daMinistracion(tsol)
-        'For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
-        '    solicitudAVIO.Pasa_CRED2(r.Anexo, r.Ciclo, r.Ministracion)
-        'Next
+        'pasa los de segunda ministracion
+        solicitudAVIO.FillBy2daMinistracionCRE(tsol)
+        For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+            solicitudAVIO.Pasa_Credito2(r.Anexo, r.Ciclo, r.Ministracion)
+        Next
 
         solicitudAVIO.FillByCRED(tsol)
         If tsol.Rows.Count > 0 Then
@@ -218,7 +218,7 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-        'solicitudAVIO.Pasa_PLD_DG()
+        solicitudAVIO.Toma2daMinistracionMC()
         solicitudAVIO.FillMC(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión para Ministración MC(" & tsol.Rows.Count & " solicitudes)"

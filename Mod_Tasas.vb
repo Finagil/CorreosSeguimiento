@@ -155,4 +155,75 @@
         End If
     End Sub
 
+    Sub EnviaCorreoHC()
+        Dim Mensaje As String = ""
+        Dim Aux As String = ""
+        Dim Users(2) As String
+        Dim Aux1(10) As String
+        'Dim HojasCamb As New ProduccionDSTableAdapters.HojasCambiosTableAdapter
+        'Dim tpen As New ProduccionDS.HojasCambiosDataTable
+        Dim HojasCamb As New ProduccionDSTableAdapters.HojasCambiosTableAdapter
+        Dim HCt As New ProduccionDS.HojasCambiosDataTable
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        '************bloqueo de tasas********************
+        HojasCamb.Fill(HCt)
+        For Each r As ProduccionDS.HojasCambiosRow In HCt.Rows
+            Dim Sucursal As String = r.FirmaSubPromo.Trim
+            Sucursal = Sucursal.Substring(0, Sucursal.Length - 1)
+
+            correos.Fill(Tmail, "DG")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                Aux1 = rrr.Correo.Split("<")
+                Aux1 = Aux1(1).Split("@")
+                Users(0) = Aux1(0)
+            Next
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
+            Mensaje += "Promotor: " & r.Promotor & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
+            EnviacORREO(Users(0) & "@finagil.com.mx", Mensaje, "Se requiere autorización de Hoja de Cambios. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de Hoja de Cambios (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+
+            correos.Fill(Tmail, "SUB_" & Sucursal)
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                Aux1 = rrr.Correo.Split("<")
+                Aux1 = Aux1(1).Split("@")
+                Users(1) = Aux1(0)
+            Next
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
+            Mensaje += "Promotor: " & r.Promotor & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
+
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere autorización de Hoja de Cambios. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de Hoja de Cambios (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            HojasCamb.UpdateHC(Users(1), Users(0), r.id_hojaCambios)
+        Next
+
+        HojasCamb.FillByAutorizados(HCt)
+        For Each r As ProduccionDS.HojasCambiosRow In HCt.Rows
+
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
+            Mensaje += "Promotor: " & r.Promotor & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+
+            EnviacORREO(Users(0) & "@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+
+            correos.Fill(Tmail, "MESA_CONTROL")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo & "@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            Next
+            HojasCamb.Confirmado(r.id_hojaCambios)
+
+        Next
+
+    End Sub
+
 End Module

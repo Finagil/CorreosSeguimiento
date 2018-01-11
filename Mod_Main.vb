@@ -15,6 +15,8 @@ Module Mod_Main
             EnviaCorreoNotificaFACTOR(30)
             Console.WriteLine("Bloqueo de Tasas")
             EnviaCorreoTasas()
+            Console.WriteLine("Hojas de Cambio")
+            EnviaCorreoHC()
             Console.WriteLine("Bitacora MC")
             EnviaCorreoBitacoraMC(True)
             EnviaCorreoBitacoraMC(False)

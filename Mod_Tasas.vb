@@ -213,12 +213,12 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
 
-            EnviacORREO(Users(0) & "@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+            EnviacORREO(r.Correo, Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
 
             correos.Fill(Tmail, "MESA_CONTROL")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo & "@finagil.com.mx", Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, "Hoja de Cambios Autorizada. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
             Next
             HojasCamb.Confirmado(r.id_hojaCambios)
 

@@ -5155,7 +5155,6 @@ Partial Public Class ProduccionDS
             Me.columnid_hojaCambios.Unique = true
             Me.columnFirmaSubPromo.MaxLength = 50
             Me.columnFirmaDireccion.MaxLength = 50
-            Me.columnPromotor.AllowDBNull = false
             Me.columnPromotor.MaxLength = 40
             Me.columnCorreo.MaxLength = 50
         End Sub
@@ -8507,7 +8506,11 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Promotor() As String
             Get
-                Return CType(Me(Me.tableHojasCambios.PromotorColumn),String)
+                Try 
+                    Return CType(Me(Me.tableHojasCambios.PromotorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Promotor' de la tabla 'HojasCambios' es DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableHojasCambios.PromotorColumn) = value
@@ -8602,6 +8605,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetFirmaDireccionNull()
             Me(Me.tableHojasCambios.FirmaDireccionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPromotorNull() As Boolean
+            Return Me.IsNull(Me.tableHojasCambios.PromotorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPromotorNull()
+            Me(Me.tableHojasCambios.PromotorColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14017,14 +14032,15 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr, Vw_Anexos.TipoCredito, Vw_Anex"& _ 
-                "os.MontoFin, MC_cambio_condiciones.id_hojaCambios, MC_cambio_condiciones.FirmaSu"& _ 
-                "bPromo, MC_cambio_condiciones.FirmaDireccion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anex"& _ 
-                "os.Nombre_Promotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Cor"& _ 
-                "reo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_cambio_condiciones INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
-                "Vw_Anexos ON MC_cambio_condiciones.Anexo = Vw_Anexos.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                Promotores ON Vw_Anexos.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE      "& _ 
-                "  (MC_cambio_condiciones.FirmaSubPromo LIKE '%X')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+            Me._commandCollection(0).CommandText = "SELECT        Vw_AnexosResumen.AnexoCon, Vw_AnexosResumen.Descr, Vw_AnexosResumen"& _ 
+                ".TipoCredito, Vw_AnexosResumen.MontoFinanciado AS MontoFin, MC_cambio_condicione"& _ 
+                "s.id_hojaCambios, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_cambio_condiciones.FirmaSubPromo"& _ 
+                ", MC_cambio_condiciones.FirmaDireccion, Vw_AnexosResumen.NombrePromotor AS Promo"& _ 
+                "tor, MC_cambio_condiciones.Confirmado, Promotores.Correo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_cam"& _ 
+                "bio_condiciones INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_AnexosResumen ON MC_camb"& _ 
+                "io_condiciones.Anexo = Vw_AnexosResumen.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "   Promotores ON Vw_AnexosResumen.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_"& _ 
+                "cambio_condiciones.FirmaSubPromo LIKE '%X')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_AnexosResumen.AnexoCon"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -14034,16 +14050,17 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id_hojaCambios", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr, Vw_Anexos.TipoCredito, Vw_Anex"& _ 
-                "os.MontoFin, MC_cambio_condiciones.id_hojaCambios, MC_cambio_condiciones.FirmaSu"& _ 
-                "bPromo, MC_cambio_condiciones.FirmaDireccion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anex"& _ 
-                "os.Nombre_Promotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Cor"& _ 
-                "reo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_cambio_condiciones INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
-                "Vw_Anexos ON MC_cambio_condiciones.Anexo = Vw_Anexos.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                Promotores ON Vw_Anexos.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE      "& _ 
-                "  (LEN(MC_cambio_condiciones.FirmaSubPromo) > 20) AND (LEN(MC_cambio_condiciones"& _ 
-                ".FirmaDireccion) > 20) AND (MC_cambio_condiciones.Confirmado = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              MC_cambio_condiciones.Confirmado IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.Anex"& _ 
+            Me._commandCollection(2).CommandText = "SELECT        Vw_AnexosResumen.AnexoCon, Vw_AnexosResumen.Descr, Vw_AnexosResumen"& _ 
+                ".TipoCredito, Vw_AnexosResumen.MontoFinaciado AS MontoFin, MC_cambio_condiciones"& _ 
+                ".id_hojaCambios, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_cambio_condiciones.FirmaSubPromo,"& _ 
+                " MC_cambio_condiciones.FirmaDireccion, Vw_AnexosResumen.NombrePromotor AS Promot"& _ 
+                "or, MC_cambio_condiciones.Confirmado, Promotores.Correo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_camb"& _ 
+                "io_condiciones INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_AnexosResumen ON MC_cambi"& _ 
+                "o_condiciones.Anexo = Vw_AnexosResumen.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  Promotores ON Vw_AnexosResumen.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (LEN("& _ 
+                "MC_cambio_condiciones.FirmaSubPromo) > 20) AND (LEN(MC_cambio_condiciones.FirmaD"& _ 
+                "ireccion) > 20) AND (MC_cambio_condiciones.Confirmado = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       MC_cambio_condiciones.Confirmado IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_AnexosResumen.Anex"& _ 
                 "oCon"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()

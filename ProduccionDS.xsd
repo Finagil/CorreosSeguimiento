@@ -1299,13 +1299,13 @@ WHERE        (id_Correo = @Original_id_Correo);
               <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr, Vw_Anexos.TipoCredito, Vw_Anexos.MontoFin, MC_cambio_condiciones.id_hojaCambios, MC_cambio_condiciones.FirmaSubPromo, MC_cambio_condiciones.FirmaDireccion, 
-                         Vw_Anexos.Nombre_Promotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Correo
+                    <CommandText>SELECT        Vw_AnexosResumen.AnexoCon, Vw_AnexosResumen.Descr, Vw_AnexosResumen.TipoCredito, Vw_AnexosResumen.MontoFinanciado AS MontoFin, MC_cambio_condiciones.id_hojaCambios, 
+                         MC_cambio_condiciones.FirmaSubPromo, MC_cambio_condiciones.FirmaDireccion, Vw_AnexosResumen.NombrePromotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Correo
 FROM            MC_cambio_condiciones INNER JOIN
-                         Vw_Anexos ON MC_cambio_condiciones.Anexo = Vw_Anexos.Anexo INNER JOIN
-                         Promotores ON Vw_Anexos.Promo = Promotores.Promotor
+                         Vw_AnexosResumen ON MC_cambio_condiciones.Anexo = Vw_AnexosResumen.Anexo INNER JOIN
+                         Promotores ON Vw_AnexosResumen.Promo = Promotores.Promotor
 WHERE        (MC_cambio_condiciones.FirmaSubPromo LIKE '%X')
-ORDER BY Vw_Anexos.AnexoCon</CommandText>
+ORDER BY Vw_AnexosResumen.AnexoCon</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1339,14 +1339,14 @@ WHERE        (id_hojaCambios = @id)</CommandText>
               <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByAutorizados" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAutorizados" GeneratorSourceName="FillByAutorizados" GetMethodModifier="Public" GetMethodName="GetDataByAutorizados" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAutorizados" UserSourceName="FillByAutorizados">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr, Vw_Anexos.TipoCredito, Vw_Anexos.MontoFin, MC_cambio_condiciones.id_hojaCambios, MC_cambio_condiciones.FirmaSubPromo, MC_cambio_condiciones.FirmaDireccion, 
-                         Vw_Anexos.Nombre_Promotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Correo
+                    <CommandText>SELECT        Vw_AnexosResumen.AnexoCon, Vw_AnexosResumen.Descr, Vw_AnexosResumen.TipoCredito, Vw_AnexosResumen.MontoFinaciado AS MontoFin, MC_cambio_condiciones.id_hojaCambios, 
+                         MC_cambio_condiciones.FirmaSubPromo, MC_cambio_condiciones.FirmaDireccion, Vw_AnexosResumen.NombrePromotor AS Promotor, MC_cambio_condiciones.Confirmado, Promotores.Correo
 FROM            MC_cambio_condiciones INNER JOIN
-                         Vw_Anexos ON MC_cambio_condiciones.Anexo = Vw_Anexos.Anexo INNER JOIN
-                         Promotores ON Vw_Anexos.Promo = Promotores.Promotor
+                         Vw_AnexosResumen ON MC_cambio_condiciones.Anexo = Vw_AnexosResumen.Anexo INNER JOIN
+                         Promotores ON Vw_AnexosResumen.Promo = Promotores.Promotor
 WHERE        (LEN(MC_cambio_condiciones.FirmaSubPromo) &gt; 20) AND (LEN(MC_cambio_condiciones.FirmaDireccion) &gt; 20) AND (MC_cambio_condiciones.Confirmado = 0 OR
                          MC_cambio_condiciones.Confirmado IS NULL)
-ORDER BY Vw_Anexos.AnexoCon</CommandText>
+ORDER BY Vw_AnexosResumen.AnexoCon</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -2044,7 +2044,7 @@ WHERE        (id_hojaCambios = @id)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Promotor" msprop:Generator_ColumnVarNameInTable="columnPromotor" msprop:Generator_ColumnPropNameInRow="Promotor" msprop:Generator_ColumnPropNameInTable="PromotorColumn" msprop:Generator_UserColumnName="Promotor">
+              <xs:element name="Promotor" msprop:Generator_ColumnVarNameInTable="columnPromotor" msprop:Generator_ColumnPropNameInRow="Promotor" msprop:Generator_ColumnPropNameInTable="PromotorColumn" msprop:Generator_UserColumnName="Promotor" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />

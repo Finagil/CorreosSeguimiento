@@ -11972,14 +11972,9 @@ Namespace ProduccionDSTableAdapters
                 "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
                 "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.MesaControl = 'MesaControlX') "& _ 
                 "AND (mFINAGIL.MesaControlAut = 0) AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Cre"& _ 
-                "ditoAut = 1) AND (Vw_Anexos.Tipar = N'H' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos."& _ 
-                "Tipar = N'C') AND (mFINAGIL.PldAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.M"& _ 
-                "esaControl = 'MesaControlX') AND (mFINAGIL.MesaControlAut = 0) AND (mFINAGIL.Pro"& _ 
-                "cesado = 0) AND (mFINAGIL.CreditoAut = 1) AND (Vw_Anexos.Tipar = N'A') AND (mFIN"& _ 
-                "AGIL.PldAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos."& _ 
-                "Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_A"& _ 
-                "nexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
-                "    Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "ditoAut = 1) AND (mFINAGIL.PldAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.C"& _ 
+                "icloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_An"& _ 
+                "exos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(19).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(20) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(20).Connection = Me.Connection
@@ -12022,7 +12017,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(23).Connection = Me.Connection
             Me._commandCollection(23).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                MesaControl = 'MesaControl'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
                 "   (MesaControl = 'MesaControlX') AND (MesaControlAut = 0) AND (CreditoAut = 1) "& _ 
-                "AND (PldAut = 1) "
+                "AND (PldAut = 1)"
             Me._commandCollection(23).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(24) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(24).Connection = Me.Connection
@@ -12184,7 +12179,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(42).Connection = Me.Connection
             Me._commandCollection(42).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                MesaControl = 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
                 "    (Procesado = 0) AND (Pld = 'PLD2') AND (Credito = 'Credito2') AND (MesaContr"& _ 
-                "olAut = 0)"
+                "olAut = 0) AND (MesaControl IS NULL)"
             Me._commandCollection(42).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(43) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(43).Connection = Me.Connection

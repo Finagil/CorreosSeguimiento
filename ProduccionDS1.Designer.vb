@@ -12178,8 +12178,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(42) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(42).Connection = Me.Connection
             Me._commandCollection(42).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                MesaControl = 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
-                "    (Procesado = 0) AND (Pld = 'PLD2') AND (Credito = 'Credito2') AND (MesaContr"& _ 
-                "olAut = 0) AND (MesaControl IS NULL)"
+                "    (Procesado = 0) AND (Pld = 'PLD2' or (Pld = 'PLDX' and PldAut = 1)) AND (Cre"& _ 
+                "dito = 'Credito2') AND (MesaControlAut = 0) AND (MesaControl IS NULL)"
             Me._commandCollection(42).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(43) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(43).Connection = Me.Connection

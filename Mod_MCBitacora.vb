@@ -35,7 +35,7 @@
 
 
             Select Case Trim(r.Solicito)
-                Case "vcruz", "cjuarez"
+                Case "vcruz", "cjuarez", "asagar", "gramirez", "kvazquez"
                     If r.AuditoriaExterna = False Then
                         Vobo = "epineda"
                         Autoriza = "epineda"
@@ -43,12 +43,6 @@
                         Vobo = "epineda"
                         Autoriza = "epineda"
                     End If
-                Case "asagar"
-                    Vobo = "epineda"
-                    Autoriza = "epineda"
-                Case "gramirez"
-                    Vobo = "epineda"
-                    Autoriza = "epineda"
                 Case "lhernandez"
                     Vobo = "atorres"
                     Autoriza = "atorres"
@@ -60,10 +54,9 @@
                         Vobo = "jjavier"
                         Autoriza = "jjavier"
                     Else
-                        Vobo = "lmercado"
+                        Vobo = "epineda"
                         Autoriza = "epineda"
                     End If
-
             End Select
 
             'Vobo = "ecacerest"

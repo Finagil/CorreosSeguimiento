@@ -46,27 +46,26 @@
         Dim Mensaje As String = ""
 
         solicitudes.Fill_Sucursal(tsol, Sucursal)
-        Asunto = "Notificación Semanal de Seguimiento de Crédito."
-
-        Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Responsable</strong></td><td><strong>Compromiso</strong></td>" _
+        If tsol.Rows.Count > 0 Then
+            Asunto = "Notificación Semanal de Seguimiento de Crédito."
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Responsable</strong></td><td><strong>Compromiso</strong></td>" _
             & "<td><strong>Días de Retraso</strong></td><td><strong>Notas</strong></td><td></tr>"
 
-        For Each r As ProduccionDS.CRED_SeguimientosRow In tsol.Rows
-            Mensaje += "<tr><td>" & r.Anexo & "</td>"
-            Mensaje += "<td>" & r.Cliente & "</td>"
-            Mensaje += "<td>" & r.Responsable & "</td>"
-            Mensaje += "<td>" & r.Compromiso & "</td>"
-            Mensaje += "<td>" & r.DiasRetraso & "</td>"
-            Mensaje += "<td>" & r.Notas & "</td></tr>"
-        Next
-        Mensaje += "</table>"
-        CORREOS_FASE.Fill(TMAIL, "JEFE_" & Sucursal)
-        For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-            EnviacORREO(rrr.Correo, Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
-        Next
+            For Each r As ProduccionDS.CRED_SeguimientosRow In tsol.Rows
+                Mensaje += "<tr><td>" & r.Anexo & "</td>"
+                Mensaje += "<td>" & r.Cliente & "</td>"
+                Mensaje += "<td>" & r.Responsable & "</td>"
+                Mensaje += "<td>" & r.Compromiso & "</td>"
+                Mensaje += "<td>" & r.DiasRetraso & "</td>"
+                Mensaje += "<td>" & r.Notas & "</td></tr>"
+            Next
+            Mensaje += "</table>"
+            CORREOS_FASE.Fill(TMAIL, "JEFE_" & Sucursal)
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
+            Next
+        End If
         EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
-
-
     End Sub
 
 End Module

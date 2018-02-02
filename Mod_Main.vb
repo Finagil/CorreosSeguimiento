@@ -8,14 +8,17 @@ Module Mod_Main
             Console.WriteLine("Vobo Avio")
             EnviaCorreoAVIO()
             Console.WriteLine("Seguimiento de Crédito")
-            If Date.Now.Hour <= 7 Then 'se ejecutan una sola ves al dia a las 6 am
+            Console.WriteLine(Date.Now.Hour)
+            If Date.Now.Hour = 7 And Date.Now.Minute <= 5 Then 'se ejecutan una sola ves al dia a las 6 am
                 EnviaCorreoSEGUI_CRED("DIA", -3)
                 EnviaCorreoSEGUI_CRED("DIA", 0)
-                EnviaCorreoSEGUI_CRED_SUC("Toluca")
-                EnviaCorreoSEGUI_CRED_SUC("Irapuato")
-                EnviaCorreoSEGUI_CRED_SUC("Navojoa")
-                EnviaCorreoSEGUI_CRED_SUC("Mexicali")
-                EnviaCorreoSEGUI_CRED_SUC("CD.MEXICO")
+                If Date.Now.DayOfWeek = DayOfWeek.Monday Then
+                    EnviaCorreoSEGUI_CRED_SUC("Toluca")
+                    EnviaCorreoSEGUI_CRED_SUC("Irapuato")
+                    EnviaCorreoSEGUI_CRED_SUC("Navojoa")
+                    EnviaCorreoSEGUI_CRED_SUC("Mexicali")
+                    EnviaCorreoSEGUI_CRED_SUC("CD.MEXICO")
+                End If
             End If
             Console.WriteLine("Cierre Diario")
             Call EnviaCorreoCierreDiario()

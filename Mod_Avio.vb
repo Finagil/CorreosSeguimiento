@@ -56,14 +56,13 @@
         Dim Aux(10) As String
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
-        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
-        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+
         'solicitudAVIO.PasaCC()
         solicitudAVIO.FillVobo(tsol)
 
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
 
-            correos.Fill(Tmail, "JEFE_" & r.Nombre_Sucursal.Trim)
+            CORREOS_FASE.Fill(TMAIL, "JEFE_" & r.Nombre_Sucursal.Trim)
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux = rrr.Correo.Split("<")
                 Aux = Aux(1).Split("@")

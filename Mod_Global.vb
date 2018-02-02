@@ -1,6 +1,8 @@
 ﻿Imports System.Net.Mail
 Module Mod_Global
-    Public correos As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
+    Public CORREOS As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
+    Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+    Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
 
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)

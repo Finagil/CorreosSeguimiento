@@ -30,10 +30,9 @@
             Mensaje += "Días de Retraso: " & r.DiasRetraso & "<br>"
             Mensaje += "Notas: " & r.Notas & "<br>"
             Resposble = CORREOS.ScalarCorreo(r.Responsable)
-
             EnviacORREO(Resposble, Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
         Next
+        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "SeguimientoCREDITO@finagil.com.mx")
 
     End Sub
 

@@ -12586,11 +12586,12 @@ Namespace ProduccionDSTableAdapters
                 " MAX(mFINAGIL.Ministracion) AS Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mF"& _ 
                 "INAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON mFINAGIL.Anexo = Vw_Ane"& _ 
                 "xos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vw_Anexos.Tipar = "& _ 
-                "N'H') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'EFECTIVO') AND (m"& _ 
-                "FINAGIL.CreditoAut = 0) AND (mFINAGIL.Credito = 'DGX')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.Anexo"& _ 
-                "Con, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexo"& _ 
-                "s.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexo"& _ 
-                "s.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "N'H' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesad"& _ 
+                "o = 0) AND (mFINAGIL.Documento = N'EFECTIVO') AND (mFINAGIL.CreditoAut = 0) AND "& _ 
+                "(mFINAGIL.Credito = 'DGX')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, "& _ 
+                "Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCre"& _ 
+                "dito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos."& _ 
+                "AnexoCon"
             Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(11) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(11).Connection = Me.Connection

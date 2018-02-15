@@ -412,12 +412,13 @@
         solicitudAVIO.FillByFira(tsol)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere descontar Ministración (" & tsol.Rows.Count & " solicitudes)"
-            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td></tr>"
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
                 Mensaje += "<td>" & r.Descr.Trim & "</td>"
                 Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
-                Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
+                Mensaje += "<td>" & r.TipoCredito & "</td>"
+                Mensaje += "<td>" & r.Nombre_Sucursal & "</td></tr>"
             Next
             Mensaje += "</table>"
 

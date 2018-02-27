@@ -146,6 +146,10 @@
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
             solicitudAVIO.Pasa_PLD2(r.Anexo, r.Ciclo, r.Ministracion)
         Next
+        solicitudAVIO.FillBy2daMinistracionPLD_CC(tsol)
+        For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+            solicitudAVIO.Pasa_PLD2(r.Anexo, r.Ciclo, r.Ministracion)
+        Next
 
         solicitudAVIO.FillByPLD(tsol)
         If tsol.Rows.Count > 0 Then

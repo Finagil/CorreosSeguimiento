@@ -107,6 +107,7 @@
     <Compile Include="Mod_Factoraje.vb" />
     <Compile Include="Mod_Global.vb" />
     <Compile Include="Mod_MCBitacora.vb" />
+    <Compile Include="Mod_Pasivos.vb" />
     <Compile Include="Mod_SistemaFinagil.vb" />
     <Compile Include="Mod_Tasas.vb" />
     <Compile Include="Mod_Varios.vb" />

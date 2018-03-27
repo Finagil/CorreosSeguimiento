@@ -1007,11 +1007,10 @@ WHERE        (mFINAGIL.TesoreriaPAG = 1) AND (mFINAGIL.Notas IS NULL OR
 SET                Credito = 'CRED', CreditoAut = 1, MesaControl = 'MesaControlX'
 FROM            mFINAGIL INNER JOIN
                          Avios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo
-WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento &lt;&gt; N'Efectivo') AND (Avios.Tipar = N'H') AND (mFINAGIL.Credito = 'Credito' OR
+WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento &lt;&gt; N'Efectivo') AND (mFINAGIL.Credito = 'Credito' OR
                          mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) OR
-                         (mFINAGIL.Procesado = 0) AND (Avios.Tipar &lt;&gt; N'H') AND (mFINAGIL.Credito = 'Credito' OR
-                         mFINAGIL.Credito = 'CreditoX' OR
-                         mFINAGIL.Credito IS NULL) AND (mFINAGIL.VoboAut = 1)</CommandText>
+                         (mFINAGIL.Procesado = 0) AND (mFINAGIL.Credito = 'Credito' OR
+                         mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) AND (Avios.Tipar = N'A')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </UpdateCommand>

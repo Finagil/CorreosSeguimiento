@@ -69,7 +69,7 @@
             Mensaje += "</table>"
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Seguimiento@finagil.com.mx")+9
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
             Next
             EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
         End If

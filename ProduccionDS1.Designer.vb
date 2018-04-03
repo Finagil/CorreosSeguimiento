@@ -12854,7 +12854,10 @@ Namespace ProduccionDSTableAdapters
                 " (mFINAGIL.Credito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = '"& _ 
                 "CreditoX') AND (mFINAGIL.VoboAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Pro"& _ 
                 "cesado = 0) AND (mFINAGIL.Credito = 'Credito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINA"& _ 
-                "GIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) AND (Avios.Tipar = N'A')"
+                "GIL.Credito = 'CreditoX') AND (mFINAGIL.VoboAut = 1) AND (Avios.Tipar = N'A') OR"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mFINAGIL.Procesado = 0) AND (mFINAGIL.Credito = 'Cre"& _ 
+                "dito' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Credito = 'CreditoX') AND (mFINAGIL."& _ 
+                "VoboAut = 1) AND (Avios.Tipar = N'C') AND (mFINAGIL.Ciclo <> N'01')"
             Me._commandCollection(28).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(29) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(29).Connection = Me.Connection

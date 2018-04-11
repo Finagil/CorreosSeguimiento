@@ -9,7 +9,7 @@ Module Mod_Main
             EnviaCorreoAVIO()
             Console.WriteLine("Seguimiento de Crédito")
             Console.WriteLine(Date.Now.Hour)
-            If Date.Now.Hour = 6 And Date.Now.Minute < 5 Then 'se ejecutan una sola ves al dia a las 6 am
+            If Date.Now.Hour = 7 And Date.Now.Minute = 10 Then 'se ejecutan una sola ves al dia a las 6 am
                 EnviaCorreoPAGOS_PASIVO(Date.Now.Date)
                 EnviaCorreoSEGUI_CRED("DIA", -3)
                 EnviaCorreoSEGUI_CRED("DIA", 0)

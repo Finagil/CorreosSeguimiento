@@ -3,10 +3,12 @@
     Public Sub EnviaCorreoAVIO()
         Try
             Console.WriteLine("vobo")
-            EnviaCorreoAvio_VOBO()
-            EnviaCorreoAvio_VOBO2()
             Console.WriteLine("Sub")
             EnviaCorreoAvio_SUB()
+
+            EnviaCorreoAvio_VOBO()
+            EnviaCorreoAvio_VOBO2()
+
             Console.WriteLine("DG")
             EnviaCorreoAvio_DG_CRED()
             EnviaCorreoAvio_DG()

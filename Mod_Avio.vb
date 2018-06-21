@@ -184,7 +184,7 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-
+        solicitudAVIO.Pasa_Cred_Todo() 'YA NO PASA NADA POR CREDITO, SE HABILITARON LINES DE CREDITO DE AVIO Y CC
         solicitudAVIO.Pasa_CRED()
         'pasa los de segunda ministracion
         solicitudAVIO.FillBy2daMinistracionCRE(tsol)

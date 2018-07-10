@@ -60,6 +60,12 @@
         Dim Mensaje As String = ""
 
         'solicitudAVIO.PasaCC()
+        'pasa los de segunda ministracion
+        solicitudAVIO.FillBy2daMinistracionVOBO(tsol)
+        For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+            solicitudAVIO.Pasa_Vobo2(r.Anexo, r.Ciclo, r.Ministracion)
+        Next
+
         solicitudAVIO.FillVobo(tsol)
 
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows

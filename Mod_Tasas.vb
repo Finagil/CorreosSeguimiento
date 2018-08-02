@@ -23,6 +23,7 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             EnviacORREO("ajoshin@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            EnviacORREO("cjuarezr@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"

@@ -661,5 +661,38 @@
 
     End Sub
 
+    Public Sub EnviaCorreoAvio_TESO_Aviso()
+        '************Solucitud Avio********************
+        Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
+        Dim tsol As New ProduccionDS.AviosVoboRESDataTable
+        Dim Anexo As String = ""
+        Dim Mensaje As String = ""
+        Dim Asunto As String = ""
+        Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
+        solicitudAVIO.FillByTESO_Aviso(tsol)
+        If tsol.Rows.Count > 0 Then
+            Asunto = "Solicitudes sin comformación de pago (" & tsol.Rows.Count & " solicitudes)"
+            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td><td><strong>Ciclo Pagaré</strong></td></tr>"
+            For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+                Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
+                Mensaje += "<td>" & r.Descr.Trim & "</td>"
+                Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
+                Mensaje += "<td>" & r.TipoCredito & "</td>"
+                Mensaje += "<td>" & r.Nombre_Sucursal & "</td>"
+                Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
+            Next
+            Mensaje += "</table>"
+        Else
+            Asunto = "Sin Solicitudes Pendientes de confirmación de pago."
+            Mensaje = "Sin Solicitudes Pendientes de confirmación de pago."
+        End If
+        correos.Fill(Tmail, "TESORERIA")
+        For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+            EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+        Next
+        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+
+    End Sub
 End Module

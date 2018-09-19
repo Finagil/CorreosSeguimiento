@@ -35,6 +35,7 @@ Module Mod_Main
             Console.WriteLine("Bitacora MC")
             EnviaCorreoBitacoraMC(True)
             EnviaCorreoBitacoraMC(False)
+            EnviaCorreoBitacoraMC_Autorizacion()
             Console.WriteLine("Sistema Finagil")
             CorreosSistemaFinagil()
             Console.WriteLine("Terminado")

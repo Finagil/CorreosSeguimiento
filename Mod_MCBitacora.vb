@@ -10,6 +10,7 @@
         Dim MensajeVobo As String = ""
         Dim MensajeAutoriza As String = ""
         Dim MensajeAAutoriza As String = ""
+        Dim PLDB As Boolean = True
 
         If BanderaVOBO = True Then
             solicitudesMC.Fill(tsol)
@@ -46,6 +47,7 @@
                 Case "lhernandez"
                     Vobo = "atorres"
                     Autoriza = "atorres"
+                    PLDB=False
                 Case Else
                     If correos.ScalarDepto(r.Solicito) = "PROMOCION" Then
                         Vobo = "epineda"
@@ -69,17 +71,17 @@
             If Vobo = Autoriza Then
                 EnviacORREO(Autoriza & "@finagil.com.mx", Mensaje & MensajeAAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
                 'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeAAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                solicitudesMC.UpdateEnviadoVOBO(Vobo, r.Id_Bitacora, r.Id_Bitacora)
-                solicitudesMC.UpdateEnviadoAUTO(Autoriza, r.Id_Bitacora, r.Id_Bitacora)
+                solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, r.Id_Bitacora, r.Id_Bitacora)
+                solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, r.Id_Bitacora, r.Id_Bitacora)
             Else
                 If BanderaVOBO = True Then
                     EnviacORREO(Vobo & "@finagil.com.mx", Mensaje & MensajeVobo, "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
                     'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeVobo, "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                    solicitudesMC.UpdateEnviadoVOBO(Vobo, r.Id_Bitacora, r.Id_Bitacora)
+                    solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, r.Id_Bitacora, r.Id_Bitacora)
                 Else
                     EnviacORREO(Autoriza & "@finagil.com.mx", Mensaje & MensajeAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
                     'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                    solicitudesMC.UpdateEnviadoAUTO(Autoriza, r.Id_Bitacora, r.Id_Bitacora)
+                    solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, r.Id_Bitacora, r.Id_Bitacora)
                 End If
             End If
             CORREOS_FASE.Fill(TMAIL, "PLD")

@@ -2748,6 +2748,8 @@ Partial Public Class ProduccionDS
         
         Private columnPldB As Global.System.Data.DataColumn
         
+        Private columnNombre_Sucursal As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -3088,6 +3090,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Nombre_SucursalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNombre_Sucursal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3161,9 +3171,10 @@ Partial Public Class ProduccionDS
                     ByVal VoboB As Boolean,  _
                     ByVal AutorizaB As Boolean,  _
                     ByVal Pld As String,  _
-                    ByVal PldB As Boolean) As MC_BitacoraRow
+                    ByVal PldB As Boolean,  _
+                    ByVal Nombre_Sucursal As String) As MC_BitacoraRow
             Dim rowMC_BitacoraRow As MC_BitacoraRow = CType(Me.NewRow,MC_BitacoraRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Anexo, Ciclo, Pagare, PagareORG, PagareTXT, Contrato, ContratoORG, ContratoTXT, Convenio, ConvenioORG, ConvenioTXT, Escritura, EscrituraORG, EscrituraTXT, Facturas, FacturasORG, FacturasTXT, Garantias, GarantiasORG, GarantiasTXT, FechaSolicitud, FechaEntrega, FechaDevolucion, Justificacion, Nota, Solicito, vobo, AnexoCon, TipoCredito, Descr, AuditoriaExterna, Autoriza, NoAdeudo, VoboB, AutorizaB, Pld, PldB}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Anexo, Ciclo, Pagare, PagareORG, PagareTXT, Contrato, ContratoORG, ContratoTXT, Convenio, ConvenioORG, ConvenioTXT, Escritura, EscrituraORG, EscrituraTXT, Facturas, FacturasORG, FacturasTXT, Garantias, GarantiasORG, GarantiasTXT, FechaSolicitud, FechaEntrega, FechaDevolucion, Justificacion, Nota, Solicito, vobo, AnexoCon, TipoCredito, Descr, AuditoriaExterna, Autoriza, NoAdeudo, VoboB, AutorizaB, Pld, PldB, Nombre_Sucursal}
             rowMC_BitacoraRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowMC_BitacoraRow)
             Return rowMC_BitacoraRow
@@ -3230,6 +3241,7 @@ Partial Public Class ProduccionDS
             Me.columnAutorizaB = MyBase.Columns("AutorizaB")
             Me.columnPld = MyBase.Columns("Pld")
             Me.columnPldB = MyBase.Columns("PldB")
+            Me.columnNombre_Sucursal = MyBase.Columns("Nombre_Sucursal")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3311,6 +3323,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnPld)
             Me.columnPldB = New Global.System.Data.DataColumn("PldB", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPldB)
+            Me.columnNombre_Sucursal = New Global.System.Data.DataColumn("Nombre_Sucursal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNombre_Sucursal)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId_Bitacora}, true))
             Me.columnId_Bitacora.AutoIncrement = true
             Me.columnId_Bitacora.AutoIncrementSeed = -1
@@ -3336,6 +3350,7 @@ Partial Public Class ProduccionDS
             Me.columnDescr.MaxLength = 120
             Me.columnAutoriza.MaxLength = 20
             Me.columnPld.MaxLength = 20
+            Me.columnNombre_Sucursal.MaxLength = 12
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7594,6 +7609,21 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Nombre_Sucursal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableMC_Bitacora.Nombre_SucursalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Nombre_Sucursal' de la tabla 'MC_Bitacora' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableMC_Bitacora.Nombre_SucursalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsAnexoNull() As Boolean
             Return Me.IsNull(Me.tableMC_Bitacora.AnexoColumn)
         End Function
@@ -8022,6 +8052,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetPldBNull()
             Me(Me.tableMC_Bitacora.PldBColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsNombre_SucursalNull() As Boolean
+            Return Me.IsNull(Me.tableMC_Bitacora.Nombre_SucursalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetNombre_SucursalNull()
+            Me(Me.tableMC_Bitacora.Nombre_SucursalColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -11479,6 +11521,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("AutorizaB", "AutorizaB")
             tableMapping.ColumnMappings.Add("Pld", "Pld")
             tableMapping.ColumnMappings.Add("PldB", "PldB")
+            tableMapping.ColumnMappings.Add("Nombre_Sucursal", "Nombre_Sucursal")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -11493,7 +11536,7 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        MC_Bitacora.Id_Bitacora, MC_Bitacora.Anexo, MC_Bitacora.Ciclo, MC_B"& _ 
@@ -11508,9 +11551,10 @@ Namespace ProduccionDSTableAdapters
                 "Bitacora.Solicito, MC_Bitacora.vobo, Vw_Anexos.AnexoCon, Vw_Anexos.TipoCredito, "& _ 
                 "Vw_Anexos.Descr, MC_Bitacora.AuditoriaExterna, MC_Bitacora.Autoriza, MC_Bitacora"& _ 
                 ".NoAdeudo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_Bitacora.VoboB, MC_Bitacora.AutorizaB, "& _ 
-                "MC_Bitacora.Pld, MC_Bitacora.PldB"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_Bitacora INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                    Vw_Anexos ON MC_Bitacora.Anexo = Vw_Anexos.Anexo AND MC_Bita"& _ 
-                "cora.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_Bitacora.vobo IS NULL)"
+                "MC_Bitacora.Pld, MC_Bitacora.PldB, Vw_Anexos.Nombre_Sucursal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC"& _ 
+                "_Bitacora INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON MC_Bitacora.Anexo = "& _ 
+                "Vw_Anexos.Anexo AND MC_Bitacora.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_Bitaco"& _ 
+                "ra.vobo IS NULL)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -11526,39 +11570,61 @@ Namespace ProduccionDSTableAdapters
                 "Bitacora.Solicito, MC_Bitacora.vobo, Vw_Anexos.AnexoCon, Vw_Anexos.TipoCredito, "& _ 
                 "Vw_Anexos.Descr, MC_Bitacora.AuditoriaExterna, MC_Bitacora.Autoriza, MC_Bitacora"& _ 
                 ".NoAdeudo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_Bitacora.VoboB, MC_Bitacora.AutorizaB, "& _ 
-                "MC_Bitacora.Pld, MC_Bitacora.PldB"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC_Bitacora INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                    Vw_Anexos ON MC_Bitacora.Anexo = Vw_Anexos.Anexo AND MC_Bita"& _ 
-                "cora.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_Bitacora.VoboB = 1) AND (MC_Bitac"& _ 
-                "ora.Autoriza IS NULL)"
+                "MC_Bitacora.Pld, MC_Bitacora.PldB, Vw_Anexos.Nombre_Sucursal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC"& _ 
+                "_Bitacora INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON MC_Bitacora.Anexo = "& _ 
+                "Vw_Anexos.Anexo AND MC_Bitacora.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_Bitaco"& _ 
+                "ra.VoboB = 1) AND (MC_Bitacora.Autoriza IS NULL)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "UPDATE       MC_Bitacora"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = @Auto, PldB = @PldB"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
-                "E        (Id_Bitacora = @id);      "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id_Bitacora, Anexo, Ciclo, Pagare, P"& _ 
-                "agareORG, PagareTXT, Contrato, ContratoORG, ContratoTXT, Convenio, ConvenioORG, "& _ 
-                "ConvenioTXT, Escritura, EscrituraORG, EscrituraTXT, Facturas, FacturasORG, Factu"& _ 
-                "rasTXT, Garantias, GarantiasORG, GarantiasTXT, FechaSolicitud, FechaEntrega, Fec"& _ 
-                "haDevolucion, Justificacion, Nota, Solicito, vobo FROM MC_Bitacora WHERE (Id_Bit"& _ 
-                "acora = @Id_Bitacora)"
+            Me._commandCollection(2).CommandText = "SELECT        MC_Bitacora.Id_Bitacora, MC_Bitacora.Anexo, MC_Bitacora.Ciclo, MC_B"& _ 
+                "itacora.Pagare, MC_Bitacora.PagareORG, MC_Bitacora.PagareTXT, MC_Bitacora.Contra"& _ 
+                "to, MC_Bitacora.ContratoORG, MC_Bitacora.ContratoTXT, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                " MC_Bitacora.Convenio, MC_Bitacora.ConvenioORG, MC_Bitacora.ConvenioTXT, MC_Bita"& _ 
+                "cora.Escritura, MC_Bitacora.EscrituraORG, MC_Bitacora.EscrituraTXT, MC_Bitacora."& _ 
+                "Facturas, MC_Bitacora.FacturasORG, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_Bitacora.Factur"& _ 
+                "asTXT, MC_Bitacora.Garantias, MC_Bitacora.GarantiasORG, MC_Bitacora.GarantiasTXT"& _ 
+                ", MC_Bitacora.FechaSolicitud, MC_Bitacora.FechaEntrega, MC_Bitacora.FechaDevoluc"& _ 
+                "ion, MC_Bitacora.Justificacion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_Bitacora.Nota, MC_"& _ 
+                "Bitacora.Solicito, MC_Bitacora.vobo, Vw_Anexos.AnexoCon, Vw_Anexos.TipoCredito, "& _ 
+                "Vw_Anexos.Descr, MC_Bitacora.AuditoriaExterna, MC_Bitacora.Autoriza, MC_Bitacora"& _ 
+                ".NoAdeudo, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         MC_Bitacora.VoboB, MC_Bitacora.AutorizaB, "& _ 
+                "MC_Bitacora.Pld, MC_Bitacora.PldB, Vw_Anexos.Nombre_Sucursal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            MC"& _ 
+                "_Bitacora INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON MC_Bitacora.Anexo = "& _ 
+                "Vw_Anexos.Anexo AND MC_Bitacora.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (MC_Bitaco"& _ 
+                "ra.AutorizaB = 1) AND (MC_Bitacora.PldB = 1) AND (MC_Bitacora.Pld <> 'PLDX' AND "& _ 
+                "MC_Bitacora.Pld LIKE '%X')"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Auto", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Autoriza", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PldB", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "PldB", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Bitacora", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "UPDATE       MC_Bitacora"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                vobo = @vobo, VoboB = 0, AutorizaB ="& _ 
-                " 0, PldB = @PldB"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Id_Bitacora = @id);    "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id_Bitacora, Ane"& _ 
-                "xo, Ciclo, Pagare, PagareORG, PagareTXT, Contrato, ContratoORG, ContratoTXT, Con"& _ 
-                "venio, ConvenioORG, ConvenioTXT, Escritura, EscrituraORG, EscrituraTXT, Facturas"& _ 
-                ", FacturasORG, FacturasTXT, Garantias, GarantiasORG, GarantiasTXT, FechaSolicitu"& _ 
-                "d, FechaEntrega, FechaDevolucion, Justificacion, Nota, Solicito, vobo FROM MC_Bi"& _ 
-                "tacora WHERE (Id_Bitacora = @Id_Bitacora)"
+            Me._commandCollection(3).CommandText = "UPDATE       MC_Bitacora"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Autoriza = @Auto, PldB = @PldB, Pld "& _ 
+                "= @PldX"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Id_Bitacora = @id);       "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id_Bitacora, Anexo, Ci"& _ 
+                "clo, Pagare, PagareORG, PagareTXT, Contrato, ContratoORG, ContratoTXT, Convenio,"& _ 
+                " ConvenioORG, ConvenioTXT, Escritura, EscrituraORG, EscrituraTXT, Facturas, Fact"& _ 
+                "urasORG, FacturasTXT, Garantias, GarantiasORG, GarantiasTXT, FechaSolicitud, Fec"& _ 
+                "haEntrega, FechaDevolucion, Justificacion, Nota, Solicito, vobo FROM MC_Bitacora"& _ 
+                " WHERE (Id_Bitacora = @Id_Bitacora)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Auto", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Autoriza", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PldB", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "PldB", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PldX", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Pld", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Bitacora", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "UPDATE       MC_Bitacora"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                vobo = @vobo, VoboB = 0, AutorizaB ="& _ 
+                " 0, PldB = @PldB, Pld = @PldX"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Id_Bitacora = @id);    "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id_"& _ 
+                "Bitacora, Anexo, Ciclo, Pagare, PagareORG, PagareTXT, Contrato, ContratoORG, Con"& _ 
+                "tratoTXT, Convenio, ConvenioORG, ConvenioTXT, Escritura, EscrituraORG, Escritura"& _ 
+                "TXT, Facturas, FacturasORG, FacturasTXT, Garantias, GarantiasORG, GarantiasTXT, "& _ 
+                "FechaSolicitud, FechaEntrega, FechaDevolucion, Justificacion, Nota, Solicito, vo"& _ 
+                "bo FROM MC_Bitacora WHERE (Id_Bitacora = @Id_Bitacora)"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@vobo", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "vobo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PldB", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "PldB", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PldX", Global.System.Data.SqlDbType.VarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "Pld", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id_Bitacora", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Bitacora", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11612,9 +11678,33 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByPLD(ByVal dataTable As ProduccionDS.MC_BitacoraDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy2PLD() As ProduccionDS.MC_BitacoraDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Dim dataTable As ProduccionDS.MC_BitacoraDataTable = New ProduccionDS.MC_BitacoraDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateEnviadoAUTO(ByVal _Auto As String, ByVal PldB As Global.System.Nullable(Of Boolean), ByVal id As Decimal, ByVal Id_Bitacora As Decimal) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
+        Public Overloads Overridable Function UpdateEnviadoAUTO(ByVal _Auto As String, ByVal PldB As Global.System.Nullable(Of Boolean), ByVal PldX As String, ByVal id As Decimal, ByVal Id_Bitacora As Decimal) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
             If (_Auto Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11625,8 +11715,13 @@ Namespace ProduccionDSTableAdapters
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            command.Parameters(2).Value = CType(id,Decimal)
-            command.Parameters(3).Value = CType(Id_Bitacora,Decimal)
+            If (PldX Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(PldX,String)
+            End If
+            command.Parameters(3).Value = CType(id,Decimal)
+            command.Parameters(4).Value = CType(Id_Bitacora,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -11647,8 +11742,8 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateEnviadoVOBO(ByVal vobo As String, ByVal PldB As Global.System.Nullable(Of Boolean), ByVal id As Decimal, ByVal Id_Bitacora As Decimal) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
+        Public Overloads Overridable Function UpdateEnviadoVOBO(ByVal vobo As String, ByVal PldB As Global.System.Nullable(Of Boolean), ByVal PldX As String, ByVal id As Decimal, ByVal Id_Bitacora As Decimal) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             If (vobo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -11659,8 +11754,13 @@ Namespace ProduccionDSTableAdapters
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            command.Parameters(2).Value = CType(id,Decimal)
-            command.Parameters(3).Value = CType(Id_Bitacora,Decimal)
+            If (PldX Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(PldX,String)
+            End If
+            command.Parameters(3).Value = CType(id,Decimal)
+            command.Parameters(4).Value = CType(Id_Bitacora,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

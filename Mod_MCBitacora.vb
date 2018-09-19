@@ -82,6 +82,11 @@
                     solicitudesMC.UpdateEnviadoAUTO(Autoriza, r.Id_Bitacora, r.Id_Bitacora)
                 End If
             End If
+            CORREOS_FASE.Fill(TMAIL, "PLD")
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+            Next
+
             'EnviacORREO("lmercado@finagil.com.mx", Mensaje, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
             'solicitudesMC.UpdateEnviado(Vobo, Autoriza, r.Id_Bitacora, r.Id_Bitacora)
         Next

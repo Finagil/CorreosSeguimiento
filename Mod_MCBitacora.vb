@@ -142,7 +142,7 @@
             Next
             EnviacORREO(r.Solicito.Trim & "@finagil.com.mx", Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-            solicitudesMC.UpdateEnviadoAUTO(r.Autoriza, r.PldB, r.Pld.Substring(0, r.Pld.Length - 2), r.Id_Bitacora, r.Id_Bitacora)
+            solicitudesMC.UpdateEnviadoAUTO(r.Autoriza, r.PldB, r.Pld.Substring(0, r.Pld.Length - 1), r.Id_Bitacora, r.Id_Bitacora)
         Next
 
     End Sub

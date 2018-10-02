@@ -147,19 +147,13 @@
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
-        solicitudAVIO.Pasa_PLD()
-        solicitudAVIO.Pasa_PLD_Aut()
-        'pasa los de segunda ministracion
-        solicitudAVIO.FillBy2daMinistracionPLD(tsol)
-        For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
-            solicitudAVIO.Pasa_PLD2(r.Anexo, r.Ciclo, r.Ministracion)
-        Next
-        solicitudAVIO.FillBy2daMinistracionPLD_CC(tsol)
+        solicitudAVIO.Pasa_PLD_Aut() ' pasa todo lo autorizado
+        solicitudAVIO.FillBy2daMinistracionPLD_CC(tsol) ' pasa todo lo que sea del pagare 2 en adelante
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
             solicitudAVIO.Pasa_PLD2(r.Anexo, r.Ciclo, r.Ministracion)
         Next
 
-        solicitudAVIO.FillByPLD(tsol)
+        solicitudAVIO.FillByPLD(tsol) ' trae todo lo pendiente (gastos y efectivo)
         If tsol.Rows.Count > 0 Then
             Asunto = "Se requiere revisión de PLD para Ministración (" & tsol.Rows.Count & " solicitudes)"
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"

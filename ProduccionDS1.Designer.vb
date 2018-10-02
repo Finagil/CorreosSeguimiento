@@ -12884,12 +12884,12 @@ Namespace ProduccionDSTableAdapters
                 " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
                 "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
                 "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.V"& _ 
-                "oboAut = 1) AND (mFINAGIL.Documento = N'efectivo') AND (mFINAGIL.Pld = 'PldX' OR"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Pld IS NULL) AND (mFINAGIL.PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       mFINAGIL.PldAut IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw"& _ 
-                "_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Culti"& _ 
-                "vo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minist"& _ 
-                "racion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "oboAut = 1) AND (mFINAGIL.Pld = 'PldX' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Pld"& _ 
+                " IS NULL) AND (mFINAGIL.PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.PldAut "& _ 
+                "IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, V"& _ 
+                "w_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.An"& _ 
+                "exo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_A"& _ 
+                "nexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(17) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(17).Connection = Me.Connection
@@ -13123,8 +13123,8 @@ Namespace ProduccionDSTableAdapters
                 "GIL.Anexo AND Avios.Ciclo = mFINAGIL.Ciclo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
                 "Clientes ON Avios.Cliente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
                 "  PLD_Bloqueo_Clientes ON Clientes.Cliente = PLD_Bloqueo_Clientes.Cliente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE"& _ 
-                "        (mFINAGIL.Documento = N'efectivo') AND (mFINAGIL.Procesado = 0) AND (PLD"& _ 
-                "_Bloqueo_Clientes.Status = 'Autorizada') AND (mFINAGIL.PldAut = 0)"
+                "        (mFINAGIL.Procesado = 0) AND (PLD_Bloqueo_Clientes.Status = 'Autorizada'"& _ 
+                ") AND (mFINAGIL.PldAut = 0)"
             Me._commandCollection(34).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(35) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(35).Connection = Me.Connection

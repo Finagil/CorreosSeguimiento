@@ -64,7 +64,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>A114044163E9E4B765B1692203FDD450F2B93425</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8F4BC9AFA9890846E24CD27652C53AFDF23E0508</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>CorreosSeguimiento_TemporaryKey.pfx</ManifestKeyFile>

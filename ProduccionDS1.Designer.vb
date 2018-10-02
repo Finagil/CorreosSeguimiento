@@ -15491,16 +15491,19 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_Alta, Fe"& _ 
-                "cha_Compromiso, Notas, Responsable, Sucursal FROM Vw_CRED_Seguimientos WHERE (Di"& _ 
-                "asRetraso = @Dias)"
+            Me._commandCollection(1).CommandText = "SELECT        Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_A"& _ 
+                "lta, Fecha_Compromiso, Notas, Responsable, Sucursal, DiasAsignados"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        "& _ 
+                "    Vw_CRED_Seguimientos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (DiasRetraso = @Dias) AND (DiasAsignados "& _ 
+                "BETWEEN @DiasHasta1 AND @DiasHasta2)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dias", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasRetraso", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiasHasta1", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasAsignados", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiasHasta2", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasAsignados", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_Alta, Fe"& _ 
-                "cha_Compromiso, Notas, Responsable, Sucursal FROM Vw_CRED_Seguimientos WHERE (Su"& _ 
-                "cursal = @Sucursal) ORDER BY DiasRetraso DESC"
+            Me._commandCollection(2).CommandText = "SELECT        Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_A"& _ 
+                "lta, Fecha_Compromiso, Notas, Responsable, Sucursal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CRED_Seg"& _ 
+                "uimientos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Sucursal = @Sucursal)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY DiasRetraso DESC"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -15533,12 +15536,22 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function Fill_PorVencer(ByVal dataTable As ProduccionDS.CRED_SeguimientosDataTable, ByVal Dias As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Fill_PorVencer(ByVal dataTable As ProduccionDS.CRED_SeguimientosDataTable, ByVal Dias As Global.System.Nullable(Of Integer), ByVal DiasHasta1 As Global.System.Nullable(Of Integer), ByVal DiasHasta2 As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (Dias.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(Dias.Value,Integer)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (DiasHasta1.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(DiasHasta1.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            If (DiasHasta2.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(DiasHasta2.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -15551,12 +15564,22 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetData_PorVencer(ByVal Dias As Global.System.Nullable(Of Integer)) As ProduccionDS.CRED_SeguimientosDataTable
+        Public Overloads Overridable Function GetData_PorVencer(ByVal Dias As Global.System.Nullable(Of Integer), ByVal DiasHasta1 As Global.System.Nullable(Of Integer), ByVal DiasHasta2 As Global.System.Nullable(Of Integer)) As ProduccionDS.CRED_SeguimientosDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (Dias.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(Dias.Value,Integer)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (DiasHasta1.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(DiasHasta1.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            If (DiasHasta2.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(DiasHasta2.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             Dim dataTable As ProduccionDS.CRED_SeguimientosDataTable = New ProduccionDS.CRED_SeguimientosDataTable()
             Me.Adapter.Fill(dataTable)

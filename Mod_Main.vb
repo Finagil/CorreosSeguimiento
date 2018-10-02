@@ -12,8 +12,19 @@ Module Mod_Main
             If Date.Now.Hour = 7 And Date.Now.Minute = 10 Then 'se ejecutan una sola ves al dia a las 6 am
                 EnviaCorreoAvio_TESO_Aviso()
                 EnviaCorreoPAGOS_PASIVO(Date.Now.Date)
-                EnviaCorreoSEGUI_CRED("DIA", -3)
-                EnviaCorreoSEGUI_CRED("DIA", 0)
+                EnviaCorreoSEGUI_CRED("DIA", -5, 0, 14)
+                EnviaCorreoSEGUI_CRED("DIA", 0, 0, 14)
+
+                EnviaCorreoSEGUI_CRED("DIA", -15, 15, 29)
+                EnviaCorreoSEGUI_CRED("DIA", -10, 15, 29)
+                EnviaCorreoSEGUI_CRED("DIA", -5, 15, 29)
+                EnviaCorreoSEGUI_CRED("DIA", -0, 15, 29)
+
+                EnviaCorreoSEGUI_CRED("DIA", -15, 30, 9999)
+                EnviaCorreoSEGUI_CRED("DIA", -10, 30, 9999)
+                EnviaCorreoSEGUI_CRED("DIA", -5, 30, 9999)
+                EnviaCorreoSEGUI_CRED("DIA", -0, 30, 9999)
+
                 If Date.Now.DayOfWeek = DayOfWeek.Monday Then
                     EnviaCorreoSEGUI_CRED_SUC("Toluca")
                     EnviaCorreoSEGUI_CRED_SUC("Irapuato")

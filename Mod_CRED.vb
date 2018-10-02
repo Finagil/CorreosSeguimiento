@@ -1,6 +1,6 @@
 ﻿Module Mod_CRED
 
-    Public Sub EnviaCorreoSEGUI_CRED(Opcion As String, Optional Dias As Integer = 0)
+    Public Sub EnviaCorreoSEGUI_CRED(Opcion As String, Dias As Integer, Dias1 As Integer, Dias2 As Integer)
         '************Solucitud de Documentos MC********************
         Dim solicitudes As New ProduccionDSTableAdapters.CRED_SeguimientosTableAdapter
         Dim tsol As New ProduccionDS.CRED_SeguimientosDataTable
@@ -14,7 +14,7 @@
                 solicitudes.Fill_Vencidos(tsol)
                 Asunto = "Notificación de Seguimiento: VENCIDOS"
             Case "DIA"
-                solicitudes.Fill_PorVencer(tsol, Dias)
+                solicitudes.Fill_PorVencer(tsol, Dias, Dias1, Dias2)
                 If Dias = 0 Then
                     Asunto = "Notificación de Seguimiento: VENCEN HOY "
                 Else

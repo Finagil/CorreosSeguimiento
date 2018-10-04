@@ -106,7 +106,7 @@
         Dim Autoriza As String = ""
         Dim Mensaje As String = ""
 
-        solicitudesMC.FillByPLD(tsol)
+        solicitudesMC.FillBySinPLD(tsol)
         For Each r As ProduccionDS.MC_BitacoraRow In tsol.Rows
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
             Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
@@ -114,6 +114,7 @@
             Mensaje += "Solicita: " & r.Solicito & "<br>"
             Mensaje += "Vobo: " & r.vobo & "<br>"
             Mensaje += "Autoriza: " & r.Autoriza & "<br>"
+            Mensaje += "Autoriza PLD: " & IIf(r.PldB = True, "SI", "NO") & "<br>"
             Mensaje += "Documentos: <br>"
             If r.Contrato = True Then Mensaje += vbTab & "Contrato<br>"
             If r.Pagare = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Pagare<br>"

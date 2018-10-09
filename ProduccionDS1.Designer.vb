@@ -12787,12 +12787,12 @@ Namespace ProduccionDSTableAdapters
                 "L.Ciclo = Vw_Anexos.Ciclo LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DetalleFINAG"& _ 
                 "IL ON Vw_Anexos.Anexo = DetalleFINAGIL.Anexo AND Vw_Anexos.Ciclo = DetalleFINAGI"& _ 
                 "L.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.VoboAut = 1) AND (m"& _ 
-                "FINAGIL.Documento = N'efectivo') AND (mFINAGIL.Pld = 'Pld') AND (mFINAGIL.PldAut"& _ 
-                " = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.PldAut IS NULL) AND (Vw_Anexos.Tipar "& _ 
-                "= N'C') AND (mFINAGIL.Ciclo > N'01')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.Cic"& _ 
-                "loPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anex"& _ 
-                "os.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
-                "                        Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "FINAGIL.Pld = 'Pld') AND (mFINAGIL.PldAut = 0 OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINA"& _ 
+                "GIL.PldAut IS NULL) AND (Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Ciclo > N'01')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"G"& _ 
+                "ROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.No"& _ 
+                "mbre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Ane"& _ 
+                "xos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection

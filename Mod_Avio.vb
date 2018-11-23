@@ -35,7 +35,8 @@
             EnviaCorreoAvio_SUC_MC("Navojoa")
             EnviaCorreoAvio_SUC_MC("Mexicali")
             Console.WriteLine("Fira")
-            EnviaCorreoAvio_FIRA()
+            EnviaCorreoAvio_FIRA(True)
+            EnviaCorreoAvio_FIRA(False)
             Console.WriteLine("Tesoreria")
             EnviaCorreoAvio_TESO()
             Console.WriteLine("Sucursales")
@@ -410,7 +411,7 @@
 
     End Sub
 
-    Private Sub EnviaCorreoAvio_FIRA()
+    Private Sub EnviaCorreoAvio_FIRA(GastosNoIraputato As Boolean)
         '************Solucitud Avio********************
         Dim solicitudAVIO As New ProduccionDSTableAdapters.AviosVoboRESTableAdapter
         Dim tsol As New ProduccionDS.AviosVoboRESDataTable
@@ -419,10 +420,21 @@
         Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+
         solicitudAVIO.QuitaGastos_CRE()
-        solicitudAVIO.FillByFira(tsol)
+        If GastosNoIraputato = True Then
+            solicitudAVIO.FillByFiraGastos(tsol)
+        Else
+            solicitudAVIO.FillByFira(tsol)
+        End If
+
         If tsol.Rows.Count > 0 Then
-            Asunto = "Se requiere descontar Ministración (" & tsol.Rows.Count & " solicitudes)"
+            If GastosNoIraputato = True Then
+                Asunto = "Se requiere descontar Ministración de Gastos(" & tsol.Rows.Count & " solicitudes)"
+            Else
+                Asunto = "Se requiere descontar Ministración (" & tsol.Rows.Count & " solicitudes)"
+            End If
+
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td></tr>"
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
@@ -438,6 +450,11 @@
                 EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
             Next
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            If GastosNoIraputato = True Then
+                solicitudAVIO.Fira_MailGastos()
+            Else
+                solicitudAVIO.Fira_mail()
+            End If
             solicitudAVIO.Fira_mail()
         End If
 

@@ -12711,11 +12711,12 @@ Namespace ProduccionDSTableAdapters
                 "Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar <> N'A') AND (m"& _ 
                 "FINAGIL.Procesado = 0) AND (mFINAGIL.Documento <> N'Nada') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
                 "        (mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar = N'A') AND (mFINAGIL.Proce"& _ 
-                "sado = 0) AND (mFINAGIL.Documento <> N'Efectivo')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, "& _ 
-                "Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cul"& _ 
-                "tivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexos.Cic"& _ 
-                "lo, mFINAGIL.Notas, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.NotasCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY V"& _ 
-                "w_Anexos.AnexoCon"
+                "sado = 0) AND (mFINAGIL.Documento <> N'Efectivo') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ("& _ 
+                "mFINAGIL.Vobo IS NULL) AND (Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesado = 0)"& _ 
+                " AND (mFINAGIL.Ciclo = N'01')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagar"& _ 
+                "e, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.Tipo"& _ 
+                "Credito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexos.Ciclo, mFINAGIL.Notas, "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.NotasCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -13213,10 +13214,10 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(40) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(40).Connection = Me.Connection
             Me._commandCollection(40).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = 'CC', VoboAut = 1, MesaControl ="& _ 
-                " 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         A"& _ 
-                "vios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
-                "    (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo IS NULL)"& _ 
-                ""
+                " 'MesaControlX', Ciclo ="&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        Avios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "WHERE        (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo"& _ 
+                " IS NULL) AND (mFINAGIL.Ciclo <> N'01')"
             Me._commandCollection(40).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(41) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(41).Connection = Me.Connection
@@ -14177,7 +14178,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function Pasa_Credito2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Byte) As Integer
+        Public Overloads Overridable Function Pasa_Credito2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Global.System.Nullable(Of Byte)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(34)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
@@ -14189,7 +14190,11 @@ Namespace ProduccionDSTableAdapters
             Else
                 command.Parameters(1).Value = CType(ciclo,String)
             End If
-            command.Parameters(2).Value = CType(ministracion,Byte)
+            If (ministracion.HasValue = true) Then
+                command.Parameters(2).Value = CType(ministracion.Value,Byte)
+            Else
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14276,7 +14281,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function Pasa_PLD2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Byte) As Integer
+        Public Overloads Overridable Function Pasa_PLD2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Global.System.Nullable(Of Byte)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(38)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
@@ -14288,7 +14293,11 @@ Namespace ProduccionDSTableAdapters
             Else
                 command.Parameters(1).Value = CType(ciclo,String)
             End If
-            command.Parameters(2).Value = CType(ministracion,Byte)
+            If (ministracion.HasValue = true) Then
+                command.Parameters(2).Value = CType(ministracion.Value,Byte)
+            Else
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14309,7 +14318,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function Pasa_Vobo2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Byte) As Integer
+        Public Overloads Overridable Function Pasa_Vobo2(ByVal Anexo As String, ByVal ciclo As String, ByVal ministracion As Global.System.Nullable(Of Byte)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(39)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
@@ -14321,7 +14330,11 @@ Namespace ProduccionDSTableAdapters
             Else
                 command.Parameters(1).Value = CType(ciclo,String)
             End If
-            command.Parameters(2).Value = CType(ministracion,Byte)
+            If (ministracion.HasValue = true) Then
+                command.Parameters(2).Value = CType(ministracion.Value,Byte)
+            Else
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

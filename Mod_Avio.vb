@@ -60,7 +60,7 @@
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
 
-        'solicitudAVIO.PasaCC()
+        solicitudAVIO.PasaCC() ' pasa los CC despues del pag 02
         'pasa los de segunda ministracion
         solicitudAVIO.FillBy2daMinistracionVOBO(tsol)
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows

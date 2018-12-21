@@ -13214,10 +13214,10 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(40) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(40).Connection = Me.Connection
             Me._commandCollection(40).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Vobo = 'CC', VoboAut = 1, MesaControl ="& _ 
-                " 'MesaControlX', Ciclo ="&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
-                "        Avios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "WHERE        (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo"& _ 
-                " IS NULL) AND (mFINAGIL.Ciclo <> N'01')"
+                " 'MesaControlX'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         A"& _ 
+                "vios ON mFINAGIL.Ciclo = Avios.Ciclo AND mFINAGIL.Anexo = Avios.Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
+                "    (Avios.Tipar = 'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Vobo IS NULL)"& _ 
+                " AND (mFINAGIL.Ciclo <> N'01')"
             Me._commandCollection(40).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(41) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(41).Connection = Me.Connection

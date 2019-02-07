@@ -58,11 +58,7 @@
                 Mensaje += "<td>" & r.Responsable & "</td>"
                 Mensaje += "<td>" & r.Compromiso & "</td>"
                 Mensaje += "<td>" & r.DiasRetraso & "</td>"
-                If r.Analista = "araceli.sanchez" Then
-                    Mensaje += "<td>Seguros</td>"
-                Else
-                    Mensaje += "<td>Crédito</td>"
-                End If
+                Mensaje += "<td>" & r.Tipo & "</td>"
                 Mensaje += "<td>" & r.Notas & "</td></tr>"
                 Resposble = CORREOS.ScalarCorreo(r.Analista)
             Next

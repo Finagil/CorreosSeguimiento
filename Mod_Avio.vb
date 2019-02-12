@@ -150,7 +150,7 @@
 
         solicitudAVIO.Pasa_PLD_Aut() ' pasa todo lo autorizado
         solicitudAVIO.Pasa_PLD_Aut2() ' pasa todo lo autorizado caducado
-        solicitudAVIO.Pasa_Pld_Aut3() ' pasa todo lo autorizado PLDX
+        ''''solicitudAVIO.Pasa_Pld_Aut3() ' pasa todo lo autorizado PLDX
 
         solicitudAVIO.FillBy2daMinistracionPLD_CC(tsol) ' pasa todo lo que sea del pagare 2 en adelante
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows

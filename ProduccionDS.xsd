@@ -796,7 +796,8 @@ ORDER BY Vw_Anexos.AnexoCon</CommandText>
 FROM            mFINAGIL INNER JOIN
                          Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGIL.Ciclo = Vw_Anexos.Ciclo
 WHERE        (Vw_Anexos.Tipar = N'H' OR
-                         Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'EFECTIVO') AND (mFINAGIL.CreditoAut = 0) AND (mFINAGIL.Credito = 'DGX')
+                         Vw_Anexos.Tipar = N'C') AND (mFINAGIL.Procesado = 0) AND (mFINAGIL.Documento = N'EFECTIVO' OR
+                         mFINAGIL.Documento = N'VALE') AND (mFINAGIL.CreditoAut = 0) AND (mFINAGIL.Credito = 'DGX')
 GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, Vw_Anexos.Ciclo
 ORDER BY Vw_Anexos.AnexoCon</CommandText>
                     <Parameters />
@@ -1176,7 +1177,8 @@ SET                Pld = 'PLD_AUT', PldAut = 1
 WHERE        (Procesado = 0) AND (PldAut = 0) AND (Anexo IN
                              (SELECT        Anexo
                                FROM            mFINAGIL AS mFINAGIL_1
-                               WHERE        (Pld = 'PLD_AUT')))</CommandText>
+                               WHERE        (Pld = 'PLD_AUT') OR
+                                                         (Pld = 'PLD2')))</CommandText>
                     <Parameters />
                   </DbCommand>
                 </UpdateCommand>

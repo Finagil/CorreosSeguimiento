@@ -9,6 +9,18 @@
         Dim bt As New ProduccionDS.VWbloqueoTasasDataTable
 
         '************bloqueo de tasas********************
+        Btasas.FillByReserva(bt)
+        For Each r As ProduccionDS.VWbloqueoTasasRow In bt.Rows
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
+            Mensaje += "Promotor: " & r.Promotor & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            EnviacORREO("ajoshin@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            EnviacORREO("cjuarezr@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            Btasas.Enviados(True, r.id)
+        Next
+
         Btasas.FillRI(bt)
         For Each r As ProduccionDS.VWbloqueoTasasRow In bt.Rows
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
@@ -31,7 +43,7 @@
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/951sb999-7xx8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             If r.Nombre_Sucursal.Trim = "NAVOJOA" Or r.Nombre_Sucursal.Trim = "MEXICALI" Then
-                EnviacORREO("ggarciav@lamoderna.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+                EnviacORREO("mbeltran@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Else
                 EnviacORREO("mleal@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             End If

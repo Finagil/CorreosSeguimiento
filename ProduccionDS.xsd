@@ -150,6 +150,23 @@ WHERE        (GEN_Bloqueo_Tasas.AutorizadoDG = 1) AND (GEN_Bloqueo_Tasas.Enviado
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByReserva" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByReserva" GeneratorSourceName="FillByReserva" GetMethodModifier="Public" GetMethodName="GetDataByReserva" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByReserva" UserSourceName="FillByReserva">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr AS Cliente, { fn UCASE(GEN_Bloqueo_Tasas.ComentarioPromo) } AS ComentarioPromo, GEN_Bloqueo_Tasas.TasaPol AS Tasa_Politica, 
+                         GEN_Bloqueo_Tasas.TasaSol AS Tasa_Solicitada, Vw_Anexos.TipoCredito, Vw_Anexos.MontoFinanciado, Vw_Anexos.FondoReserva, Anexos.Plazo, 
+                         CASE WHEN aNEXOS.Tipta = '7' THEN 'FIJA' ELSE 'VARIABLE' END AS Tipo_Tasa, Anexos.Porco AS PorcentajeComision, Anexos.Porop AS RecidualOP, Anexos.Taspen AS Penalizacion, Anexos.RD AS RentasenDeposito, 
+                         Anexos.DG AS DespoitoenGarantia, GEN_Bloqueo_Tasas.id, GEN_Bloqueo_Tasas.TasaPol - GEN_Bloqueo_Tasas.TasaSol AS Diferencia, GEN_Bloqueo_Tasas.ComentarioRiesgos, GEN_Bloqueo_Tasas.Indicadores, 
+                         GEN_Bloqueo_Tasas.Enviado, Promotores.DescPromotor AS Promotor, Promotores.Correo, Vw_Anexos.Nombre_Sucursal, GEN_Bloqueo_Tasas.Autoriza
+FROM            GEN_Bloqueo_Tasas INNER JOIN
+                         Vw_Anexos ON GEN_Bloqueo_Tasas.Anexo = Vw_Anexos.Anexo INNER JOIN
+                         Anexos ON GEN_Bloqueo_Tasas.Anexo = Anexos.Anexo INNER JOIN
+                         Promotores ON Vw_Anexos.Promo = Promotores.Promotor
+WHERE        (GEN_Bloqueo_Tasas.Enviado = 0) AND (GEN_Bloqueo_Tasas.Reserva = 0) AND (GEN_Bloqueo_Tasas.ComentarioPromo LIKE N'%AUTOMATICA%')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="server-raid.Production.dbo" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="RechazarAnexo" Modifier="Public" Name="RechazarAnexo" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="RechazarAnexo">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">

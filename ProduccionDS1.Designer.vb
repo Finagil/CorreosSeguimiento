@@ -16676,17 +16676,18 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Historia.Serie, Historia.Numero, Historia.Fecha, Historia.Serie + C"& _ 
-                "ONVERT(varchar, Historia.Numero) AS Factura, Historia.Anexo, Historia.Letra, CON"& _ 
-                "T_FechasAplicacion.Estatus,id_historia"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Historia INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
-                "                      CONT_FechasAplicacion ON Historia.Fecha = CONVERT(varchar,"& _ 
-                " CONT_FechasAplicacion.Fecha, 112)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (NOT ((RTRIM(Historia.Serie) + "& _ 
-                "CONVERT(varchar, Historia.Numero)) IN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT     "& _ 
-                "   Hisgin_1.Factura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Hisgin AS Hi"& _ 
-                "sgin_1 INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         CONT"& _ 
-                "_FechasAplicacion AS CONT_FechasAplicacion_1 ON Hisgin_1.Fepag = CONT_FechasApli"& _ 
-                "cacion_1.Fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (CONT_FechasAplicaci"& _ 
-                "on_1.Estatus = N'Vigente')))) AND (CONT_FechasAplicacion.Estatus = N'Vigente')"
+            Me._commandCollection(0).CommandText = "SELECT        Historia.Serie, Historia.Numero, Historia.Fecha, RTRIM(Historia.Ser"& _ 
+                "ie) + CONVERT(varchar, Historia.Numero) AS Factura, Historia.Anexo, Historia.Let"& _ 
+                "ra, CONT_FechasAplicacion.Estatus, Historia.id_historia"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Histori"& _ 
+                "a INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CONT_FechasAplicacion ON Historia.Fecha ="& _ 
+                " CONVERT(varchar, CONT_FechasAplicacion.Fecha, 112)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (NOT ((RTRIM(H"& _ 
+                "istoria.Serie) + CONVERT(varchar, Historia.Numero)) IN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
+                "     (SELECT        Hisgin_1.Factura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM       "& _ 
+                "     Hisgin AS Hisgin_1 INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                            "& _ 
+                "             CONT_FechasAplicacion AS CONT_FechasAplicacion_1 ON Hisgin_1.Fepag "& _ 
+                "= CONT_FechasAplicacion_1.Fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (CO"& _ 
+                "NT_FechasAplicacion_1.Estatus = N'Vigente')))) AND (CONT_FechasAplicacion.Estatu"& _ 
+                "s = N'Vigente') AND (Historia.Serie <> N'B')"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

@@ -54,9 +54,9 @@
                 Mensaje = "El cierre de operaciones diario se ha realizado: " & r.Fecha.ToShortDateString & "<br>"
                 Mensaje += "Ya no es posible relizar aplicaciones con esta fecha.<br>"
                 EnviacORREO(rr.Correo, Mensaje, "Cierre Diario de Operaciones realizado: " & r.Fecha.ToShortDateString, "Notificaciones@finagil.com.mx")
-                Shell("C:\Jobs\TraspasosCartera.exe", AppWinStyle.Hide, True) ' se activa traspasos de cartera
-                Shell("C:\Jobs\TraspasosCartera.exe V", AppWinStyle.Hide, True) ' se activa traspasos de cartera
             Next
+            Shell("C:\Jobs\TraspasosCartera.exe", AppWinStyle.Hide, True) ' se activa traspasos de cartera
+            Shell("C:\Jobs\TraspasosCartera.exe V", AppWinStyle.Hide, True) ' se activa traspasos de cartera
             TaFechas.Update(r.Fecha, "Enviado", r.Fecha, r.Estatus)
         Next
 

@@ -23,19 +23,28 @@ Module Mod_SistemaFinagil
     End Sub
 
     Public Sub CorreosSistemaFinagil_FactSinConta()
+        'NOTA SE AGREGAROIN LINEAS MANUEALES EN 
+        'Private Sub InitCommandCollection()
+        'Me._commandCollection(0).CommandTimeout = 120
         Dim Asunto As String = "FACTURAS SIN MOVIMIENTOS CONTABLES"
         Dim Mensaje As String = "Facturas: <br>"
-        Dim ta As New ProduccionDSTableAdapters.FactSinContabilidadTableAdapter
-        Dim DS As New ProduccionDS
-        Dim r As ProduccionDS.FactSinContabilidadRow
-        ta.Fill(DS.FactSinContabilidad)
-        Mensaje += "Serie" & vbTab & "Numero" & vbTab & "Fecha" & vbTab & "Factura" & vbTab & "Anexo" & vbTab & "Letra" & vbTab & "id_historia" & "<br>"
-        For Each r In DS.FactSinContabilidad.Rows
-            Mensaje += r.Serie & vbTab & r.Numero & vbTab & r.Fecha & vbTab & r.Factura & vbTab & r.Anexo & vbTab & r.Letra & vbTab & r.id_historia & "<br>"
-        Next
-        If DS.FactSinContabilidad.Rows.Count > 0 Then
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "ecacerest@finagil.com.mx")
-        End If
+        Dim ta As New vw_Prod_DSTableAdapters.FactSinContabilidadTableAdapter
+        Dim DS As New vw_Prod_DS
+        Dim r As vw_Prod_DS.FactSinContabilidadRow
+        Try
+            ta.Fill(DS.FactSinContabilidad)
+            Mensaje += "Serie" & vbTab & "Numero" & vbTab & "Fecha" & vbTab & "Factura" & vbTab & "Anexo" & vbTab & "Letra" & vbTab & "id_historia" & "<br>"
+            For Each r In DS.FactSinContabilidad.Rows
+                Mensaje += r.Serie & vbTab & r.Numero & vbTab & r.Fecha & vbTab & r.Factura & vbTab & r.Anexo & vbTab & r.Letra & vbTab & r.id_historia & "<br>"
+            Next
+            If DS.FactSinContabilidad.Rows.Count > 0 Then
+                EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "ecacerest@finagil.com.mx")
+            End If
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, Asunto, "Correos@finagil.com.mx")
+        End Try
 
     End Sub
 

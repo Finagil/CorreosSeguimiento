@@ -127,18 +127,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ProduccionDS.vb">
-      <DependentUpon>ProduccionDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ProduccionDS1.Designer.vb">
+    <Compile Include="ProduccionDS.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProduccionDS.vb">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="SeguiridadDS.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SeguiridadDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Prod_DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vw_Prod_DS.xsd</DependentUpon>
     </Compile>
     <Compile Include="WEB_FinagilDS.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -183,7 +188,7 @@
     <None Include="ProduccionDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProduccionDS1.Designer.vb</LastGenOutput>
+      <LastGenOutput>ProduccionDS.Designer.vb</LastGenOutput>
     </None>
     <None Include="ProduccionDS.xss">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
@@ -198,6 +203,17 @@
     </None>
     <None Include="SeguiridadDS.xss">
       <DependentUpon>SeguiridadDS.xsd</DependentUpon>
+    </None>
+    <None Include="vw_Prod_DS.xsc">
+      <DependentUpon>vw_Prod_DS.xsd</DependentUpon>
+    </None>
+    <None Include="vw_Prod_DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vw_Prod_DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="vw_Prod_DS.xss">
+      <DependentUpon>vw_Prod_DS.xsd</DependentUpon>
     </None>
     <None Include="WEB_FinagilDS.xsc">
       <DependentUpon>WEB_FinagilDS.xsd</DependentUpon>

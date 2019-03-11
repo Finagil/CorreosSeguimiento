@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="vw_Prod_DS" targetNamespace="http://tempuri.org/vw_Prod_DS.xsd" xmlns:mstns="http://tempuri.org/vw_Prod_DS.xsd" xmlns="http://tempuri.org/vw_Prod_DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ProductionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ProductionConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CorreosSeguimiento.My.MySettings.GlobalReference.Default.ProductionConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FactSinContabilidadTableAdapter" GeneratorDataComponentClassName="FactSinContabilidadTableAdapter" Name="FactSinContabilidad" UserDataComponentName="FactSinContabilidadTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Historia.Serie, Historia.Numero, Historia.Fecha, RTRIM(Historia.Serie) + CONVERT(varchar, Historia.Numero) AS Factura, Historia.Anexo, Historia.Letra, CONT_FechasAplicacion.Estatus, Historia.id_historia
+FROM            Historia INNER JOIN
+                         CONT_FechasAplicacion ON Historia.Fecha = CONVERT(varchar, CONT_FechasAplicacion.Fecha, 112)
+WHERE        (NOT ((RTRIM(Historia.Serie) + CONVERT(varchar, Historia.Numero)) IN
+                             (SELECT        Hisgin_1.Factura
+                               FROM            Hisgin AS Hisgin_1 INNER JOIN
+                                                         CONT_FechasAplicacion AS CONT_FechasAplicacion_1 ON Hisgin_1.Fepag = CONT_FechasAplicacion_1.Fecha
+                               WHERE        (CONT_FechasAplicacion_1.Estatus = N'Vigente')))) AND (CONT_FechasAplicacion.Estatus = N'Vigente') AND (Historia.Serie &lt;&gt; N'B')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Serie" DataSetColumn="Serie" />
+              <Mapping SourceColumn="Numero" DataSetColumn="Numero" />
+              <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
+              <Mapping SourceColumn="Factura" DataSetColumn="Factura" />
+              <Mapping SourceColumn="Anexo" DataSetColumn="Anexo" />
+              <Mapping SourceColumn="Letra" DataSetColumn="Letra" />
+              <Mapping SourceColumn="Estatus" DataSetColumn="Estatus" />
+              <Mapping SourceColumn="id_historia" DataSetColumn="id_historia" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="vw_Prod_DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="vw_Prod_DS" msprop:Generator_UserDSName="vw_Prod_DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FactSinContabilidad" msprop:Generator_TableClassName="FactSinContabilidadDataTable" msprop:Generator_TableVarName="tableFactSinContabilidad" msprop:Generator_TablePropName="FactSinContabilidad" msprop:Generator_RowDeletingName="FactSinContabilidadRowDeleting" msprop:Generator_RowChangingName="FactSinContabilidadRowChanging" msprop:Generator_RowEvHandlerName="FactSinContabilidadRowChangeEventHandler" msprop:Generator_RowDeletedName="FactSinContabilidadRowDeleted" msprop:Generator_UserTableName="FactSinContabilidad" msprop:Generator_RowChangedName="FactSinContabilidadRowChanged" msprop:Generator_RowEvArgName="FactSinContabilidadRowChangeEvent" msprop:Generator_RowClassName="FactSinContabilidadRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Factura" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="33" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Letra" msprop:Generator_ColumnVarNameInTable="columnLetra" msprop:Generator_ColumnPropNameInRow="Letra" msprop:Generator_ColumnPropNameInTable="LetraColumn" msprop:Generator_UserColumnName="Letra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estatus" msprop:Generator_ColumnVarNameInTable="columnEstatus" msprop:Generator_ColumnPropNameInRow="Estatus" msprop:Generator_ColumnPropNameInTable="EstatusColumn" msprop:Generator_UserColumnName="Estatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="id_historia" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_historia" msprop:Generator_ColumnPropNameInRow="id_historia" msprop:Generator_ColumnPropNameInTable="id_historiaColumn" msprop:Generator_UserColumnName="id_historia" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FactSinContabilidad" />
+      <xs:field xpath="mstns:id_historia" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

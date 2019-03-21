@@ -13282,7 +13282,8 @@ Namespace ProduccionDSTableAdapters
                 "   (Procesado = 0) AND (PldAut = 0) AND (Anexo IN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             "& _ 
                 "(SELECT        Anexo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            mFINAGIL AS"& _ 
                 " mFINAGIL_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (Pld = 'PLD_AUT') OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
-                "                                                        (Pld = 'PLD2')))"
+                "                                                        (Pld = 'PLD2'))) AND (Ci"& _ 
+                "clo <> N'01')"
             Me._commandCollection(37).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(38) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(38).Connection = Me.Connection

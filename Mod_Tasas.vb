@@ -27,7 +27,7 @@
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/2cf0d94b-dcd6.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/2cf0d94b-dcd6.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             EnviacORREO("cmonroy@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
@@ -41,7 +41,7 @@
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/951sb999-7xx8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/951sb999-7xx8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             If r.Nombre_Sucursal.Trim = "NAVOJOA" Or r.Nombre_Sucursal.Trim = "MEXICALI" Then
                 EnviacORREO("mbeltran@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Else
@@ -57,7 +57,7 @@
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/552db804-70f8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-70f8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             EnviacORREO("gbello@Finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>")
             EnviacORREO("ecacerest@Finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>")
             Btasas.Enviados(True, r.id)
@@ -195,7 +195,7 @@
             Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
             EnviacORREO(Users(0) & "@finagil.com.mx", Mensaje, "Se requiere autorización de Hoja de Cambios. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de Hoja de Cambios (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")
 
@@ -209,7 +209,7 @@
             Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159dx1-HCaut.aspx?User=" & Aux1(0) & "&ID=" & r.id_hojaCambios & "'>Liga de Autorización Hoja de Cambios</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere autorización de Hoja de Cambios. (" & r.Descr.Trim & ")", "HojasdeCambio@finagil.com.mx")

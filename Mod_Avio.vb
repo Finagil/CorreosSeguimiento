@@ -86,7 +86,7 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
@@ -127,7 +127,7 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
@@ -323,7 +323,7 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-Suba.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-Suba.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
@@ -363,7 +363,7 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-DGxo.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Avio (enviado por Crédito).</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-DGxo.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Avio (enviado por Crédito).</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
@@ -403,7 +403,7 @@
                 Mensaje += rr.Documento.Trim & ": " & rr.Importe.ToString("n2") & "<br>"
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
-            Mensaje += "<A HREF='http://finagil.com.mx/WEBtasas/232db951-DGxa.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Anticipo.</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-DGxa.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Anticipo.</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")

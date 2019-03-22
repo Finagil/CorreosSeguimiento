@@ -66,9 +66,9 @@
             'Vobo = "ecacerest"
             'Autoriza = "ecacerest"
 
-            MensajeAAutoriza += "<A HREF='http://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=AA'>Liga de Autorización</A>"
-            MensajeAutoriza += "<A HREF='http://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=A'>Liga de Autorización</A>"
-            MensajeVobo += "<A HREF='http://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Vobo & "&Tipo=V'>Liga para visto bueno.</A>"
+            MensajeAAutoriza += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=AA'>Liga de Autorización</A>"
+            MensajeAutoriza += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=A'>Liga de Autorización</A>"
+            MensajeVobo += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Vobo & "&Tipo=V'>Liga para visto bueno.</A>"
 
             If Vobo = Autoriza Then
                 EnviacORREO(Autoriza & "@finagil.com.mx", Mensaje & MensajeAAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")

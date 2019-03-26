@@ -50,7 +50,16 @@ Module Mod_Main
             EnviaCorreoBitacoraMC(False)
             EnviaCorreoBitacoraMC_Autorizacion()
             Console.WriteLine("Sistema Finagil")
-            CorreosSistemaFinagil()
+            CorreosSistemaFinagil("DG_LIQ_SIN")
+            If Date.Now.Hour = 9 And Date.Now.Minute <= 1 Then
+                CorreosSistemaFinagil("DG_LIQ")
+            ElseIf Date.Now.Hour = 12 And Date.Now.Minute <= 1 Then
+                CorreosSistemaFinagil("DG_LIQ")
+            ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
+                CorreosSistemaFinagil("DG_LIQ")
+            End If
+
+
             Console.WriteLine("Terminado")
         Catch ex As Exception
             Console.WriteLine(ex.Message)

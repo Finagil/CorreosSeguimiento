@@ -1,12 +1,19 @@
 ﻿Imports System.IO
 Module Mod_SistemaFinagil
-    Public Sub CorreosSistemaFinagil()
+    Public Sub CorreosSistemaFinagil(Opcion As String)
         Dim taCorreos As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
         Dim t As New ProduccionDS.CorreosSistemaFinagilDataTable
         Dim r As ProduccionDS.CorreosSistemaFinagilRow
         Dim cad() As String
         Dim Correos() As String
-        taCorreos.Fill(t)
+        Select Case Opcion.ToUpper
+            Case "DG_LIQ"
+                taCorreos.FillByDG_LIQ(t)
+                EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now, "Correo Liquidez", "Correos@finagil.com.mx")
+            Case "DG_LIQ_SIN"
+                taCorreos.FillByDG_LIQ_sin(t)
+            Case "TODO"
+        End Select
         For Each r In t.Rows
             Correos = r.Para.Split(";")
             For X As Integer = 0 To Correos.Length - 1

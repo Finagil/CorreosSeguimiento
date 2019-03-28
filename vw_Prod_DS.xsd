@@ -9,17 +9,11 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FactSinContabilidadTableAdapter" GeneratorDataComponentClassName="FactSinContabilidadTableAdapter" Name="FactSinContabilidad" UserDataComponentName="FactSinContabilidadTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_CONT_FactSinContabilidad" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Historia.Serie, Historia.Numero, Historia.Fecha, RTRIM(Historia.Serie) + CONVERT(varchar, Historia.Numero) AS Factura, Historia.Anexo, Historia.Letra, CONT_FechasAplicacion.Estatus, Historia.id_historia
-FROM            Historia INNER JOIN
-                         CONT_FechasAplicacion ON Historia.Fecha = CONVERT(varchar, CONT_FechasAplicacion.Fecha, 112)
-WHERE        (NOT ((RTRIM(Historia.Serie) + CONVERT(varchar, Historia.Numero)) IN
-                             (SELECT        Hisgin_1.Factura
-                               FROM            Hisgin AS Hisgin_1 INNER JOIN
-                                                         CONT_FechasAplicacion AS CONT_FechasAplicacion_1 ON Hisgin_1.Fepag = CONT_FechasAplicacion_1.Fecha
-                               WHERE        (CONT_FechasAplicacion_1.Estatus = N'Vigente')))) AND (CONT_FechasAplicacion.Estatus = N'Vigente') AND (Historia.Serie &lt;&gt; N'B')</CommandText>
+                    <CommandText>SELECT        Serie, Numero, Fecha, Factura, Anexo, Letra, Estatus, id_historia
+FROM            Vw_CONT_FactSinContabilidad</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -45,7 +39,7 @@ WHERE        (NOT ((RTRIM(Historia.Serie) + CONVERT(varchar, Historia.Numero)) I
   <xs:element name="vw_Prod_DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="vw_Prod_DS" msprop:Generator_UserDSName="vw_Prod_DS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="FactSinContabilidad" msprop:Generator_TableClassName="FactSinContabilidadDataTable" msprop:Generator_TableVarName="tableFactSinContabilidad" msprop:Generator_TablePropName="FactSinContabilidad" msprop:Generator_RowDeletingName="FactSinContabilidadRowDeleting" msprop:Generator_RowChangingName="FactSinContabilidadRowChanging" msprop:Generator_RowEvHandlerName="FactSinContabilidadRowChangeEventHandler" msprop:Generator_RowDeletedName="FactSinContabilidadRowDeleted" msprop:Generator_UserTableName="FactSinContabilidad" msprop:Generator_RowChangedName="FactSinContabilidadRowChanged" msprop:Generator_RowEvArgName="FactSinContabilidadRowChangeEvent" msprop:Generator_RowClassName="FactSinContabilidadRow">
+        <xs:element name="FactSinContabilidad" msprop:Generator_TableClassName="FactSinContabilidadDataTable" msprop:Generator_TableVarName="tableFactSinContabilidad" msprop:Generator_RowChangedName="FactSinContabilidadRowChanged" msprop:Generator_TablePropName="FactSinContabilidad" msprop:Generator_RowDeletingName="FactSinContabilidadRowDeleting" msprop:Generator_RowChangingName="FactSinContabilidadRowChanging" msprop:Generator_RowEvHandlerName="FactSinContabilidadRowChangeEventHandler" msprop:Generator_RowDeletedName="FactSinContabilidadRowDeleted" msprop:Generator_RowClassName="FactSinContabilidadRow" msprop:Generator_UserTableName="FactSinContabilidad" msprop:Generator_RowEvArgName="FactSinContabilidadRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">

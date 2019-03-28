@@ -5,6 +5,8 @@ Module Mod_SistemaFinagil
         Dim t As New ProduccionDS.CorreosSistemaFinagilDataTable
         Dim r As ProduccionDS.CorreosSistemaFinagilRow
         Dim cad() As String
+        Dim ASUN As String = ""
+        Dim MENSA As String = ""
         Dim Correos() As String
         Select Case Opcion.ToUpper
             Case "DG_LIQ"
@@ -16,17 +18,29 @@ Module Mod_SistemaFinagil
         End Select
         For Each r In t.Rows
             Correos = r.Para.Split(";")
-            For X As Integer = 0 To Correos.Length - 1
-                If Correos(X).Length > 0 Then EnviacORREO(Correos(X), r.Mensaje, r.Asunto, r.De, r.Attach)
-                If InStr(r.Attach, "Autoriza") Then
-                    If InStr(r.Attach, ".Pdf") Then
-                        cad = r.Asunto.Split(":")
-                        File.Copy("\\server-raid\TmpFinagil\" & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & r.Attach, True)
+            If Opcion.ToUpper = "DG_LIQ" Then
+                cad = r.Para.Split(";")
+                ASUN = "Solicitud de Liquidez Inmediata para Autorización:"
+                MENSA += r.Mensaje & "<br>"
+                cad(0) = r.De
+            Else
+                For X As Integer = 0 To Correos.Length - 1
+                    If Correos(X).Length > 0 Then
+                        EnviacORREO(Correos(X), r.Mensaje, r.Asunto, r.De, r.Attach)
                     End If
-                End If
-            Next
+                    If InStr(r.Attach, "Autoriza") Then
+                        If InStr(r.Attach, ".Pdf") Then
+                            cad = r.Asunto.Split(":")
+                            File.Copy("\\server-raid\TmpFinagil\" & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & r.Attach, True)
+                        End If
+                    End If
+                Next
+            End If
             taCorreos.Enviado(r.id_Correo)
         Next
+        If Opcion.ToUpper = "DG_LIQ" And ASUN.Length > 3 Then
+            EnviacORREO(Correos(0), MENSA, ASUN, cad(0), "")
+        End If
     End Sub
 
     Public Sub CorreosSistemaFinagil_FactSinConta()

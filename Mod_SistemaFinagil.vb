@@ -11,7 +11,7 @@ Module Mod_SistemaFinagil
         Select Case Opcion.ToUpper
             Case "DG_LIQ"
                 taCorreos.FillByDG_LIQ(t)
-                EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now, "Correo Liquidez", "Correos@finagil.com.mx")
+                EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now & " - " & t.Rows.Count, "Correo Liquidez", "Correos@finagil.com.mx")
             Case "DG_LIQ_SIN"
                 taCorreos.FillByDG_LIQ_sin(t)
             Case "TODO"

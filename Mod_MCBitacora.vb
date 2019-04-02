@@ -34,8 +34,6 @@
             If r.Convenio = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Convenio<br>"
             If r.Escritura = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Escritura<br>"
             Mensaje += "Justificación: " & r.Justificacion & "<br>"
-
-
             Select Case Trim(r.Solicito)
                 Case "vcruz", "cjuarez", "asagar", "gramirez", "kvazquez"
                     If r.AuditoriaExterna = False Then

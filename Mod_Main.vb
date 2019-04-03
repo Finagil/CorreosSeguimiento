@@ -34,6 +34,14 @@ Module Mod_Main
                     EnviaCorreoSEGUI_CRED_SUC("Mexicali")
                     EnviaCorreoSEGUI_CRED_SUC("CD.MEXICO")
                 End If
+
+                EnviaCorreoLINEAS_CRED("NO_DISPUESTO", 1, 0)
+                EnviaCorreoLINEAS_CRED("LINEA_VENCIDA", 0, 0)
+                EnviaCorreoLINEAS_CRED("FECHA_REVISION", 1, 0)
+                EnviaCorreoLINEAS_CRED("FECHA_REVISION", 1, 1)
+                EnviaCorreoLINEAS_CRED("FECHA_REVISION", 1, 2)
+                EnviaCorreoLINEAS_CRED("FECHA_REVISION", 1, 3)
+                EnviaCorreoLINEAS_CRED("CONTRATO_VENCIDO", 0, 0)
             End If
             Console.WriteLine("Cierre Diario")
             Call EnviaCorreoCierreDiario()
@@ -58,6 +66,8 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
+
+
 
 
             Console.WriteLine("Terminado")

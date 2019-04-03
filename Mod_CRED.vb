@@ -72,4 +72,64 @@
         EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
     End Sub
 
+    Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer)
+        '************Solucitud de Documentos MC********************
+        Dim Lienas As New vw_Prod_DSTableAdapters.Vw_CRED_LienasFactorCCTableAdapter
+        Dim tlin As New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
+        Dim Aux() As String
+        Dim Resposble As String = ""
+        Dim Asunto As String = ""
+        Dim Mensaje As String = ""
+        Dim fecha1 As Date = Date.Now.Date
+        Dim fecha2 As Date = Date.Now.Date
+
+        Select Case Tipo.ToUpper
+            Case "NO_DISPUESTO"
+                fecha1 = fecha1.AddMonths(MesMas)
+                Lienas.FillByNoDispuesto(tlin, fecha1)
+            Case "FECHA_REVISION"
+                fecha1 = fecha1.AddMonths(MesMas)
+                fecha1 = fecha1.AddYears(AñoMas)
+                Lienas.FillByFechaFin(tlin, fecha1)
+            Case "LINEA_VENCIDA"
+                Lienas.FillByNoDispuesto(tlin, fecha1)
+            Case "CONTRATO_VENCIDO"
+                Lienas.FillByFechaFin(tlin, fecha1)
+        End Select
+
+        For Each r As vw_Prod_DS.Vw_CRED_LienasFactorCCRow In tlin.Rows
+
+            Select Case Tipo.ToUpper
+                Case "NO_DISPUESTO"
+                    Asunto = "Linea de " & r.TipoLinea & " no dispuesta."
+                Case "FECHA_REVISION"
+                    Asunto = "Revisión de Linea de " & r.TipoLinea & " proxima a vencer."
+                Case "LINEA_VENCIDA"
+                    Asunto = "Linea Vencida de " & r.TipoLinea & "."
+                Case "CONTRATO_VENCIDO"
+                    Asunto = "Contrato Vencido de " & r.TipoLinea & "."
+            End Select
+
+            Mensaje = "Cliente: " & r.Descr.Trim & "<br>"
+            Mensaje += "Tipo de Linea: " & r.TipoLinea & "<br>"
+            Mensaje += "Importe de la Linea: " & CDec(r.MontoLinea).ToString("n2") & "<br>"
+            Mensaje += "Vigencia: " & r.Vigencia.ToShortDateString & "<br>"
+            Mensaje += "Fecha Inicio de Contrato: " & r.FechaInicio.ToShortDateString & "<br>"
+            Mensaje += "Fecha Fin de Contrato: " & r.FechaFin.ToShortDateString & "<br>"
+            Mensaje += "Notas: " & r.Notas & "<br>"
+
+            EnviacORREO(r.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'PROMOTOR
+            CORREOS_FASE.Fill(TMAIL, "JEFE_" & r.Nombre_Sucursal.Trim)
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
+            Next
+            CORREOS_FASE.Fill(TMAIL, "CREDITO")
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'CREDITO
+            Next
+        Next
+
+
+    End Sub
+
 End Module

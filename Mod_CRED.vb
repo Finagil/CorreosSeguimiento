@@ -77,11 +77,13 @@
         Dim Lienas As New vw_Prod_DSTableAdapters.Vw_CRED_LienasFactorCCTableAdapter
         Dim tlin As New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
         Dim Aux() As String
+        Dim Cad As String = ""
         Dim Resposble As String = ""
         Dim Asunto As String = ""
         Dim Mensaje As String = ""
         Dim fecha1 As Date = Date.Now.Date
         Dim fecha2 As Date = Date.Now.Date
+        Dim CRED As Boolean = True
 
         Select Case Tipo.ToUpper
             Case "NO_DISPUESTO"
@@ -94,7 +96,16 @@
             Case "LINEA_VENCIDA"
                 Lienas.FillByNoDispuesto(tlin, fecha1, Porducto)
             Case "CONTRATO_VENCIDO"
+                CRED = False
                 Lienas.FillByFechaFin(tlin, fecha1, Porducto)
+            Case "LIMITE_DISPOSICION"
+                CRED = False
+                Lienas.FillByFechaIni(tlin, fecha1, Porducto)
+                If MesMas = 0 Then
+                    Cad = " -Si el cliente NO a realizado su primer descuento, ya no podra disponer a partir de esta fecha."
+                ElseIf MesMas = 1 Then
+                    Cad = " -quedan 1 mes para que el cliente de realice su primer descuento."
+                End If
         End Select
 
         For Each r As vw_Prod_DS.Vw_CRED_LienasFactorCCRow In tlin.Rows
@@ -116,17 +127,19 @@
             Mensaje += "Vigencia: " & r.Vigencia.ToShortDateString & "<br>"
             Mensaje += "Fecha Inicio de Contrato: " & r.FechaInicio.ToShortDateString & "<br>"
             Mensaje += "Fecha Fin de Contrato: " & r.FechaFin.ToShortDateString & "<br>"
-            Mensaje += "Notas: " & r.Notas & "<br>"
+            Mensaje += "Notas: " & r.Notas & cad & "<br>"
 
             EnviacORREO(r.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'PROMOTOR
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & r.Nombre_Sucursal.Trim)
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
                 EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
             Next
-            CORREOS_FASE.Fill(TMAIL, "CREDITO")
-            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'CREDITO
-            Next
+            If CRED Then
+                CORREOS_FASE.Fill(TMAIL, "CREDITO")
+                For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                    EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'CREDITO
+                Next
+            End If
         Next
 
 

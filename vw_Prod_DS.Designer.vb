@@ -2040,30 +2040,40 @@ Namespace vw_Prod_DSTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Descr, TipoLinea, MontoLinea, Estatus, Vigencia, FechaInicio, Fecha"& _ 
                 "Fin, Dispuesto, Notas, id_lineaCredito, Cliente, Correo, Nombre_Sucursal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
-                "          Vw_CRED_LienasFactorCC"
+                "          Vw_CRED_LienasFactorCC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (TipoLinea = @TipoLinea)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TipoLinea", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "TipoLinea", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT        Cliente, Correo, Descr, Dispuesto, Estatus, FechaFin, FechaInicio, "& _ 
                 "MontoLinea, Nombre_Sucursal, Notas, TipoLinea, Vigencia, id_lineaCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
-                "          Vw_CRED_LienasFactorCC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (FechaFin = @FechaFin)"
+                "          Vw_CRED_LienasFactorCC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (FechaFin = @FechaFin) AND (TipoL"& _ 
+                "inea = @TipoLinea)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FechaFin", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "FechaFin", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TipoLinea", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "TipoLinea", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT Cliente, Correo, Descr, Dispuesto, Estatus, FechaFin, FechaInicio, MontoLi"& _ 
-                "nea, Nombre_Sucursal, Notas, TipoLinea, Vigencia, id_lineaCredito FROM Vw_CRED_L"& _ 
-                "ienasFactorCC WHERE (Vigencia = @Vigencia) AND (FechaInicio IS NULL)"
+            Me._commandCollection(2).CommandText = "SELECT        Cliente, Correo, Descr, Dispuesto, Estatus, FechaFin, FechaInicio, "& _ 
+                "MontoLinea, Nombre_Sucursal, Notas, TipoLinea, Vigencia, id_lineaCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                "          Vw_CRED_LienasFactorCC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Vigencia = @Vigencia) AND (Fecha"& _ 
+                "Inicio IS NULL) AND (TipoLinea = @TipoLinea)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vigencia", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Vigencia", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TipoLinea", Global.System.Data.SqlDbType.VarChar, 15, Global.System.Data.ParameterDirection.Input, 0, 0, "TipoLinea", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable, ByVal TipoLinea As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(TipoLinea,String)
+            End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -2075,8 +2085,13 @@ Namespace vw_Prod_DSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
+        Public Overloads Overridable Function GetData(ByVal TipoLinea As String) As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(TipoLinea,String)
+            End If
             Dim dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable = New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -2086,12 +2101,17 @@ Namespace vw_Prod_DSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByFechaFin(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable, ByVal FechaFin As Global.System.Nullable(Of Date)) As Integer
+        Public Overloads Overridable Function FillByFechaFin(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable, ByVal FechaFin As Global.System.Nullable(Of Date), ByVal TipoLinea As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (FechaFin.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(FechaFin.Value,Date)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TipoLinea,String)
             End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -2104,12 +2124,17 @@ Namespace vw_Prod_DSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByFechaFin(ByVal FechaFin As Global.System.Nullable(Of Date)) As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
+        Public Overloads Overridable Function GetDataByFechaFin(ByVal FechaFin As Global.System.Nullable(Of Date), ByVal TipoLinea As String) As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (FechaFin.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(FechaFin.Value,Date)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TipoLinea,String)
             End If
             Dim dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable = New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable()
             Me.Adapter.Fill(dataTable)
@@ -2120,12 +2145,17 @@ Namespace vw_Prod_DSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByNoDispuesto(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable, ByVal Vigencia As Global.System.Nullable(Of Date)) As Integer
+        Public Overloads Overridable Function FillByNoDispuesto(ByVal dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable, ByVal Vigencia As Global.System.Nullable(Of Date), ByVal TipoLinea As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (Vigencia.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(Vigencia.Value,Date)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TipoLinea,String)
             End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -2138,12 +2168,17 @@ Namespace vw_Prod_DSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByNoDispuesto(ByVal Vigencia As Global.System.Nullable(Of Date)) As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
+        Public Overloads Overridable Function GetDataByNoDispuesto(ByVal Vigencia As Global.System.Nullable(Of Date), ByVal TipoLinea As String) As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (Vigencia.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(Vigencia.Value,Date)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (TipoLinea Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TipoLinea,String)
             End If
             Dim dataTable As vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable = New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable()
             Me.Adapter.Fill(dataTable)

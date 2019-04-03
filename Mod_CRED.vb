@@ -72,7 +72,7 @@
         EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
     End Sub
 
-    Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer)
+    Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer, Porducto As String)
         '************Solucitud de Documentos MC********************
         Dim Lienas As New vw_Prod_DSTableAdapters.Vw_CRED_LienasFactorCCTableAdapter
         Dim tlin As New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
@@ -86,15 +86,15 @@
         Select Case Tipo.ToUpper
             Case "NO_DISPUESTO"
                 fecha1 = fecha1.AddMonths(MesMas)
-                Lienas.FillByNoDispuesto(tlin, fecha1)
+                Lienas.FillByNoDispuesto(tlin, fecha1, Porducto)
             Case "FECHA_REVISION"
                 fecha1 = fecha1.AddMonths(MesMas)
                 fecha1 = fecha1.AddYears(AñoMas)
-                Lienas.FillByFechaFin(tlin, fecha1)
+                Lienas.FillByFechaFin(tlin, fecha1, Porducto)
             Case "LINEA_VENCIDA"
-                Lienas.FillByNoDispuesto(tlin, fecha1)
+                Lienas.FillByNoDispuesto(tlin, fecha1, Porducto)
             Case "CONTRATO_VENCIDO"
-                Lienas.FillByFechaFin(tlin, fecha1)
+                Lienas.FillByFechaFin(tlin, fecha1, Porducto)
         End Select
 
         For Each r As vw_Prod_DS.Vw_CRED_LienasFactorCCRow In tlin.Rows

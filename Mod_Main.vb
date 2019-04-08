@@ -6,7 +6,10 @@ Module Mod_Main
         Try
             Console.WriteLine("Inicio")
             Console.WriteLine("Facturas sin Movimientos contables")
-            CorreosSistemaFinagil_FactSinConta()
+            If Date.Now.Minute <= 1 Then 'se ejecutan cada hora
+                CorreosSistemaFinagil_FactSinConta()
+            End If
+
             Console.WriteLine("Vobo Avio")
             EnviaCorreoAVIO()
             Console.WriteLine("Seguimiento de Crédito")

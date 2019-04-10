@@ -134,6 +134,10 @@
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
                 EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
             Next
+            CORREOS_FASE.Fill(TMAIL, "SISTEMAS")
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
+            Next
             If CRED Then
                 CORREOS_FASE.Fill(TMAIL, "CREDITO")
                 For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows

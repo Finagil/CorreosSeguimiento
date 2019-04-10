@@ -1441,11 +1441,11 @@ Partial Public Class vw_Prod_DS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Notas() As String
             Get
-                Try 
+                If Me.IsNotasNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableVw_CRED_LienasFactorCC.NotasColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Notas' de la tabla 'Vw_CRED_LienasFactorCC' es DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableVw_CRED_LienasFactorCC.NotasColumn) = value

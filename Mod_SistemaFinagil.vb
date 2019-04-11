@@ -4,9 +4,13 @@ Module Mod_SistemaFinagil
         Dim taCorreos As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
         Dim t As New ProduccionDS.CorreosSistemaFinagilDataTable
         Dim r As ProduccionDS.CorreosSistemaFinagilRow
+        Dim Y As Integer
+        Dim Para(10) As String
+        Dim De As String
         Dim cad() As String
         Dim ASUN As String = ""
         Dim MENSA As String = ""
+        Dim MensajAux As String = ""
         Dim Correos() As String
         Select Case Opcion.ToUpper
             Case "DG_LIQ"
@@ -20,9 +24,14 @@ Module Mod_SistemaFinagil
             Correos = r.Para.Split(";")
             If Opcion.ToUpper = "DG_LIQ" Then
                 cad = r.Para.Split(";")
+                Para(Y) = Correos(0)
+                Y += 1
                 ASUN = "Solicitud de Liquidez Inmediata para Autorización:"
-                MENSA += r.Mensaje & "<br>"
-                cad(0) = r.De
+                If MensajAux <> r.Mensaje Then
+                    MENSA += r.Mensaje & "<br>"
+                End If
+                MensajAux = r.Mensaje
+                De = r.De
             Else
                 For X As Integer = 0 To Correos.Length - 1
                     If Correos(X).Length > 0 Then
@@ -39,7 +48,9 @@ Module Mod_SistemaFinagil
             taCorreos.Enviado(r.id_Correo)
         Next
         If Opcion.ToUpper = "DG_LIQ" And ASUN.Length > 3 Then
-            EnviacORREO(Correos(0), MENSA, ASUN, cad(0), "")
+            For x As Integer = 0 To Y - 1
+                EnviacORREO(Para(x), MENSA, ASUN, De, "")
+            Next
         End If
     End Sub
 

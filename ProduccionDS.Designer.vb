@@ -9377,11 +9377,11 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Notas() As String
             Get
-                Try 
+                If Me.IsNotasNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableCRED_Seguimientos.NotasColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Notas' de la tabla 'CRED_Seguimientos' es DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableCRED_Seguimientos.NotasColumn) = value

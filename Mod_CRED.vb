@@ -50,7 +50,7 @@
         If tsol.Rows.Count > 0 Then
             Asunto = "Notificación Semanal de Seguimiento."
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Responsable</strong></td><td><strong>Compromiso</strong></td>" _
-            & "<td><strong>Días de Retraso</strong></td><td><strong>Area</strong></td><td><td><strong>Notas</strong></td><td></tr>"
+            & "<td><strong>Días de Retraso</strong></td><td><strong>Area</strong></td><td><strong>Notas</strong></td><td></tr>"
 
             For Each r As ProduccionDS.CRED_SeguimientosRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.Anexo & "</td>"

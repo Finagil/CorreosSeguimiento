@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=server-raid;Initial Catalog=SeguridadNVA;Persist Security Info=True;User ID=User_PRO;Password=User_PRO2015" IsAppSettingsProperty="false" Modifier="Assembly" Name="server-raid.Seguridad.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection ConnectionStringObject="Data Source=server-raid2;Initial Catalog=SeguridadNVA;Persist Security Info=True;User ID=User_PRO;Password=User_PRO2015" IsAppSettingsProperty="false" Modifier="Assembly" Name="server-raid.Seguridad.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsuariosFinagilTableAdapter" GeneratorDataComponentClassName="UsuariosFinagilTableAdapter" Name="UsuariosFinagil" UserDataComponentName="UsuariosFinagilTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectName="Seguridad.dbo.Vw_UsuariosFinagil" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectName="SeguridadNva.dbo.Vw_UsuariosFinagil" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        nombre, ape_pat, ape_mat, nom_puesto, nom_depto, id_usuario, NombreCompleto, correo
@@ -30,7 +30,7 @@ FROM            Vw_UsuariosFinagil</CommandText>
               <Mapping SourceColumn="correo" DataSetColumn="correo" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarCorreo" Modifier="Public" Name="ScalarCorreo" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="ScalarCorreo">
+              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarCorreo" Modifier="Public" Name="ScalarCorreo" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ScalarCorreo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT     MAX(correo) AS Correo
@@ -54,7 +54,7 @@ WHERE        (id_usuario = @Usuario)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarNombre" Modifier="Public" Name="ScalarNombre" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="ScalarNombre">
+              <DbSource ConnectionRef="server-raid.Seguridad.dbo" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarNombre" Modifier="Public" Name="ScalarNombre" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ScalarNombre">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(nombre + ' ' + ape_pat) AS Correo
@@ -76,7 +76,7 @@ WHERE        (id_usuario = @Usuario)</CommandText>
   <xs:element name="SeguiridadDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SeguiridadDS" msprop:Generator_UserDSName="SeguiridadDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="UsuariosFinagil" msprop:Generator_TableClassName="UsuariosFinagilDataTable" msprop:Generator_TableVarName="tableUsuariosFinagil" msprop:Generator_RowChangedName="UsuariosFinagilRowChanged" msprop:Generator_TablePropName="UsuariosFinagil" msprop:Generator_RowDeletingName="UsuariosFinagilRowDeleting" msprop:Generator_RowChangingName="UsuariosFinagilRowChanging" msprop:Generator_RowEvHandlerName="UsuariosFinagilRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosFinagilRowDeleted" msprop:Generator_RowClassName="UsuariosFinagilRow" msprop:Generator_UserTableName="UsuariosFinagil" msprop:Generator_RowEvArgName="UsuariosFinagilRowChangeEvent">
+        <xs:element name="UsuariosFinagil" msprop:Generator_TableClassName="UsuariosFinagilDataTable" msprop:Generator_TableVarName="tableUsuariosFinagil" msprop:Generator_TablePropName="UsuariosFinagil" msprop:Generator_RowDeletingName="UsuariosFinagilRowDeleting" msprop:Generator_RowChangingName="UsuariosFinagilRowChanging" msprop:Generator_RowEvHandlerName="UsuariosFinagilRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosFinagilRowDeleted" msprop:Generator_UserTableName="UsuariosFinagil" msprop:Generator_RowChangedName="UsuariosFinagilRowChanged" msprop:Generator_RowEvArgName="UsuariosFinagilRowChangeEvent" msprop:Generator_RowClassName="UsuariosFinagilRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" minOccurs="0">

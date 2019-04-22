@@ -6,7 +6,7 @@ Module Mod_Global
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
 
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-        Dim Cliente As New SmtpClient("smtp01.cmoderna.com", 26)
+        Dim Cliente As New SmtpClient("192.168.110.1", 25)
         Try
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then

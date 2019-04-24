@@ -19,6 +19,7 @@
             EnviaCorreoAvio_SUC_PLD("Irapuato")
             EnviaCorreoAvio_SUC_PLD("Navojoa")
             EnviaCorreoAvio_SUC_PLD("Mexicali")
+            EnviaCorreoAvio_SUC_PLD("SAN LUIS")
 
             Console.WriteLine("CRE")
             EnviaCorreoAvio_CRE()
@@ -26,6 +27,7 @@
             EnviaCorreoAvio_SUC_CRED("Irapuato")
             EnviaCorreoAvio_SUC_CRED("Navojoa")
             EnviaCorreoAvio_SUC_CRED("Mexicali")
+            EnviaCorreoAvio_SUC_CRED("SAN LUIS")
 
             Console.WriteLine("MC")
             EnviaCorreoAvio_MC()
@@ -34,6 +36,7 @@
             EnviaCorreoAvio_SUC_MC("Irapuato")
             EnviaCorreoAvio_SUC_MC("Navojoa")
             EnviaCorreoAvio_SUC_MC("Mexicali")
+            EnviaCorreoAvio_SUC_MC("San Luis")
             Console.WriteLine("Fira")
             EnviaCorreoAvio_FIRA(True)
             EnviaCorreoAvio_FIRA(False)
@@ -43,6 +46,7 @@
             EnviaCorreoAvio_PAG("Irapuato")
             EnviaCorreoAvio_PAG("Navojoa")
             EnviaCorreoAvio_PAG("Mexicali")
+            EnviaCorreoAvio_PAG("San Luis")
             EnviaCorreo_PAG_CC()
         Catch ex As Exception
             Console.WriteLine(ex.Message)

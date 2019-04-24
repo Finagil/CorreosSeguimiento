@@ -36,6 +36,7 @@ Module Mod_Main
                     EnviaCorreoSEGUI_CRED_SUC("Navojoa")
                     EnviaCorreoSEGUI_CRED_SUC("Mexicali")
                     EnviaCorreoSEGUI_CRED_SUC("CD.MEXICO")
+                    EnviaCorreoSEGUI_CRED_SUC("SAN LUIS")
                 End If
 
                 EnviaCorreoLINEAS_CRED("NO_DISPUESTO", 1, 0, "FACTORAJE")

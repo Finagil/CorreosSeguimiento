@@ -40,7 +40,7 @@ Module Mod_SistemaFinagil
                     If InStr(r.Attach, "Autoriza") Then
                         If InStr(r.Attach, ".Pdf") Then
                             cad = r.Asunto.Split(":")
-                            File.Copy("\\server-raid\TmpFinagil\" & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & r.Attach, True)
+                            File.Copy(My.Settings.RutaTmp & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & r.Attach, True)
                         End If
                     End If
                 Next

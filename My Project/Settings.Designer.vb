@@ -64,6 +64,18 @@ Namespace My
                 Return CType(Me("ProductionConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-raid2\TmpFinagil\")>  _
+        Public Property RutaTmp() As String
+            Get
+                Return CType(Me("RutaTmp"),String)
+            End Get
+            Set
+                Me("RutaTmp") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

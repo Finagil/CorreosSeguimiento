@@ -5,6 +5,7 @@ Module Mod_Main
 
         Try
             Console.WriteLine("Inicio")
+            EnviaCorreoAutorizaIVA()
             Console.WriteLine("Facturas sin Movimientos contables")
             If Date.Now.Minute <= 1 Then 'se ejecutan cada hora
                 CorreosSistemaFinagil_FactSinConta()
@@ -86,8 +87,8 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
-
-
+            Console.WriteLine("Autoriza IVA")
+            EnviaCorreoAutorizaIVA()
 
 
             Console.WriteLine("Terminado")

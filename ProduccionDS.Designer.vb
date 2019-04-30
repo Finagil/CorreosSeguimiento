@@ -16891,9 +16891,8 @@ Namespace ProduccionDSTableAdapters
                 "rIVA.Anexo = Vw_Anexos.Anexo AND CONT_AutorizarIVA.Ciclo = Vw_Anexos.Ciclo INNER"& _ 
                 " JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Vw_Anexos.Cliente = Clientes.Cliente"& _ 
                 " INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Promotores ON Vw_Anexos.Promo = Promotores"& _ 
-                ".Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_AutorizarIVA.Autorizado = 0) AND (CONT_AutorizarIV"& _ 
-                "A.usuario <> N'contabilidadX') AND (RTRIM(CONT_AutorizarIVA.usuario) LIKE N'%X')"& _ 
-                ""
+                ".Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_AutorizarIVA.usuario <> N'contabilidadX') AND (RTR"& _ 
+                "IM(CONT_AutorizarIVA.usuario) LIKE N'%X')"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection

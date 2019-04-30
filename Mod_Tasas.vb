@@ -250,6 +250,41 @@
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         '************bloqueo de tasas********************
+        taIVA.FillByUsuario(t_IVA, "contabilidadx")
+        For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
+            correos.Fill(Tmail, "CONTABILIDAD")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                Aux1 = rrr.Correo.Split("<")
+                Aux1 = Aux1(1).Split("@")
+                Users(x) = Aux1(0)
+                x += 1
+            Next
+
+            For y As Integer = 0 To x - 1
+                Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+                Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
+                Mensaje += "Ciudad: " & r.Ciudad & "<br>"
+                Mensaje += "Código postal: " & r.CP & "<br>"
+                Mensaje += "Producto: " & r.TipoCredito & "<br>"
+                Mensaje += "IVA solicitado: " & r.IVA & "<br>"
+                Mensaje += "Monto Financiado: " & CDec(r.MontoFinanciado).ToString("n2") & "<br>"
+                Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159dx1-IVAaut.aspx?User=" & Users(y) & "&Anexo=X&Ciclo=X'>Liga de Autorización de Tasa de IVA</A>"
+                EnviacORREO(Users(y) & "@finagil.com.mx", Mensaje, "Se requiere autorización de tasa de IVA. (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de tasa de IVA (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+
+            'correo al promotor
+            Mensaje = "Contrato: " & r.AnexoCon & "<br>"
+            Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
+            Mensaje += "Ciudad: " & r.Ciudad & "<br>"
+            Mensaje += "Código postal: " & r.CP & "<br>"
+            Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            Mensaje += "IVA solicitado: " & r.IVA & "<br>"
+            Mensaje += "Monto Financiado: " & CDec(r.MontoFinanciado).ToString("n2") & "<br>"
+            EnviacORREO(r.Correo, Mensaje, "Se requiere autorización de tasa de IVA. (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+            taIVA.CorreoEnviado("Contabilidad", r.Anexo, r.Ciclo)
+        Next
+
         taIVA.Fill(t_IVA)
         For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
             correos.Fill(Tmail, "CONTABILIDAD")
@@ -268,10 +303,10 @@
                 Mensaje += "Producto: " & r.TipoCredito & "<br>"
                 Mensaje += "IVA solicitado: " & r.IVA & "<br>"
                 Mensaje += "Monto Financiado: " & CDec(r.MontoFinanciado).ToString("n2") & "<br>"
-                Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159dx1-IVAaut.aspx?User=" & Users(y) & "'>Liga de Autorización de Tasa de IVA</A>"
-                EnviacORREO(Users(y) & "@finagil.com.mx", Mensaje, "Se requiere autorización de tasa de IVA. (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+                Mensaje += "Estatus: " & IIf(r.Autorizado = False, "Rechazado", "Autorizado") & "<br>"
+                EnviacORREO(Users(y) & "@finagil.com.mx", Mensaje, "Tasa de IVA " & IIf(r.Autorizado = False, "Rechazada", "Autorizada") & ". (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de tasa de IVA (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Tasa de IVA " & IIf(r.Autorizado = False, "Rechazada", "Autorizada") & " (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
 
             'correo al promotor
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
@@ -281,8 +316,11 @@
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Mensaje += "IVA solicitado: " & r.IVA & "<br>"
             Mensaje += "Monto Financiado: " & CDec(r.MontoFinanciado).ToString("n2") & "<br>"
-            EnviacORREO(r.Correo, Mensaje, "Se requiere autorización de tasa de IVA. (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
-            taIVA.CorreoEnviado(r.Anexo, r.ciclo)
+            Mensaje += "Estatus: " & IIf(r.Autorizado = False, "Rechazado", "Autorizado") & "<br>"
+            EnviacORREO(r.Correo, Mensaje, "Tasa de IVA " & IIf(r.Autorizado = False, "Rechazada", "Autorizada") & " . (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
+            Dim user As String = r.usuario.Trim
+            user = Mid(user, 1, user.Length - 1)
+            taIVA.CorreoEnviado(User, r.Anexo, r.Ciclo)
         Next
 
     End Sub

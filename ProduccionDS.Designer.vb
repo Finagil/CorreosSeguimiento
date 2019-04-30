@@ -5837,6 +5837,10 @@ Partial Public Class ProduccionDS
         
         Private columnCiclo As Global.System.Data.DataColumn
         
+        Private columnAutorizado As Global.System.Data.DataColumn
+        
+        Private columnusuario As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -5961,6 +5965,22 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AutorizadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAutorizado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property usuarioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnusuario
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5997,9 +6017,9 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddVW_AutorizaIVARow(ByVal Anexo As String, ByVal AnexoCon As String, ByVal Cliente As String, ByVal TipoCredito As String, ByVal MontoFinanciado As Decimal, ByVal IVA As Decimal, ByVal Sucursal As String, ByVal CP As String, ByVal Ciudad As String, ByVal Correo As String, ByVal Ciclo As String) As VW_AutorizaIVARow
+        Public Overloads Function AddVW_AutorizaIVARow(ByVal Anexo As String, ByVal AnexoCon As String, ByVal Cliente As String, ByVal TipoCredito As String, ByVal MontoFinanciado As Decimal, ByVal IVA As Decimal, ByVal Sucursal As String, ByVal CP As String, ByVal Ciudad As String, ByVal Correo As String, ByVal Ciclo As String, ByVal Autorizado As Boolean, ByVal usuario As String) As VW_AutorizaIVARow
             Dim rowVW_AutorizaIVARow As VW_AutorizaIVARow = CType(Me.NewRow,VW_AutorizaIVARow)
-            Dim columnValuesArray() As Object = New Object() {Anexo, AnexoCon, Cliente, TipoCredito, MontoFinanciado, IVA, Sucursal, CP, Ciudad, Correo, Ciclo}
+            Dim columnValuesArray() As Object = New Object() {Anexo, AnexoCon, Cliente, TipoCredito, MontoFinanciado, IVA, Sucursal, CP, Ciudad, Correo, Ciclo, Autorizado, usuario}
             rowVW_AutorizaIVARow.ItemArray = columnValuesArray
             Me.Rows.Add(rowVW_AutorizaIVARow)
             Return rowVW_AutorizaIVARow
@@ -6039,6 +6059,8 @@ Partial Public Class ProduccionDS
             Me.columnCiudad = MyBase.Columns("Ciudad")
             Me.columnCorreo = MyBase.Columns("Correo")
             Me.columnCiclo = MyBase.Columns("Ciclo")
+            Me.columnAutorizado = MyBase.Columns("Autorizado")
+            Me.columnusuario = MyBase.Columns("usuario")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6066,6 +6088,10 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnCorreo)
             Me.columnCiclo = New Global.System.Data.DataColumn("Ciclo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCiclo)
+            Me.columnAutorizado = New Global.System.Data.DataColumn("Autorizado", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAutorizado)
+            Me.columnusuario = New Global.System.Data.DataColumn("usuario", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnusuario)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAnexo, Me.columnCiclo}, true))
             Me.columnAnexo.AllowDBNull = false
             Me.columnAnexo.MaxLength = 9
@@ -6081,6 +6107,7 @@ Partial Public Class ProduccionDS
             Me.columnCorreo.MaxLength = 50
             Me.columnCiclo.AllowDBNull = false
             Me.columnCiclo.MaxLength = 2
+            Me.columnusuario.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10136,6 +10163,36 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Autorizado() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableVW_AutorizaIVA.AutorizadoColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Autorizado' de la tabla 'VW_AutorizaIVA' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVW_AutorizaIVA.AutorizadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property usuario() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVW_AutorizaIVA.usuarioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'usuario' de la tabla 'VW_AutorizaIVA' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVW_AutorizaIVA.usuarioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsAnexoConNull() As Boolean
             Return Me.IsNull(Me.tableVW_AutorizaIVA.AnexoConColumn)
         End Function
@@ -10204,6 +10261,30 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCorreoNull()
             Me(Me.tableVW_AutorizaIVA.CorreoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAutorizadoNull() As Boolean
+            Return Me.IsNull(Me.tableVW_AutorizaIVA.AutorizadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAutorizadoNull()
+            Me(Me.tableVW_AutorizaIVA.AutorizadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsusuarioNull() As Boolean
+            Return Me.IsNull(Me.tableVW_AutorizaIVA.usuarioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetusuarioNull()
+            Me(Me.tableVW_AutorizaIVA.usuarioColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -16783,6 +16864,8 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Ciudad", "Ciudad")
             tableMapping.ColumnMappings.Add("Correo", "Correo")
             tableMapping.ColumnMappings.Add("Ciclo", "Ciclo")
+            tableMapping.ColumnMappings.Add("Autorizado", "Autorizado")
+            tableMapping.ColumnMappings.Add("usuario", "usuario")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -16796,27 +16879,45 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr AS Cliente, Vw_Anexos.TipoCredi"& _ 
                 "to, Vw_Anexos.MontoFinanciado, Vw_Anexos.IvaAnexo AS IVA, Vw_Anexos.Nombre_Sucur"& _ 
                 "sal AS Sucursal, Clientes.Copos AS CP, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes.Deleg"& _ 
                 "acion AS Ciudad, Promotores.Correo, CONT_AutorizarIVA.Anexo, CONT_AutorizarIVA.C"& _ 
-                "iclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CONT_AutorizarIVA INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_"& _ 
-                "Anexos ON CONT_AutorizarIVA.Anexo = Vw_Anexos.Anexo AND CONT_AutorizarIVA.Ciclo "& _ 
-                "= Vw_Anexos.Ciclo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Vw_Anexos.Cli"& _ 
-                "ente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Promotores ON Vw_An"& _ 
-                "exos.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_AutorizarIVA.Autorizado = 0"& _ 
-                ") AND (CONT_AutorizarIVA.usuario = N'contabilidadx')"
+                "iclo, CONT_AutorizarIVA.Autorizado, CONT_AutorizarIVA.usuario"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            C"& _ 
+                "ONT_AutorizarIVA INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON CONT_Autoriza"& _ 
+                "rIVA.Anexo = Vw_Anexos.Anexo AND CONT_AutorizarIVA.Ciclo = Vw_Anexos.Ciclo INNER"& _ 
+                " JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Vw_Anexos.Cliente = Clientes.Cliente"& _ 
+                " INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Promotores ON Vw_Anexos.Promo = Promotores"& _ 
+                ".Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_AutorizarIVA.Autorizado = 0) AND (CONT_AutorizarIV"& _ 
+                "A.usuario <> N'contabilidadX') AND (RTRIM(CONT_AutorizarIVA.usuario) LIKE N'%X')"& _ 
+                ""
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE       CONT_AutorizarIVA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                usuario = N'Contabilidad'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHE"& _ 
-                "RE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)"
+            Me._commandCollection(1).CommandText = "UPDATE       CONT_AutorizarIVA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                usuario = @Usuario"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
+                "   (Anexo = @Anexo) AND (Ciclo = @Ciclo)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Usuario", Global.System.Data.SqlDbType.NChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "usuario", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ciclo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        Vw_Anexos.AnexoCon, Vw_Anexos.Descr AS Cliente, Vw_Anexos.TipoCredi"& _ 
+                "to, Vw_Anexos.MontoFinanciado, Vw_Anexos.IvaAnexo AS IVA, Vw_Anexos.Nombre_Sucur"& _ 
+                "sal AS Sucursal, Clientes.Copos AS CP, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes.Deleg"& _ 
+                "acion AS Ciudad, Promotores.Correo, CONT_AutorizarIVA.Anexo, CONT_AutorizarIVA.C"& _ 
+                "iclo, CONT_AutorizarIVA.Autorizado, CONT_AutorizarIVA.usuario"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            C"& _ 
+                "ONT_AutorizarIVA INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos ON CONT_Autoriza"& _ 
+                "rIVA.Anexo = Vw_Anexos.Anexo AND CONT_AutorizarIVA.Ciclo = Vw_Anexos.Ciclo INNER"& _ 
+                " JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Vw_Anexos.Cliente = Clientes.Cliente"& _ 
+                " INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Promotores ON Vw_Anexos.Promo = Promotores"& _ 
+                ".Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_AutorizarIVA.Autorizado = 0) AND (CONT_AutorizarIV"& _ 
+                "A.usuario = @Usuario)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Usuario", Global.System.Data.SqlDbType.NChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "usuario", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16846,18 +16947,57 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByUsuario(ByVal dataTable As ProduccionDS.VW_AutorizaIVADataTable, ByVal Usuario As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (Usuario Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Usuario,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByUsuario(ByVal Usuario As String) As ProduccionDS.VW_AutorizaIVADataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (Usuario Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Usuario,String)
+            End If
+            Dim dataTable As ProduccionDS.VW_AutorizaIVADataTable = New ProduccionDS.VW_AutorizaIVADataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function CorreoEnviado(ByVal Anexo As String, ByVal Ciclo As String) As Integer
+        Public Overloads Overridable Function CorreoEnviado(ByVal Usuario As String, ByVal Anexo As String, ByVal Ciclo As String) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
+            If (Usuario Is Nothing) Then
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(Usuario,String)
+            End If
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
-                command.Parameters(0).Value = CType(Anexo,String)
+                command.Parameters(1).Value = CType(Anexo,String)
             End If
             If (Ciclo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Ciclo")
             Else
-                command.Parameters(1).Value = CType(Ciclo,String)
+                command.Parameters(2).Value = CType(Ciclo,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _

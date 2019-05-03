@@ -1,4 +1,6 @@
-﻿Imports System.IO
+﻿Imports CrystalDecisions.CrystalReports.Engine
+Imports CrystalDecisions.Shared
+Imports System.IO
 Module Mod_SistemaFinagil
     Public Sub CorreosSistemaFinagil(Opcion As String)
         Dim taCorreos As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
@@ -8,6 +10,7 @@ Module Mod_SistemaFinagil
         Dim Para(10) As String
         Dim De As String
         Dim cad() As String
+        Dim AUXatt As String = ""
         Dim ASUN As String = ""
         Dim MENSA As String = ""
         Dim MensajAux As String = ""
@@ -35,6 +38,17 @@ Module Mod_SistemaFinagil
             Else
                 For X As Integer = 0 To Correos.Length - 1
                     If Correos(X).Length > 0 Then
+                        Dim User As String = "gbello"
+                        If InStr(r.Attach, "Autoriza") Then
+                            If InStr(r.De, User) Then
+                                If InStr(r.Attach, ".Pdf") Then
+                                    If AUXatt <> r.Attach Then
+                                        GeneraAutorizacionDG(r.Attach, User)
+                                        AUXatt = r.Attach
+                                    End If
+                                End If
+                            End If
+                        End If
                         EnviacORREO(Correos(X), r.Mensaje, r.Asunto, r.De, r.Attach)
                     End If
                     If InStr(r.Attach, "Autoriza") Then
@@ -80,5 +94,43 @@ Module Mod_SistemaFinagil
 
     End Sub
 
+    Sub GeneraAutorizacionDG(ByVal id_Sol As String, ByVal User As String)
+        id_Sol = Mid(id_Sol, 9, id_Sol.Length)
+        id_Sol = Mid(id_Sol, 1, InStr(id_Sol, ".") - 1)
+
+
+        Dim ta1 As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
+        Dim DS As New ProduccionDS
+        Dim Archivo As String = My.Settings.RutaTmp & "Autoriza" & id_Sol & ".Pdf"
+
+        Try
+            Dim reporte As New ReportDocument()
+            reporte.Load(My.Settings.RutaTmp & "rpt\rptAltaLiquidezAutorizacion.rpt")
+            Dim ta As New ProduccionDSTableAdapters.AutorizacionRPTTableAdapter
+            ta.Fill(DS.AutorizacionRPT, id_Sol)
+            Dim r As ProduccionDS.AutorizacionRPTRow = DS.AutorizacionRPT.Rows(0)
+            Dim Antiguedad As Integer = DateDiff(DateInterval.Year, r.FechaIngreso, Date.Now.Date)
+
+
+            reporte.SetDataSource(DS)
+            reporte.SetParameterValue("var_antiguedad", Antiguedad)
+            reporte.SetParameterValue("Autorizo", "C.P. GABRIEL BELLO HERNANDEZ")
+            reporte.SetParameterValue("AreaAutorizo", "DIRECCION GENERAL")
+
+            reporte.SetParameterValue("Analista", UCase(Trim(ta1.ScalarNombre(r.UsuarioCredito))))
+            reporte.SetParameterValue("FirmaAnalista", Encriptar(r.UsuarioCredito & Date.Now.ToString))
+            reporte.SetParameterValue("Firma", Encriptar(User & Date.Now.ToString))
+            Dim Aux As String = ta.SacaCorreoPromo(r.Cliente)
+            Dim Promo() As String = Aux.Split("@")
+            reporte.SetParameterValue("FirmaPromo", Encriptar(Promo(0) & Date.Now.ToString))
+
+
+            File.Delete(Archivo)
+            reporte.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Archivo)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
+
+    End Sub
 
 End Module

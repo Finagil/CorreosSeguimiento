@@ -1,4 +1,6 @@
-﻿Imports System.Net.Mail
+﻿Imports System.Security.Cryptography
+Imports System.Text
+Imports System.Net.Mail
 Module Mod_Global
     Public CORREOS As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
@@ -26,6 +28,18 @@ Module Mod_Global
         f.WriteLine(Mensaje)
         f.Close()
     End Sub
+
+    Public Function Encriptar(ByVal Input As String) As String
+
+        Dim IV() As Byte = ASCIIEncoding.ASCII.GetBytes("Finagil1") 'La clave debe ser de 8 caracteres
+        Dim EncryptionKey() As Byte = Convert.FromBase64String("rpaSPvIvVLlrcmtzPU9/c67Gkj7yL1S5") 'No se puede alterar la cantidad de caracteres pero si la clave
+        Dim buffer() As Byte = Encoding.UTF8.GetBytes(Input)
+        Dim des As TripleDESCryptoServiceProvider = New TripleDESCryptoServiceProvider
+        des.Key = EncryptionKey
+        des.IV = IV
+        Return StrReverse(Convert.ToBase64String(des.CreateEncryptor().TransformFinalBlock(buffer, 0, buffer.Length())))
+
+    End Function
 
 
 

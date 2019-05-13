@@ -133,4 +133,33 @@ Module Mod_SistemaFinagil
 
     End Sub
 
+    Public Sub CorreosMasivosSistemaFinagil()
+        Dim taCorreos As New ProduccionDSTableAdapters.GEN_CorreoMasivoTableAdapter
+        Dim t As New ProduccionDS.GEN_CorreoMasivoDataTable
+        Dim r As ProduccionDS.GEN_CorreoMasivoRow
+        Dim ASUNTO As String = ""
+        Dim MENSAJE As String = ""
+
+        taCorreos.Fill(t)
+        For Each r In t.Rows
+            ASUNTO = r.Asunto
+            ASUNTO = ASUNTO.Replace("|Var1|", r.Var1)
+            ASUNTO = ASUNTO.Replace("|Var2|", r.Var2)
+            ASUNTO = ASUNTO.Replace("|Var3|", r.Var3)
+            ASUNTO = ASUNTO.Replace("|Var4|", r.Var4)
+            ASUNTO = ASUNTO.Replace("|Var5|", r.Var5)
+
+            MENSAJE = r.Mensaje
+            MENSAJE = MENSAJE.Replace("|Var1|", r.Var1)
+            MENSAJE = MENSAJE.Replace("|Var2|", r.Var2)
+            MENSAJE = MENSAJE.Replace("|Var3|", r.Var3)
+            MENSAJE = MENSAJE.Replace("|Var4|", r.Var4)
+            MENSAJE = MENSAJE.Replace("|Var5|", r.Var5)
+
+            EnviacORREO(r.Para, MENSAJE, ASUNTO, r.De, r.Adjunto)
+            taCorreos.Procesar(True, r.id_CorreoMasivo)
+        Next
+
+    End Sub
+
 End Module

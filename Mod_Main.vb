@@ -89,6 +89,8 @@ Module Mod_Main
             Console.WriteLine("Autoriza IVA")
             EnviaCorreoAutorizaIVA()
 
+            CorreosMasivosSistemaFinagil()
+
 
             Console.WriteLine("Terminado")
         Catch ex As Exception

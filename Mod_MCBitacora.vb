@@ -35,7 +35,7 @@
             If r.Escritura = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Escritura<br>"
             Mensaje += "Justificación: " & r.Justificacion & "<br>"
             Select Case Trim(r.Solicito)
-                Case "vcruz", "cjuarez", "asagar", "gramirez", "kvazquez"
+                Case "vcruz", "mbautista", "asagar", "gramirez", "kvazquez"
                     If r.AuditoriaExterna = False Then
                         Vobo = "epineda"
                         Autoriza = "epineda"

@@ -16,7 +16,7 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             EnviacORREO("ajoshin@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
-            EnviacORREO("cjuarezr@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            EnviacORREO("maria.bautista@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Btasas.Enviados(True, r.id)
         Next
@@ -35,7 +35,7 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             EnviacORREO("ajoshin@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
-            EnviacORREO("cjuarezr@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+            EnviacORREO("maria.bautista@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"

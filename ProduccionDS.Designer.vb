@@ -5502,6 +5502,8 @@ Partial Public Class ProduccionDS
         
         Private columnTipo As Global.System.Data.DataColumn
         
+        Private columnid_Seguimiento As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -5634,6 +5636,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property id_SeguimientoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnid_Seguimiento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5670,12 +5680,18 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddCRED_SeguimientosRow(ByVal Responsable As String, ByVal Anexo As String, ByVal Cliente As String, ByVal Compromiso As String, ByVal Fecha_Alta As Date, ByVal Fecha_Compromiso As Date, ByVal Analista As String, ByVal Estatus As String, ByVal DiasRetraso As Integer, ByVal Sucursal As String, ByVal Notas As String, ByVal Tipo As String) As CRED_SeguimientosRow
+        Public Overloads Function AddCRED_SeguimientosRow(ByVal Responsable As String, ByVal Anexo As String, ByVal Cliente As String, ByVal Compromiso As String, ByVal Fecha_Alta As Date, ByVal Fecha_Compromiso As Date, ByVal Analista As String, ByVal Estatus As String, ByVal DiasRetraso As Integer, ByVal Sucursal As String, ByVal Notas As String, ByVal Tipo As String, ByVal id_Seguimiento As Decimal) As CRED_SeguimientosRow
             Dim rowCRED_SeguimientosRow As CRED_SeguimientosRow = CType(Me.NewRow,CRED_SeguimientosRow)
-            Dim columnValuesArray() As Object = New Object() {Responsable, Anexo, Cliente, Compromiso, Fecha_Alta, Fecha_Compromiso, Analista, Estatus, DiasRetraso, Sucursal, Notas, Tipo}
+            Dim columnValuesArray() As Object = New Object() {Responsable, Anexo, Cliente, Compromiso, Fecha_Alta, Fecha_Compromiso, Analista, Estatus, DiasRetraso, Sucursal, Notas, Tipo, id_Seguimiento}
             rowCRED_SeguimientosRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCRED_SeguimientosRow)
             Return rowCRED_SeguimientosRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function FindByid_Seguimiento(ByVal id_Seguimiento As Decimal) As CRED_SeguimientosRow
+            Return CType(Me.Rows.Find(New Object() {id_Seguimiento}),CRED_SeguimientosRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5707,6 +5723,7 @@ Partial Public Class ProduccionDS
             Me.columnSucursal = MyBase.Columns("Sucursal")
             Me.columnNotas = MyBase.Columns("Notas")
             Me.columnTipo = MyBase.Columns("Tipo")
+            Me.columnid_Seguimiento = MyBase.Columns("id_Seguimiento")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5736,6 +5753,9 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnNotas)
             Me.columnTipo = New Global.System.Data.DataColumn("Tipo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTipo)
+            Me.columnid_Seguimiento = New Global.System.Data.DataColumn("id_Seguimiento", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnid_Seguimiento)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid_Seguimiento}, true))
             Me.columnResponsable.MaxLength = 20
             Me.columnAnexo.ReadOnly = true
             Me.columnAnexo.MaxLength = 10
@@ -5748,6 +5768,8 @@ Partial Public Class ProduccionDS
             Me.columnSucursal.MaxLength = 12
             Me.columnNotas.MaxLength = 300
             Me.columnTipo.MaxLength = 20
+            Me.columnid_Seguimiento.AllowDBNull = false
+            Me.columnid_Seguimiento.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10987,6 +11009,17 @@ Partial Public Class ProduccionDS
             End Get
             Set
                 Me(Me.tableCRED_Seguimientos.TipoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property id_Seguimiento() As Decimal
+            Get
+                Return CType(Me(Me.tableCRED_Seguimientos.id_SeguimientoColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tableCRED_Seguimientos.id_SeguimientoColumn) = value
             End Set
         End Property
         
@@ -18776,6 +18809,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Sucursal", "Sucursal")
             tableMapping.ColumnMappings.Add("Notas", "Notas")
             tableMapping.ColumnMappings.Add("Tipo", "Tipo")
+            tableMapping.ColumnMappings.Add("id_Seguimiento", "id_Seguimiento")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -18793,16 +18827,16 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Responsable, Anexo, Cliente, Compromiso, Fecha_Alta, Fecha_Compromi"& _ 
-                "so, Analista, Estatus, DiasRetraso, Sucursal, Notas, Tipo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CR"& _ 
-                "ED_Seguimientos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (DiasRetraso > 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Responsable, DiasRetra"& _ 
-                "so DESC"
+                "so, Analista, Estatus, DiasRetraso, Sucursal, Notas, Tipo, id_Seguimiento"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
+                "           Vw_CRED_Seguimientos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (DiasRetraso > 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Respon"& _ 
+                "sable, DiasRetraso DESC"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_Alta, Fe"& _ 
-                "cha_Compromiso, Notas, Responsable, Sucursal, Tipo FROM Vw_CRED_Seguimientos WHE"& _ 
-                "RE (DiasRetraso = @Dias) AND (DiasAsignados BETWEEN @DiasHasta1 AND @DiasHasta2)"& _ 
-                ""
+                "cha_Compromiso, Notas, Responsable, Sucursal, Tipo, id_Seguimiento FROM Vw_CRED_"& _ 
+                "Seguimientos WHERE (DiasRetraso = @Dias) AND (DiasAsignados BETWEEN @DiasHasta1 "& _ 
+                "AND @DiasHasta2)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Dias", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasRetraso", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiasHasta1", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasAsignados", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -18810,8 +18844,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_Alta, Fe"& _ 
-                "cha_Compromiso, Notas, Responsable, Sucursal, Tipo FROM Vw_CRED_Seguimientos WHE"& _ 
-                "RE (Sucursal = @Sucursal) ORDER BY DiasRetraso DESC"
+                "cha_Compromiso, Notas, Responsable, Sucursal, Tipo, id_Seguimiento FROM Vw_CRED_"& _ 
+                "Seguimientos WHERE (Sucursal = @Sucursal) ORDER BY DiasRetraso DESC"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

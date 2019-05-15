@@ -141,6 +141,7 @@ Module Mod_SistemaFinagil
         Dim MENSAJE As String = ""
 
         taCorreos.Fill(t)
+
         For Each r In t.Rows
             ASUNTO = r.Asunto
             ASUNTO = ASUNTO.Replace("|Var1|", r.Var1)
@@ -158,6 +159,7 @@ Module Mod_SistemaFinagil
 
             EnviacORREO(r.Para, MENSAJE, ASUNTO, r.De, r.Adjunto)
             taCorreos.Procesar(True, r.id_CorreoMasivo)
+            Console.WriteLine("Correo: " & r.Para)
         Next
 
     End Sub

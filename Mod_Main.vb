@@ -89,6 +89,7 @@ Module Mod_Main
             Console.WriteLine("Autoriza IVA")
             EnviaCorreoAutorizaIVA()
 
+            Console.WriteLine("Correos Masivos")
             CorreosMasivosSistemaFinagil()
 
 

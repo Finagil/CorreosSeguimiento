@@ -29,10 +29,12 @@
             Mensaje += "Compromiso: " & r.Compromiso & "<br>"
             Mensaje += "Días de Retraso: " & r.DiasRetraso & "<br>"
             Mensaje += "Notas: " & r.Notas & "<br>"
+            Mensaje += "No. Seguimiento: " & r.id_Seguimiento & "<br>"
+
             Resposble = CORREOS.ScalarCorreo(r.Responsable)
             EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
-            Resposble = CORREOS.ScalarCorreo(r.Analista)
-            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+            'Resposble = CORREOS.ScalarCorreo(r.Analista)
+            'EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
         Next
         EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
 
@@ -49,11 +51,12 @@
         solicitudes.Fill_Sucursal(tsol, Sucursal)
         If tsol.Rows.Count > 0 Then
             Asunto = "Notificación Semanal de Seguimiento."
-            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Responsable</strong></td><td><strong>Compromiso</strong></td>" _
+            Mensaje = "<table BORDER=1><tr><td><strong>No. Seguimiento</strong></td><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Responsable</strong></td><td><strong>Compromiso</strong></td>" _
             & "<td><strong>Días de Retraso</strong></td><td><strong>Area</strong></td><td><strong>Notas</strong></td><td></tr>"
 
             For Each r As ProduccionDS.CRED_SeguimientosRow In tsol.Rows
-                Mensaje += "<tr><td>" & r.Anexo & "</td>"
+                Mensaje += "<tr><td>" & r.id_seguimiento & "</td>"
+                Mensaje += "<td>" & r.Anexo & "</td>"
                 Mensaje += "<td>" & r.Cliente & "</td>"
                 Mensaje += "<td>" & r.Responsable & "</td>"
                 Mensaje += "<td>" & r.Compromiso & "</td>"

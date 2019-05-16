@@ -10,6 +10,7 @@ Module Mod_Global
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Cliente As New SmtpClient("192.168.110.1", 25)
         Try
+            Cliente.Credentials = New System.Net.NetworkCredential("ecacerest", "c4c3r1t0s", "cmoderna")
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
                 Dim Att As New Attachment(My.Settings.RutaTmp & Attach)
@@ -25,7 +26,7 @@ Module Mod_Global
 
     Public Sub EscribeLOG(Mensaje)
         Dim f As New IO.StreamWriter("C:\TMP\Log_Correos.txt", True)
-        f.WriteLine(Mensaje)
+        f.WriteLine(Date.Now.ToLocalTime & " - " & Mensaje)
         f.Close()
     End Sub
 

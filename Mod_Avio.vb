@@ -615,7 +615,7 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         solicitudAVIO.FillBySUC_CRED(tsol, Sucursal)
         If tsol.Rows.Count > 0 Then
-            Asunto = "Ministraciones liberadas por CREDITO (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
+            Asunto = "Ministraciones liberadas por DG CRED (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Observaciones</strong></td></tr>"
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
@@ -696,7 +696,7 @@
 
         solicitudAVIO.FillByTESO_Aviso(tsol)
         If tsol.Rows.Count > 0 Then
-            Asunto = "Solicitudes sin comformación de pago (" & tsol.Rows.Count & " solicitudes)"
+            Asunto = "Solicitudes sin comfirmación de pago (" & tsol.Rows.Count & " solicitudes)"
             Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td><td><strong>Sucursal</strong></td><td><strong>Ciclo Pagaré</strong></td></tr>"
             For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
                 Mensaje += "<tr><td>" & r.AnexoCon & "</td>"

@@ -8,7 +8,7 @@ Module Mod_Global
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
 
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-        Dim Cliente As New SmtpClient("192.168.110.1", 26)
+        Dim Cliente As New SmtpClient(My.Settings.SMTP, My.Settings.SMTP_port)
         Try
             Cliente.Credentials = New System.Net.NetworkCredential("ecacerest", "c4c3r1t0s", "cmoderna")
             Mensage.IsBodyHtml = True

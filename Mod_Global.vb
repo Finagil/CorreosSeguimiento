@@ -10,7 +10,8 @@ Module Mod_Global
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Cliente As New SmtpClient(My.Settings.SMTP, My.Settings.SMTP_port)
         Try
-            Cliente.Credentials = New System.Net.NetworkCredential("ecacerest", "c4c3r1t0s", "cmoderna")
+            Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
+            Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
                 Dim Att As New Attachment(My.Settings.RutaTmp & Attach)

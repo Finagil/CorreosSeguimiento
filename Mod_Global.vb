@@ -6,9 +6,18 @@ Module Mod_Global
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
-
+        Dim Cliente As SmtpClient
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-        Dim Cliente As New SmtpClient(My.Settings.SMTP, My.Settings.SMTP_port)
+        Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
+
+        If InStr(Para, "@lamoderna") > 0 Or InStr(Para, "@cmoderna") > 0 Or InStr(Para, "@finagil") > 0 Or
+            InStr(Para, "@pirineos") > 0 Or InStr(Para, "@tamisa") > 0 Or InStr(Para, "@mofesa") > 0 Or
+            InStr(Para, "@mosusa") > 0 Or InStr(Para, "@papelesc") > 0 Or InStr(Para, "@peliculasp") > 0 Then
+            Cliente = New SmtpClient(My.Settings.SMTP, Puerto(0))
+        Else
+            Cliente = New SmtpClient(My.Settings.SMTP, Puerto(1))
+        End If
+
         Try
             Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
             Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))

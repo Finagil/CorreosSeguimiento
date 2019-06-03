@@ -337,7 +337,7 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         '************bloqueo de tasas********************
         taIVA.FillByUsuario(t_IVA, "contabilidadx")
-        For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
+        For Each r As ProduccionDS.VW_AutorizaIVA_InteresRow In t_IVA.Rows
             correos.Fill(Tmail, "CONTABILIDAD")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux1 = rrr.Correo.Split("<")
@@ -354,7 +354,7 @@
                 Mensaje += "Producto: " & r.TipoCredito & "<br>"
                 Mensaje += "Solicitud: NO COBRAR IVA de los intereses.<br>"
                 Mensaje += "Monto Financiado: " & CDec(r.MontoFinanciado).ToString("n2") & "<br>"
-                Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159dx1-IVAaut.aspx?User=" & Users(y) & "&Anexo=X&Ciclo=X'>Liga de Autorización de Tasa de IVA</A>"
+                Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5159Inte-IVAaut.aspx?User=" & Users(y) & "&Anexo=X&Ciclo=X'>Liga de Autorización de Tasa de IVA</A>"
                 EnviacORREO(Users(y) & "@finagil.com.mx", Mensaje, "Se requiere autorización para NO COBRO de IVA de los intereses. (" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
             Next
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización para NO COBRO de IVA de los intereses.(" & r.Cliente.Trim & ")", "CONTABILIDAD@finagil.com.mx")
@@ -372,7 +372,7 @@
         Next
 
         taIVA.Fill(t_IVA)
-        For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
+        For Each r As ProduccionDS.VW_AutorizaIVA_InteresRow In t_IVA.Rows
             correos.Fill(Tmail, "CONTABILIDAD")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux1 = rrr.Correo.Split("<")

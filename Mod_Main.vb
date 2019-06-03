@@ -88,6 +88,8 @@ Module Mod_Main
             End If
             Console.WriteLine("Autoriza IVA")
             EnviaCorreoAutorizaIVA()
+            Console.WriteLine("Autoriza IVA Interes")
+            EnviaCorreoAutorizaIVA_Interes()
 
             Console.WriteLine("Correos Masivos")
             CorreosMasivosSistemaFinagil()

@@ -6424,6 +6424,8 @@ Partial Public Class ProduccionDS
         
         Private columnCliente As Global.System.Data.DataColumn
         
+        Private columnFechaAutorizacion As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6668,6 +6670,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FechaAutorizacionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFechaAutorizacion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6729,9 +6739,10 @@ Partial Public Class ProduccionDS
                     ByVal Promotor As String,  _
                     ByVal Descr As String,  _
                     ByVal UsuarioCredito As String,  _
-                    ByVal Cliente As String) As AutorizacionRPTRow
+                    ByVal Cliente As String,  _
+                    ByVal FechaAutorizacion As Date) As AutorizacionRPTRow
             Dim rowAutorizacionRPTRow As AutorizacionRPTRow = CType(Me.NewRow,AutorizacionRPTRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Id_Solicitud, tasa, condiciones, observaciones, cliente_finagil, saldo_insoluto, bc, procesado, MontoFinanciado, Plazo, Periodicidad, FechaIngreso, SalarioNeto, IngresosAdicionales, Pasivos, PagoPasivos, PagoFinagil, AportacionesAdicionales, RCD, Fecha, DescPromotor, Promotor, Descr, UsuarioCredito, Cliente}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Id_Solicitud, tasa, condiciones, observaciones, cliente_finagil, saldo_insoluto, bc, procesado, MontoFinanciado, Plazo, Periodicidad, FechaIngreso, SalarioNeto, IngresosAdicionales, Pasivos, PagoPasivos, PagoFinagil, AportacionesAdicionales, RCD, Fecha, DescPromotor, Promotor, Descr, UsuarioCredito, Cliente, FechaAutorizacion}
             rowAutorizacionRPTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowAutorizacionRPTRow)
             Return rowAutorizacionRPTRow
@@ -6780,6 +6791,7 @@ Partial Public Class ProduccionDS
             Me.columnDescr = MyBase.Columns("Descr")
             Me.columnUsuarioCredito = MyBase.Columns("UsuarioCredito")
             Me.columnCliente = MyBase.Columns("Cliente")
+            Me.columnFechaAutorizacion = MyBase.Columns("FechaAutorizacion")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6837,6 +6849,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnUsuarioCredito)
             Me.columnCliente = New Global.System.Data.DataColumn("Cliente", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCliente)
+            Me.columnFechaAutorizacion = New Global.System.Data.DataColumn("FechaAutorizacion", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFechaAutorizacion)
             Me.columnId_Autorizacion.AutoIncrement = true
             Me.columnId_Autorizacion.AutoIncrementSeed = -1
             Me.columnId_Autorizacion.AutoIncrementStep = -1
@@ -12303,6 +12317,22 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FechaAutorizacion() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableAutorizacionRPT.FechaAutorizacionColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FechaAutorizacion' de la tabla 'AutorizacionRPT' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAutorizacionRPT.FechaAutorizacionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsId_SolicitudNull() As Boolean
             Return Me.IsNull(Me.tableAutorizacionRPT.Id_SolicitudColumn)
         End Function
@@ -12563,6 +12593,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetClienteNull()
             Me(Me.tableAutorizacionRPT.ClienteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFechaAutorizacionNull() As Boolean
+            Return Me.IsNull(Me.tableAutorizacionRPT.FechaAutorizacionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFechaAutorizacionNull()
+            Me(Me.tableAutorizacionRPT.FechaAutorizacionColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -20198,6 +20240,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Descr", "Descr")
             tableMapping.ColumnMappings.Add("UsuarioCredito", "UsuarioCredito")
             tableMapping.ColumnMappings.Add("Cliente", "Cliente")
+            tableMapping.ColumnMappings.Add("FechaAutorizacion", "FechaAutorizacion")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -20227,13 +20270,13 @@ Namespace ProduccionDSTableAdapters
                 "gil, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PROM_SolicitudesLIQ.AportacionesAdicionales, PRO"& _ 
                 "M_SolicitudesLIQ.RCD, PROM_SolicitudesLIQ.Fecha, Promotores.DescPromotor, Promot"& _ 
                 "ores.Promotor, Clientes.Descr, PROM_SolicitudesLIQ.UsuarioCredito, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              PROM_SolicitudesLIQ.Cliente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PROM_SolicitudesLIQ_A"& _ 
-                "utorizacion INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PROM_SolicitudesLIQ ON PROM_Sol"& _ 
-                "icitudesLIQ_Autorizacion.Id_Solicitud = PROM_SolicitudesLIQ.Id_Solicitud INNER J"& _ 
-                "OIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON PROM_SolicitudesLIQ.Cliente = Clientes"& _ 
-                ".Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Promotores ON Clientes.Promo = Pro"& _ 
-                "motores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (PROM_SolicitudesLIQ_Autorizacion.Id_Solicitud = "& _ 
-                "@ID_SOL)"
+                "              PROM_SolicitudesLIQ.Cliente, PROM_SolicitudesLIQ.FechaAutorizacion"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PROM_SolicitudesLIQ_Autorizacion INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        PROM_SolicitudesLIQ ON PROM_SolicitudesLIQ_Autorizacion.Id_Solicitud = P"& _ 
+                "ROM_SolicitudesLIQ.Id_Solicitud INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON"& _ 
+                " PROM_SolicitudesLIQ.Cliente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     Promotores ON Clientes.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (PROM_Soli"& _ 
+                "citudesLIQ_Autorizacion.Id_Solicitud = @ID_SOL)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID_SOL", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Solicitud", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
@@ -20285,7 +20328,7 @@ Namespace ProduccionDSTableAdapters
         Public Overloads Overridable Function SacaCorreoPromo(ByVal Cliente As String) As String
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
             If (Cliente Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Cliente")
+                command.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(0).Value = CType(Cliente,String)
             End If

@@ -23,8 +23,13 @@ Module Mod_Global
             Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
-                Dim Att As New Attachment(My.Settings.RutaTmp & Attach)
-                Mensage.Attachments.Add(Att)
+                Dim cad As String() = Attach.Trim.Split("|")
+                For x As Integer = 0 To cad.Length - 1
+                    If cad(x).Trim.Length > 0 Then
+                        Dim Att As New Attachment(My.Settings.RutaTmp & cad(x))
+                        Mensage.Attachments.Add(Att)
+                    End If
+                Next
             End If
             Cliente.Send(Mensage)
         Catch ex As Exception

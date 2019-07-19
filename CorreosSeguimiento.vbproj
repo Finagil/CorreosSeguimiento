@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Mod_Avio.vb" />
     <Compile Include="Mod_CRED.vb" />
+    <Compile Include="Mod_CXP.vb" />
     <Compile Include="Mod_Factoraje.vb" />
     <Compile Include="Mod_Global.vb" />
     <Compile Include="Mod_MCBitacora.vb" />

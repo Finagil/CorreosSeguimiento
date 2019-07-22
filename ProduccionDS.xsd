@@ -1968,7 +1968,7 @@ WHERE        (CONT_AutorizarIVA_Interes.usuario &lt;&gt; N'contabilidadX') AND (
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_CXP_AutorizacionesTableAdapter" GeneratorDataComponentClassName="Vw_CXP_AutorizacionesTableAdapter" Name="Vw_CXP_Autorizaciones" UserDataComponentName="Vw_CXP_AutorizacionesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_CXP_Autorizaciones" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillAutoriza1" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataAutoriza1" GeneratorSourceName="FillAutoriza1" GetMethodModifier="Public" GetMethodName="GetDataAutoriza1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataAutoriza1" UserSourceName="FillAutoriza1">
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_CXP_Autorizaciones" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillAutoriza1" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataAutoriza1" GeneratorSourceName="FillAutoriza1" GetMethodModifier="Public" GetMethodName="GetDataAutoriza1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataAutoriza1" UserSourceName="FillAutoriza1">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS Solicita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza1 AS Correo, Autoriza1 AS Autorizante, idEmpresas AS idEmpresa, 
@@ -1993,7 +1993,7 @@ GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpresa, nombr
               <Mapping SourceColumn="MailSolicitante" DataSetColumn="MailSolicitante" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CorreoEnviado1" Modifier="Public" Name="CorreoEnviado1" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="CorreoEnviado1">
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Enviado1" Modifier="Public" Name="Enviado1" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Enviado1">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CXP_Pagos
@@ -2007,7 +2007,7 @@ WHERE        (idEmpresas = @Empresa) AND (folioSolicitud = @Solicitud)</CommandT
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="CorreoEnviado2" Modifier="Public" Name="CorreoEnviado2" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="CorreoEnviado2">
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Enviado2" Modifier="Public" Name="Enviado2" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Enviado2">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CXP_Pagos
@@ -2028,7 +2028,7 @@ WHERE        (idEmpresas = @Empresa) AND (folioSolicitud = @Solicitud)</CommandT
                          mailGenero AS MailSolicitante
 FROM            Vw_CXP_Autorizaciones
 WHERE        (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } &gt; 25)
-GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre</CommandText>
+GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -3171,7 +3171,7 @@ GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombr
         <xs:element name="Vw_CXP_Autorizaciones" msprop:Generator_TableClassName="Vw_CXP_AutorizacionesDataTable" msprop:Generator_TableVarName="tableVw_CXP_Autorizaciones" msprop:Generator_TablePropName="Vw_CXP_Autorizaciones" msprop:Generator_RowDeletingName="Vw_CXP_AutorizacionesRowDeleting" msprop:Generator_RowChangingName="Vw_CXP_AutorizacionesRowChanging" msprop:Generator_RowEvHandlerName="Vw_CXP_AutorizacionesRowChangeEventHandler" msprop:Generator_RowDeletedName="Vw_CXP_AutorizacionesRowDeleted" msprop:Generator_UserTableName="Vw_CXP_Autorizaciones" msprop:Generator_RowChangedName="Vw_CXP_AutorizacionesRowChanged" msprop:Generator_RowEvArgName="Vw_CXP_AutorizacionesRowChangeEvent" msprop:Generator_RowClassName="Vw_CXP_AutorizacionesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Empresa" msprop:Generator_ColumnVarNameInTable="columnEmpresa" msprop:Generator_ColumnPropNameInRow="Empresa" msprop:Generator_ColumnPropNameInTable="EmpresaColumn" msprop:Generator_UserColumnName="Empresa">
+              <xs:element name="Empresa" msprop:Generator_ColumnVarNameInTable="columnEmpresa" msprop:Generator_ColumnPropNameInRow="Empresa" msprop:Generator_ColumnPropNameInTable="EmpresaColumn" msprop:Generator_UserColumnName="Empresa" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
@@ -3278,12 +3278,8 @@ GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombr
     </xs:unique>
     <xs:unique name="Vw_CXP_Autorizaciones_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Vw_CXP_Autorizaciones" />
-      <xs:field xpath="mstns:Empresa" />
       <xs:field xpath="mstns:Solicitud" />
       <xs:field xpath="mstns:Estatus" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:Vw_CXP_Autorizaciones" />
       <xs:field xpath="mstns:idEmpresa" />
     </xs:unique>
   </xs:element>

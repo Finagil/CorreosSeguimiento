@@ -5,6 +5,11 @@ Module Mod_Main
 
         Try
             Console.WriteLine("Inicio")
+
+            'Console.WriteLine("Autorizaciones CXP")
+            'Mod_CXP.EnviaAitorizacion(1)
+            'Mod_CXP.EnviaAitorizacion(2)
+
             Console.WriteLine("Facturas sin Movimientos contables")
             If Date.Now.Minute <= 1 Then 'se ejecutan cada hora
                 CorreosSistemaFinagil_FactSinConta()
@@ -77,6 +82,16 @@ Module Mod_Main
             EnviaCorreoBitacoraMC(True)
             EnviaCorreoBitacoraMC(False)
             EnviaCorreoBitacoraMC_Autorizacion()
+
+            Console.WriteLine("Autoriza IVA")
+            EnviaCorreoAutorizaIVA()
+            Console.WriteLine("Autoriza IVA Interes")
+            EnviaCorreoAutorizaIVA_Interes()
+
+            Console.WriteLine("Correos Masivos")
+            CorreosMasivosSistemaFinagil()
+
+            'SIMEPRE AL FINAL+++++++++++++
             Console.WriteLine("Sistema Finagil")
             CorreosSistemaFinagil("DG_LIQ_SIN")
             If Date.Now.Hour = 9 And Date.Now.Minute <= 1 Then
@@ -86,14 +101,7 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
-            Console.WriteLine("Autoriza IVA")
-            EnviaCorreoAutorizaIVA()
-            Console.WriteLine("Autoriza IVA Interes")
-            EnviaCorreoAutorizaIVA_Interes()
-
-            Console.WriteLine("Correos Masivos")
-            CorreosMasivosSistemaFinagil()
-
+            'SIMEPRE AL FINAL+++++++++++++
 
             Console.WriteLine("Terminado")
         Catch ex As Exception

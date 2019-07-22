@@ -8105,8 +8105,8 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByEmpresaSolicitudEstatus(ByVal Empresa As String, ByVal Solicitud As Decimal, ByVal Estatus As String) As Vw_CXP_AutorizacionesRow
-            Return CType(Me.Rows.Find(New Object() {Empresa, Solicitud, Estatus}),Vw_CXP_AutorizacionesRow)
+        Public Function FindBySolicitudEstatusidEmpresa(ByVal Solicitud As Decimal, ByVal Estatus As String, ByVal idEmpresa As Decimal) As Vw_CXP_AutorizacionesRow
+            Return CType(Me.Rows.Find(New Object() {Solicitud, Estatus, idEmpresa}),Vw_CXP_AutorizacionesRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8158,9 +8158,7 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnidEmpresa)
             Me.columnMailSolicitante = New Global.System.Data.DataColumn("MailSolicitante", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMailSolicitante)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnEmpresa, Me.columnSolicitud, Me.columnEstatus}, true))
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint2", New Global.System.Data.DataColumn() {Me.columnidEmpresa}, false))
-            Me.columnEmpresa.AllowDBNull = false
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSolicitud, Me.columnEstatus, Me.columnidEmpresa}, true))
             Me.columnEmpresa.MaxLength = 150
             Me.columnSolicitud.AllowDBNull = false
             Me.columnSolicita.MaxLength = 250
@@ -8170,7 +8168,6 @@ Partial Public Class ProduccionDS
             Me.columnCorreo.MaxLength = 100
             Me.columnAutorizante.MaxLength = 100
             Me.columnidEmpresa.AllowDBNull = false
-            Me.columnidEmpresa.Unique = true
             Me.columnMailSolicitante.MaxLength = 50
         End Sub
         
@@ -13765,7 +13762,11 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Empresa() As String
             Get
-                Return CType(Me(Me.tableVw_CXP_Autorizaciones.EmpresaColumn),String)
+                Try 
+                    Return CType(Me(Me.tableVw_CXP_Autorizaciones.EmpresaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Empresa' de la tabla 'Vw_CXP_Autorizaciones' es DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableVw_CXP_Autorizaciones.EmpresaColumn) = value
@@ -13881,6 +13882,18 @@ Partial Public Class ProduccionDS
                 Me(Me.tableVw_CXP_Autorizaciones.MailSolicitanteColumn) = value
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsEmpresaNull() As Boolean
+            Return Me.IsNull(Me.tableVw_CXP_Autorizaciones.EmpresaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetEmpresaNull()
+            Me(Me.tableVw_CXP_Autorizaciones.EmpresaColumn) = Global.System.Convert.DBNull
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -22319,7 +22332,8 @@ Namespace ProduccionDSTableAdapters
                 "Autoriza2 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
                 "ilGenero AS MailSolicitante"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
                 " (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitu"& _ 
-                "d, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre"
+                "d, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGen"& _ 
+                "ero"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -22375,7 +22389,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function CorreoEnviado1(ByVal Correo As String, ByVal Empresa As Global.System.Nullable(Of Decimal), ByVal Solicitud As Global.System.Nullable(Of Decimal)) As Integer
+        Public Overloads Overridable Function Enviado1(ByVal Correo As String, ByVal Empresa As Global.System.Nullable(Of Decimal), ByVal Solicitud As Global.System.Nullable(Of Decimal)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
             If (Correo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
@@ -22412,7 +22426,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function CorreoEnviado2(ByVal Correo As String, ByVal Empresa As Global.System.Nullable(Of Decimal), ByVal Solicitud As Global.System.Nullable(Of Decimal)) As Integer
+        Public Overloads Overridable Function Enviado2(ByVal Correo As String, ByVal Empresa As Global.System.Nullable(Of Decimal), ByVal Solicitud As Global.System.Nullable(Of Decimal)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             If (Correo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value

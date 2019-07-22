@@ -5020,7 +5020,7 @@ Partial Public Class ProduccionDS
             Me.columnPara.MaxLength = 400
             Me.columnAsunto.MaxLength = 100
             Me.columnMensaje.MaxLength = 1000
-            Me.columnAttach.MaxLength = 100
+            Me.columnAttach.MaxLength = 200
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22319,8 +22319,7 @@ Namespace ProduccionDSTableAdapters
                 "Autoriza2 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
                 "ilGenero AS MailSolicitante"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
                 " (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitu"& _ 
-                "d, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGen"& _ 
-                "ero"
+                "d, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

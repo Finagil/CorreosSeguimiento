@@ -6,9 +6,9 @@ Module Mod_Main
         Try
             Console.WriteLine("Inicio")
 
-            'Console.WriteLine("Autorizaciones CXP")
-            'Mod_CXP.EnviaAitorizacion(1)
-            'Mod_CXP.EnviaAitorizacion(2)
+            Console.WriteLine("Autorizaciones CXP")
+            Mod_CXP.EnviaAitorizacion(1)
+            Mod_CXP.EnviaAitorizacion(2)
 
             Console.WriteLine("Facturas sin Movimientos contables")
             If Date.Now.Minute <= 1 Then 'se ejecutan cada hora

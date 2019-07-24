@@ -40,8 +40,8 @@ Module Mod_SistemaFinagil
                     If Correos(X).Length > 0 Then
                         Dim User As String = "gbello"
                         If InStr(r.Attach, "Autoriza") Then
-                            If InStr(r.De, User) Then
-                                If InStr(r.Attach, ".Pdf") Then
+                            If InStr(r.De.ToLower, User) Then
+                                If InStr(r.Attach.ToUpper, ".PDF") Then
                                     If AUXatt <> r.Attach Then
                                         GeneraAutorizacionDG(r.Attach, User)
                                         AUXatt = r.Attach

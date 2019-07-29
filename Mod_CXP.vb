@@ -30,7 +30,7 @@
             Mensaje += "Número de Solicitud: " & r.Solicitud & "<br>"
             Mensaje += "Solicitante: " & r.Solicita & "<br>"
             Mensaje += "Importe Total: " & CDec(r.Total).ToString("n2") & "<br>"
-            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0'>Liga para Autorización.</A>"
+            Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
                 taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)

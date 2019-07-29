@@ -25,8 +25,8 @@
             Correo = r.Correo.Substring(1, r.Correo.Length - 1)
             Archivo = "CXP\" & CInt(r.idEmpresa).ToString & "-" & CInt(r.Solicitud).ToString & ".pdf"
 
-            Asunto = "Se requiere Autorización de Gastos o Facturas de " & r.Empresa & " (" & r.Solicitud & ")"
-            Mensaje = "Empresa: " & r.Empresa & "<br>"
+            Asunto = "Se requiere Autorización de Gastos o Facturas de " & r.NombreCorto & " (" & r.Solicitud & ")"
+            Mensaje = "Empresa: " & r.NombreCorto & "<br>"
             Mensaje += "Número de Solicitud: " & r.Solicitud & "<br>"
             Mensaje += "Solicitante: " & r.Solicita & "<br>"
             Mensaje += "Importe Total: " & CDec(r.Total).ToString("n2") & "<br>"

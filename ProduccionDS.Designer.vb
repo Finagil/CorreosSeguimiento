@@ -22090,8 +22090,7 @@ Namespace ProduccionDSTableAdapters
                 " CONT_AutorizarIVA_Interes.Ciclo = Vw_Anexos.Ciclo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
                 "        Clientes ON Vw_Anexos.Cliente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
                 "              Promotores ON Vw_Anexos.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        "& _ 
-                "(CONT_AutorizarIVA_Interes.usuario <> N'contabilidadX') AND (RTRIM(CONT_Autoriza"& _ 
-                "rIVA_Interes.usuario) =@Usuario)"
+                "(RTRIM(CONT_AutorizarIVA_Interes.usuario) = @Usuario)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Usuario", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -22372,10 +22371,9 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(3).CommandText = "SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS So"& _ 
                 "licita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza2 AS Correo, "& _ 
                 "Autoriza2 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
-                "ilGenero AS MailSolicitante"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
-                " (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitu"& _ 
-                "d, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGen"& _ 
-                "ero"
+                "ilGenero AS MailSolicitante, NombreCorto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY "& _ 
+                "folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpr"& _ 
+                "esas, mailGenero, NombreCorto"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

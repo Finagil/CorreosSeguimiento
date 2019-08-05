@@ -40,9 +40,9 @@ Module Mod_Global
     End Sub
 
     Public Sub EscribeLOG(Mensaje)
-        Dim f As New IO.StreamWriter("C:\TMP\Log_Correos.txt", True)
-        f.WriteLine(Date.Now.ToLocalTime & " - " & Mensaje)
-        f.Close()
+        'Dim f As New IO.StreamWriter("C:\TMP\Log_Correos.txt", True)
+        'f.WriteLine(Date.Now.ToLocalTime & " - " & Mensaje)
+        'f.Close()
     End Sub
 
     Public Function Encriptar(ByVal Input As String) As String

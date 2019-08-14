@@ -23,6 +23,11 @@
 
         For Each r As ProduccionDS.Vw_CXP_AutorizacionesRow In tsoli.Rows
             Correo = r.Correo.Substring(1, r.Correo.Length - 1)
+            If InStr(Correo, "<") Then
+                Aux = Correo.Split("<")
+                Aux = Aux(1).Split(">")
+                Correo = Aux(0)
+            End If
             Archivo = "CXP\" & CInt(r.idEmpresa).ToString & "-" & CInt(r.Solicitud).ToString & ".pdf"
 
             Asunto = "Se requiere Autorización de Gastos o Facturas de " & r.NombreCorto & " (" & r.Solicitud & ")"

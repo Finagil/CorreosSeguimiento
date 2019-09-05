@@ -6,6 +6,8 @@ Module Mod_SistemaFinagil
         Dim taCorreos As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
         Dim t As New ProduccionDS.CorreosSistemaFinagilDataTable
         Dim r As ProduccionDS.CorreosSistemaFinagilRow
+        Dim TT As New ProduccionDS.CorreosFasesDataTable
+        Dim RR As ProduccionDS.CorreosFasesRow
         Dim Y As Integer
         Dim Para(10) As String
         Dim De As String
@@ -14,6 +16,8 @@ Module Mod_SistemaFinagil
         Dim ASUN As String = ""
         Dim MENSA As String = ""
         Dim MensajAux As String = ""
+        Dim Aux() As String
+        Dim correo As String = ""
         Dim Correos() As String
         Select Case Opcion.ToUpper
             Case "DG_LIQ"
@@ -21,6 +25,32 @@ Module Mod_SistemaFinagil
                 EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now & " - " & t.Rows.Count, "Correo Liquidez", "Correos@finagil.com.mx")
             Case "DG_LIQ_SIN"
                 taCorreos.FillByDG_LIQ_sin(t)
+            Case "DEYEL"
+                taCorreos.FillByDeyel(t)
+                For Each r In t.Rows
+                    CORREOS_FASE.Fill(TT, "DEYEL_" & r.Para)
+                    For Each RR In TT.Rows
+                        correo = RR.Correo.Trim
+                        If InStr(Correo, "<") Then
+                            Aux = correo.Split("<")
+                            Aux = Aux(1).Split(">")
+                            correo = Aux(0)
+                        End If
+                        EnviacORREO(correo, r.Mensaje, r.Asunto, r.De)
+                    Next
+                    CORREOS_FASE.Fill(TT, "DEYEL_SISTEMAS")
+                    For Each RR In TT.Rows
+                        correo = RR.Correo.Trim
+                        If InStr(correo, "<") Then
+                            Aux = correo.Split("<")
+                            Aux = Aux(1).Split(">")
+                            correo = Aux(0)
+                        End If
+                        EnviacORREO(correo, r.Mensaje, r.Asunto, r.De)
+                    Next
+                    taCorreos.Enviado(r.id_Correo)
+                Next
+                Exit Sub
             Case "TODO"
         End Select
         For Each r In t.Rows

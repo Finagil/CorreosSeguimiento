@@ -94,7 +94,7 @@ Module Mod_Main
             'SIMEPRE AL FINAL+++++++++++++
             Console.WriteLine("Sistema Finagil")
             CorreosSistemaFinagil("DG_LIQ_SIN")
-            CorreosSistemaFinagil("DEYEL")
+
             If Date.Now.Hour = 9 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             ElseIf Date.Now.Hour = 12 And Date.Now.Minute <= 1 Then
@@ -102,6 +102,9 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
+
+            Console.WriteLine("DEYEL")
+            CorreosSistemaFinagil("DEYEL")
             'SIMEPRE AL FINAL+++++++++++++
 
             Console.WriteLine("Terminado")

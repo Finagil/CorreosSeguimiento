@@ -38,7 +38,12 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                If InStr(rr.Correo, "caceres") > 0 Then
+                    taCorreos.Insert("Gastoss@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                Else
+                    taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                End If
+
             Next
             taCorreos.Insert("Gastos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
 
@@ -89,7 +94,11 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-8cXp.aspx?User=" & Correo & "&ID1=0&ID2=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                If InStr(rr.Correo, "caceres") > 0 Then
+                    taCorreos.Insert("Pagoss@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                Else
+                    taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                End If
             Next
             taCorreos.Insert("Pagos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
 

@@ -38,14 +38,13 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                If InStr(rr.Correo, "caceres") > 0 Then
-                    taCorreos.Insert("Gastoss@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
-                Else
-                    taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
-                End If
-
+                taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
             Next
-            taCorreos.Insert("Gastos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            If InStr(Correo, "ecacerest") > 0 Then
+                taCorreos.Insert("Gastoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            Else
+                taCorreos.Insert("Gastos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            End If
 
             If Autoriza = 1 Then
                 solicitud.Enviado1(Correo, r.idEmpresa, r.Solicitud)
@@ -94,13 +93,13 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-8cXp.aspx?User=" & Correo & "&ID1=0&ID2=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                If InStr(rr.Correo, "caceres") > 0 Then
-                    taCorreos.Insert("Pagoss@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
-                Else
-                    taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
-                End If
+                taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
             Next
-            taCorreos.Insert("Pagos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            If InStr(Correo, "ecacerest") > 0 Then
+                taCorreos.Insert("Pagoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            Else
+                taCorreos.Insert("Pagos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+            End If
 
             If Autoriza = 1 Then
                 solicitud.Enviado1(Correo, r.folioComprobacion, r.idEmpresa)

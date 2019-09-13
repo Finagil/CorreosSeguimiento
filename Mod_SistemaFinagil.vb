@@ -84,7 +84,8 @@ Module Mod_SistemaFinagil
                     If InStr(r.Attach, "Autoriza") Then
                         If InStr(r.Attach, ".Pdf") Then
                             cad = r.Asunto.Split(":")
-                            File.Copy(My.Settings.RutaTmp & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & r.Attach, True)
+                            cad(0) = r.Attach.Replace("\LQ\", "")
+                            File.Copy(My.Settings.RutaTmp & r.Attach, "\\server-nas\Autorizaciones Credito\Liquidez\" & cad(1).Trim & "-" & cad(0).Trim, True)
                         End If
                     End If
                 Next
@@ -131,7 +132,7 @@ Module Mod_SistemaFinagil
 
         Dim ta1 As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
         Dim DS As New ProduccionDS
-        Dim Archivo As String = My.Settings.RutaTmp & "Autoriza" & id_Sol & ".Pdf"
+        Dim Archivo As String = My.Settings.RutaTmp & "\LQ\Autoriza" & id_Sol & ".Pdf"
 
         Try
             Dim reporte As New ReportDocument()

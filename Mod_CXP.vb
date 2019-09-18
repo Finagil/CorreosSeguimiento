@@ -30,7 +30,7 @@
             End If
             Archivo = "CXP\" & CInt(r.idEmpresa).ToString & "-" & CInt(r.Solicitud).ToString & ".pdf"
 
-            Asunto = "Se requiere Autorización de Gastos o Facturas de " & r.NombreCorto & " (" & r.Solicitud & ")"
+            Asunto = "Se requiere Autorización de pagos: " & r.NombreCorto & " (" & r.Solicitud & ")"
             Mensaje = "Empresa: " & r.NombreCorto & "<br>"
             Mensaje += "Número de Solicitud: " & r.Solicitud & "<br>"
             Mensaje += "Solicitante: " & r.Solicita & "<br>"
@@ -38,12 +38,12 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
             Next
             If InStr(Correo, "ecacerest") > 0 Then
-                taCorreos.Insert("Gastoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Pagoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
             Else
-                taCorreos.Insert("Gastos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Pagos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
             End If
 
             If Autoriza = 1 Then
@@ -85,7 +85,7 @@
             End If
             Archivo = "GTS\" & CInt(r.idEmpresa).ToString & "-" & CInt(r.folioComprobacion).ToString & ".pdf"
 
-            Asunto = "Se requiere Autorización de Pagos de " & r.Empresa & " (" & r.folioComprobacion & ")"
+            Asunto = "Se requiere Autorización de gastos: " & r.Empresa & " (" & r.folioComprobacion & ")"
             Mensaje = "Empresa: " & r.Empresa & "<br>"
             Mensaje += "Número de Comprobación: " & r.folioComprobacion & "<br>"
             Mensaje += "Solicitante: " & r.Solicita & "<br>"
@@ -93,12 +93,12 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-8cXp.aspx?User=" & Correo & "&ID1=0&ID2=0'>Liga para Autorización.</A>"
 
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                taCorreos.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Gastos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Archivo)
             Next
             If InStr(Correo, "ecacerest") > 0 Then
-                taCorreos.Insert("Pagoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Gastoss@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
             Else
-                taCorreos.Insert("Pagos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
+                taCorreos.Insert("Gastos@finagil.com.mx", Correo, Asunto, Mensaje, False, Archivo)
             End If
 
             If Autoriza = 1 Then

@@ -126,7 +126,7 @@ Module Mod_SistemaFinagil
     End Sub
 
     Sub GeneraAutorizacionDG(ByVal id_Sol As String, ByVal User As String)
-        id_Sol = Mid(id_Sol, 9, id_Sol.Length)
+        id_Sol = Mid(id_Sol, 13, id_Sol.Length)
         id_Sol = Mid(id_Sol, 1, InStr(id_Sol, ".") - 1)
 
 

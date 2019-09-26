@@ -23317,7 +23317,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        empresa AS Empresa, folioComprobacion, nombre AS Solicita, SUM(tota"& _ 
+            Me._commandCollection(0).CommandText = "SELECT        empresa AS Empresa, folioComprobacion, nombre AS Solicita, MAX(tota"& _ 
                 "lPagado) AS Total, mail1 AS Correo, naAutoriza1 AS Autorizante, idEmpresa"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
                 "           Vw_CXP_ComprobacionGastos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mail1 LIKE '#%')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY f"& _ 
                 "olioComprobacion, mail1, naAutoriza1, empresa, nombre, idEmpresa"

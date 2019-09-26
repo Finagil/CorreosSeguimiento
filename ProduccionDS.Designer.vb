@@ -22610,8 +22610,9 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0).CommandText = "SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS So"& _ 
                 "licita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza1 AS Correo, "& _ 
                 "Autoriza1 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
-                "ilGenero AS MailSolicitante, NombreCorto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza1 LIKE '#%')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitud, mailAutoriza1,"& _ 
-                " Autoriza1, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto"
+                "ilGenero AS MailSolicitante, NombreCorto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza1 LIKE '#%') AND (estatus <> 'CompGtos')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY fo"& _ 
+                "lioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpresa, nombre, idEmpres"& _ 
+                "as, mailGenero, NombreCorto"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -22634,9 +22635,9 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(3).CommandText = "SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS So"& _ 
                 "licita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza2 AS Correo, "& _ 
                 "Autoriza2 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
-                "ilGenero AS MailSolicitante, NombreCorto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY "& _ 
-                "folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpr"& _ 
-                "esas, mailGenero, NombreCorto"
+                "ilGenero AS MailSolicitante, NombreCorto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } > 25) AND (estat"& _ 
+                "us <> 'CompGtos')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, n"& _ 
+                "ombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

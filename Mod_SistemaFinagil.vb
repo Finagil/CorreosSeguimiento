@@ -135,15 +135,16 @@ Module Mod_SistemaFinagil
         Dim Archivo As String = My.Settings.RutaTmp & "\LQ\Autoriza" & id_Sol & ".Pdf"
 
         Try
-            Dim reporte As New ReportDocument()
-            reporte.Load(My.Settings.RutaTmp & "rpt\rptAltaLiquidezAutorizacion.rpt")
+            Dim reporte As New rptAltaLiquidezAutorizacion
+
             Dim ta As New ProduccionDSTableAdapters.AutorizacionRPTTableAdapter
             ta.Fill(DS.AutorizacionRPT, id_Sol)
             Dim r As ProduccionDS.AutorizacionRPTRow = DS.AutorizacionRPT.Rows(0)
             Dim Antiguedad As Integer = DateDiff(DateInterval.Year, r.FechaIngreso, Date.Now.Date)
 
-
+            'Console.WriteLine("Datos1")
             reporte.SetDataSource(DS)
+            'Console.WriteLine("Datos2")
             reporte.SetParameterValue("var_antiguedad", Antiguedad)
             reporte.SetParameterValue("Autorizo", "C.P. GABRIEL BELLO HERNANDEZ")
             reporte.SetParameterValue("AreaAutorizo", "DIRECCION GENERAL")
@@ -158,8 +159,10 @@ Module Mod_SistemaFinagil
 
             File.Delete(Archivo)
             reporte.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Archivo)
+            Console.WriteLine("Exporta")
         Catch ex As Exception
-            Console.WriteLine(ex.Message)
+            Console.WriteLine(ex.Message & " Auto")
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos", "Correos@finagil.com.mx")
         End Try
 
     End Sub

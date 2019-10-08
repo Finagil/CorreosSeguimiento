@@ -1916,10 +1916,10 @@ WHERE        (RTRIM(CONT_AutorizarIVA_Interes.usuario) = @Usuario)</CommandText>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS Solicita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza1 AS Correo, Autoriza1 AS Autorizante, idEmpresas AS idEmpresa, 
-                         mailGenero AS MailSolicitante, NombreCorto
+                         mailGenero AS MailSolicitante, NombreCorto, razonSocial, Descr
 FROM            Vw_CXP_Autorizaciones
 WHERE        (mailAutoriza1 LIKE '#%') AND (estatus &lt;&gt; 'CompGtos')
-GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto</CommandText>
+GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto, razonSocial, Descr</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1936,6 +1936,8 @@ GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpresa, nombr
               <Mapping SourceColumn="idEmpresa" DataSetColumn="idEmpresa" />
               <Mapping SourceColumn="MailSolicitante" DataSetColumn="MailSolicitante" />
               <Mapping SourceColumn="NombreCorto" DataSetColumn="NombreCorto" />
+              <Mapping SourceColumn="razonSocial" DataSetColumn="razonSocial" />
+              <Mapping SourceColumn="Descr" DataSetColumn="Descr" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Enviado1" Modifier="Public" Name="Enviado1" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Enviado1">
@@ -1970,10 +1972,10 @@ WHERE        (idEmpresas = @Empresa) AND (folioSolicitud = @Solicitud)</CommandT
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS Solicita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza2 AS Correo, Autoriza2 AS Autorizante, idEmpresas AS idEmpresa, 
-                         mailGenero AS MailSolicitante, NombreCorto
+                         mailGenero AS MailSolicitante, NombreCorto, razonSocial, Descr
 FROM            Vw_CXP_Autorizaciones
 WHERE        (mailAutoriza2 LIKE '#%') AND ({ fn LENGTH(ok1) } &gt; 25) AND (estatus &lt;&gt; 'CompGtos')
-GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto</CommandText>
+GROUP BY folioSolicitud, mailAutoriza2, Autoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto, razonSocial, Descr</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -3276,6 +3278,20 @@ GROUP BY folioComprobacion, mail2, naAutoriza2, empresa, nombre, idEmpresa</Comm
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="razonSocial" msprop:Generator_ColumnVarNameInTable="columnrazonSocial" msprop:Generator_ColumnPropNameInRow="razonSocial" msprop:Generator_ColumnPropNameInTable="razonSocialColumn" msprop:Generator_UserColumnName="razonSocial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descr" msprop:Generator_ColumnVarNameInTable="columnDescr" msprop:Generator_ColumnPropNameInRow="Descr" msprop:Generator_ColumnPropNameInTable="DescrColumn" msprop:Generator_UserColumnName="Descr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="120" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

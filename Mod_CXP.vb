@@ -34,6 +34,10 @@
             Mensaje = "Empresa: " & r.NombreCorto & "<br>"
             Mensaje += "Número de Solicitud: " & r.Solicitud & "<br>"
             Mensaje += "Solicitante: " & r.Solicita & "<br>"
+            If r.IsDescrNull = False Then
+                Mensaje += "Cliente: " & r.Descr & "<br>"
+            End If
+            Mensaje += "Proveedor: " & r.razonSocial & "<br>"
             Mensaje += "Importe Total: " & CDec(r.Total).ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 

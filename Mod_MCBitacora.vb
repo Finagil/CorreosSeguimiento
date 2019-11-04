@@ -43,7 +43,7 @@
                         Vobo = "epineda"
                         Autoriza = "epineda"
                     End If
-                Case "lhernandez"
+                Case "lhernandez", "gisvazquez"
                     Vobo = "atorres"
                     Autoriza = "atorres"
                     PLDB = False

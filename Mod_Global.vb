@@ -6,6 +6,9 @@ Module Mod_Global
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
+        Para = Para.Replace("Ñ", "N")
+        Para = Para.Replace("ñ", "n")
+        Para = Para.Replace(",", ".")
         Dim Cliente As SmtpClient
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")

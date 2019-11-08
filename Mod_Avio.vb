@@ -1,5 +1,5 @@
 ﻿Module Mod_Avio
-
+    Dim taCorreo As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
     Public Sub EnviaCorreoAVIO()
         Try
             Console.WriteLine("vobo")
@@ -93,9 +93,9 @@
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
 
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx", "", True)
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")" & r.TipoCredito, "Avio@Finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")" & r.TipoCredito, "Avio@Finagil.com.mx", "", True)
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
 
@@ -493,9 +493,9 @@
 
             correos.Fill(Tmail, "TESORERIA")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx", "", True)
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx", "", True)
             solicitudAVIO.TESO_mail()
         End If
 

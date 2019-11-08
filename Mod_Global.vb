@@ -13,7 +13,7 @@ Module Mod_Global
         Dim Cliente As SmtpClient
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
-        If GuardaCorreo = True Then
+        If RespaldaCorreo = True Then
             taMail.Insert(Trim(de), Trim(Para), Trim(Asunto), Mensaje, True, "")
         End If
 

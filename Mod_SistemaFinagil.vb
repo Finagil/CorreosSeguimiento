@@ -3,9 +3,9 @@ Imports CrystalDecisions.Shared
 Imports System.IO
 Module Mod_SistemaFinagil
     Public Sub CorreosSistemaFinagil(Opcion As String)
-        Dim taCorreos As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
-        Dim t As New ProduccionDS.CorreosSistemaFinagilDataTable
-        Dim r As ProduccionDS.CorreosSistemaFinagilRow
+        Dim taCorreos As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim t As New ProduccionDS.GEN_Correos_SistemaFinagilDataTable
+        Dim r As ProduccionDS.GEN_Correos_SistemaFinagilRow
         Dim TT As New ProduccionDS.CorreosFasesDataTable
         Dim RR As ProduccionDS.CorreosFasesRow
         Dim Y As Integer

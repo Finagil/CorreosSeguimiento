@@ -5,7 +5,7 @@ Module Mod_Global
     Public CORREOS As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
-    Dim taMail As New ProduccionDSTableAdapters.CorreosSistemaFinagilTableAdapter
+    Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False)
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
@@ -14,7 +14,7 @@ Module Mod_Global
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
         If RespaldaCorreo = True Then
-            taMail.Insert(Trim(de), Trim(Para), Trim(Asunto), Mensaje, True, "")
+            taMail.Insert(Trim(de), Trim(Para), Mid(Trim(Asunto), 1, 100), Mensaje, True, Date.Now, "")
         End If
 
         If InStr(Para, "@lamoderna") > 0 Or InStr(Para, "@cmoderna") > 0 Or InStr(Para, "@finagil") > 0 Or

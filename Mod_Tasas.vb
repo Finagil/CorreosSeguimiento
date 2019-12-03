@@ -253,6 +253,7 @@
         taIVA.FillByUsuario(t_IVA, "contabilidadx")
         For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
             correos.Fill(Tmail, "CONTABILIDAD")
+            x = 0
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux1 = rrr.Correo.Split("<")
                 Aux1 = Aux1(1).Split("@")
@@ -288,6 +289,7 @@
         taIVA.Fill(t_IVA)
         For Each r As ProduccionDS.VW_AutorizaIVARow In t_IVA.Rows
             correos.Fill(Tmail, "CONTABILIDAD")
+            x = 0
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 Aux1 = rrr.Correo.Split("<")
                 Aux1 = Aux1(1).Split("@")

@@ -8618,7 +8618,7 @@ Partial Public Class ProduccionDS
             Me.columnAsunto.MaxLength = 100
             Me.columnMensaje.MaxLength = 2000
             Me.columnfecha.AllowDBNull = false
-            Me.columnAttach.MaxLength = 200
+            Me.columnAttach.MaxLength = 400
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

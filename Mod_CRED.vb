@@ -75,7 +75,7 @@
         EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
     End Sub
 
-    Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer, Porducto As String)
+    Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer, Porducto As String, fecha1 As Date)
         '************Solucitud de Documentos MC********************
         Dim Lienas As New vw_Prod_DSTableAdapters.Vw_CRED_LienasFactorCCTableAdapter
         Dim tlin As New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
@@ -84,8 +84,6 @@
         Dim Resposble As String = ""
         Dim Asunto As String = ""
         Dim Mensaje As String = ""
-        Dim fecha1 As Date = Date.Now.Date
-        Dim fecha2 As Date = Date.Now.Date
         Dim CRED As Boolean = True
 
         Select Case Tipo.ToUpper
@@ -130,7 +128,7 @@
             Mensaje += "Vigencia: " & r.Vigencia.ToShortDateString & "<br>"
             Mensaje += "Fecha Inicio de Contrato: " & r.FechaInicio.ToShortDateString & "<br>"
             Mensaje += "Fecha Fin de Contrato: " & r.FechaFin.ToShortDateString & "<br>"
-            Mensaje += "Notas: " & r.Notas & cad & "<br>"
+            Mensaje += "Notas: " & r.Notas & Cad & "<br>"
 
             EnviacORREO(r.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'PROMOTOR
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & r.Nombre_Sucursal.Trim)

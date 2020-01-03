@@ -5,6 +5,7 @@ Module Mod_Main
 
         Try
             Console.WriteLine("Inicio")
+            'EnviaCorreoInteresBonificacion()
 
             Console.WriteLine("Autorizaciones CXP Gastos")
             Mod_CXP.EnviaAitorizacion(1)
@@ -76,10 +77,16 @@ Module Mod_Main
             End If
             Console.WriteLine("Cierre Diario")
             Call EnviaCorreoCierreDiario()
-            EnviaCorreoNotificaFACTOR(15)
+
             Console.WriteLine("Factoraje 15")
+            EnviaCorreoNotificaFACTOR(15)
             Console.WriteLine("Factoraje 30")
             EnviaCorreoNotificaFACTOR(30)
+            Console.WriteLine("Factoraje correoPagos")
+            EnviaCorreoPagosFACTOR()
+            Console.WriteLine("Factoraje Notifica InteresBonificacion")
+            EnviaCorreoInteresBonificacion()
+
             Console.WriteLine("Bloqueo de Tasas")
             EnviaCorreoTasas()
             Console.WriteLine("Hojas de Cambio")

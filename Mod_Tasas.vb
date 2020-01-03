@@ -150,22 +150,6 @@
             Next
             pendientes.UpdateStatus("OLX", r.id_seguimineto)
         Next
-        '+++++++++++FACTORAJE+++++++++++++++++++++++++++++++
-        Dim pag As New Factor100TableAdapters.PagosClientesTableAdapter
-        Dim Tpag As New Factor100.PagosClientesDataTable
-        pag.Fill(Tpag)
-        If Tpag.Rows.Count > 0 Then
-            Mensaje = "Pagos Registrados:<br><br><table border=1>"
-            Mensaje += "<tr><td>Cliente</td><td>Factura</td><td>Importe</td><td>Fecha</td></tr>"
-            For Each r As Factor100.PagosClientesRow In Tpag.Rows
-                Mensaje += "<tr><td>" & r.Nombre & "</td><td>" & r.Factura & "</td><td style='text-align: right'>" & r.Importe.ToString("n2") & "</td><td>" & r.Fecha.ToShortDateString & "</td></tr>"
-            Next
-            Mensaje += "</table>"
-            EnviacORREO("ecaceres@lamoderna.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
-            EnviacORREO("cordone@lamoderna.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
-            EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
-            pag.UpdateEnviados()
-        End If
     End Sub
 
     Sub EnviaCorreoHC()

@@ -11,6 +11,9 @@ Module Mod_Global
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
         Dim Cliente As SmtpClient
+        If Mensaje.Length > 2000 Then
+            Mensaje = Mid(Mensaje, 1, 2000)
+        End If
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
         If RespaldaCorreo = True Then

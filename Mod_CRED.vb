@@ -32,11 +32,11 @@
             Mensaje += "No. Seguimiento: " & r.id_Seguimiento & "<br>"
 
             Resposble = CORREOS.ScalarCorreo(r.Responsable)
-            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
             'Resposble = CORREOS.ScalarCorreo(r.Analista)
             'EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
         Next
-        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
 
     End Sub
 
@@ -68,11 +68,11 @@
             Mensaje += "</table>"
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
             Next
-            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
         End If
-        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
     End Sub
 
     Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer, Porducto As String, fecha1 As Date)

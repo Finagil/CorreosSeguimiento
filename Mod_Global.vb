@@ -6,12 +6,12 @@ Module Mod_Global
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
-    Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False)
+    Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
         Dim Cliente As SmtpClient
-        If Mensaje.Length > 2000 Then
+        If Mensaje.Length > 2000 And AsuntoLimitado = True Then
             Mensaje = Mid(Mensaje, 1, 2000)
         End If
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)

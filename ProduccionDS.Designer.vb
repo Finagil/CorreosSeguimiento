@@ -20224,9 +20224,10 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DiasHasta2", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DiasAsignados", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_Alta, Fe"& _ 
-                "cha_Compromiso, Notas, Responsable, Sucursal, Tipo, id_Seguimiento FROM Vw_CRED_"& _ 
-                "Seguimientos WHERE (Sucursal = @Sucursal) ORDER BY DiasRetraso DESC"
+            Me._commandCollection(2).CommandText = "SELECT        Analista, Anexo, Cliente, Compromiso, DiasRetraso, Estatus, Fecha_A"& _ 
+                "lta, Fecha_Compromiso, Notas, Responsable, Sucursal, Tipo, id_Seguimiento"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
+                "           Vw_CRED_Seguimientos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Sucursal = @Sucursal) AND (Estatu"& _ 
+                "s <> 'En Liberación')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY DiasRetraso DESC"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

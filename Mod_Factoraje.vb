@@ -77,7 +77,7 @@
             If Correo <> r.Correo Then
                 Mensaje += "</table>"
                 Mensaje += "<br><b>TOTAL A PAGAR A FINAGIL: " & TotalFIN.ToString("n2") & "</b>"
-                Mensaje += "<br><b>TOTAL DE BONIFICACION A PALM: " & TotalPALM.ToString("n2") & "</b>"
+                Mensaje += "<br><b>TOTAL DE BONIFICACION A REALIZAR: " & TotalPALM.ToString("n2") & "</b>"
                 EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
                 EnviacORREO(r.Correo, Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
                 EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
@@ -112,9 +112,9 @@
             Mensaje += "</table>"
             Mensaje += "<br><b>TOTAL A PAGAR A FINAGIL: " & TotalFIN.ToString("n2") & "</b>"
             Mensaje += "<br><b>TOTAL DE BONIFICACION A PALM: " & TotalPALM.ToString("n2") & "</b>"
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
-            EnviacORREO(Correo, Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
-            EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
+            EnviacORREO(Correo, Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
+            EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
         End If
     End Sub
 

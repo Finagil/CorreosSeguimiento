@@ -16,7 +16,7 @@ Module Mod_Global
         End If
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
-        If RespaldaCorreo = True Then
+        If RespaldaCorreo = True And AsuntoLimitado = True Then
             taMail.Insert(Trim(de), Trim(Para), Mid(Trim(Asunto), 1, 100), Mensaje, True, Date.Now, "")
         End If
 

@@ -451,6 +451,13 @@
                 Mensaje += "<td>" & r.Nombre_Sucursal & "</td></tr>"
             Next
             Mensaje += "</table>"
+
+            correos.Fill(Tmail, "FIRA")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            Next
+            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+
             If GastosNoIraputato = True Then
                 solicitudAVIO.Fira_MailGastos()
             Else

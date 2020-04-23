@@ -5847,6 +5847,10 @@ Partial Public Class ProduccionDS
         
         Private columnDestinoCredito As Global.System.Data.DataColumn
         
+        Private columnFechas As Global.System.Data.DataColumn
+        
+        Private columnMontos As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6123,6 +6127,22 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FechasColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFechas
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MontosColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMontos
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6188,9 +6208,11 @@ Partial Public Class ProduccionDS
                     ByVal FechaAutorizacion As Date,  _
                     ByVal Empresa As String,  _
                     ByVal Planta As String,  _
-                    ByVal DestinoCredito As String) As AutorizacionRPTRow
+                    ByVal DestinoCredito As String,  _
+                    ByVal Fechas As String,  _
+                    ByVal Montos As String) As AutorizacionRPTRow
             Dim rowAutorizacionRPTRow As AutorizacionRPTRow = CType(Me.NewRow,AutorizacionRPTRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Id_Solicitud, tasa, condiciones, observaciones, cliente_finagil, saldo_insoluto, bc, procesado, MontoFinanciado, Plazo, Periodicidad, FechaIngreso, SalarioNeto, IngresosAdicionales, Pasivos, PagoPasivos, PagoFinagil, AportacionesAdicionales, RCD, Fecha, DescPromotor, Promotor, Descr, UsuarioCredito, Cliente, FechaAutorizacion, Empresa, Planta, DestinoCredito}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Id_Solicitud, tasa, condiciones, observaciones, cliente_finagil, saldo_insoluto, bc, procesado, MontoFinanciado, Plazo, Periodicidad, FechaIngreso, SalarioNeto, IngresosAdicionales, Pasivos, PagoPasivos, PagoFinagil, AportacionesAdicionales, RCD, Fecha, DescPromotor, Promotor, Descr, UsuarioCredito, Cliente, FechaAutorizacion, Empresa, Planta, DestinoCredito, Fechas, Montos}
             rowAutorizacionRPTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowAutorizacionRPTRow)
             Return rowAutorizacionRPTRow
@@ -6243,6 +6265,8 @@ Partial Public Class ProduccionDS
             Me.columnEmpresa = MyBase.Columns("Empresa")
             Me.columnPlanta = MyBase.Columns("Planta")
             Me.columnDestinoCredito = MyBase.Columns("DestinoCredito")
+            Me.columnFechas = MyBase.Columns("Fechas")
+            Me.columnMontos = MyBase.Columns("Montos")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6308,6 +6332,10 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnPlanta)
             Me.columnDestinoCredito = New Global.System.Data.DataColumn("DestinoCredito", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDestinoCredito)
+            Me.columnFechas = New Global.System.Data.DataColumn("Fechas", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFechas)
+            Me.columnMontos = New Global.System.Data.DataColumn("Montos", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMontos)
             Me.columnId_Autorizacion.AutoIncrement = true
             Me.columnId_Autorizacion.AutoIncrementSeed = -1
             Me.columnId_Autorizacion.AutoIncrementStep = -1
@@ -6329,6 +6357,8 @@ Partial Public Class ProduccionDS
             Me.columnEmpresa.MaxLength = 99
             Me.columnPlanta.MaxLength = 50
             Me.columnDestinoCredito.MaxLength = 150
+            Me.columnFechas.MaxLength = 100
+            Me.columnMontos.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12969,6 +12999,36 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Fechas() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAutorizacionRPT.FechasColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Fechas' de la tabla 'AutorizacionRPT' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAutorizacionRPT.FechasColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Montos() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAutorizacionRPT.MontosColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Montos' de la tabla 'AutorizacionRPT' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAutorizacionRPT.MontosColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsId_SolicitudNull() As Boolean
             Return Me.IsNull(Me.tableAutorizacionRPT.Id_SolicitudColumn)
         End Function
@@ -13277,6 +13337,30 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDestinoCreditoNull()
             Me(Me.tableAutorizacionRPT.DestinoCreditoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFechasNull() As Boolean
+            Return Me.IsNull(Me.tableAutorizacionRPT.FechasColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFechasNull()
+            Me(Me.tableAutorizacionRPT.FechasColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMontosNull() As Boolean
+            Return Me.IsNull(Me.tableAutorizacionRPT.MontosColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMontosNull()
+            Me(Me.tableAutorizacionRPT.MontosColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -20791,6 +20875,8 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Empresa", "Empresa")
             tableMapping.ColumnMappings.Add("Planta", "Planta")
             tableMapping.ColumnMappings.Add("DestinoCredito", "DestinoCredito")
+            tableMapping.ColumnMappings.Add("Fechas", "Fechas")
+            tableMapping.ColumnMappings.Add("Montos", "Montos")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -20822,12 +20908,13 @@ Namespace ProduccionDSTableAdapters
                 "ores.Promotor, Clientes.Descr, PROM_SolicitudesLIQ.UsuarioCredito, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
                 "              PROM_SolicitudesLIQ.Cliente, PROM_SolicitudesLIQ.FechaAutorizacion"& _ 
                 ", PROM_SolicitudesLIQ.Empresa, PROM_SolicitudesLIQ.Planta, PROM_SolicitudesLIQ.D"& _ 
-                "estinoCredito"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PROM_SolicitudesLIQ_Autorizacion INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                     PROM_SolicitudesLIQ ON PROM_SolicitudesLIQ_Autorizacion.Id_"& _ 
-                "Solicitud = PROM_SolicitudesLIQ.Id_Solicitud INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
-                "  Clientes ON PROM_SolicitudesLIQ.Cliente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                  Promotores ON Clientes.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
-                "   (PROM_SolicitudesLIQ_Autorizacion.Id_Solicitud = @ID_SOL)"
+                "estinoCredito, PROM_SolicitudesLIQ.Fechas, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PROM_Solic"& _ 
+                "itudesLIQ.Montos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PROM_SolicitudesLIQ_Autorizacion INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        PROM_SolicitudesLIQ ON PROM_SolicitudesLIQ_Autorizacion."& _ 
+                "Id_Solicitud = PROM_SolicitudesLIQ.Id_Solicitud INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     Clientes ON PROM_SolicitudesLIQ.Cliente = Clientes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "                     Promotores ON Clientes.Promo = Promotores.Promotor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
+                "      (PROM_SolicitudesLIQ_Autorizacion.Id_Solicitud = @ID_SOL)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID_SOL", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Id_Solicitud", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()

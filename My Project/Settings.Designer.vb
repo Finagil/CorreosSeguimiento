@@ -91,7 +91,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("26,465")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("465,465")>  _
         Public Property SMTP_port() As String
             Get
                 Return CType(Me("SMTP_port"),String)

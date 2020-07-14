@@ -2,7 +2,6 @@
 
 Module Mod_Main
     Sub Main()
-        EnviaCorreo365()
         Try
             Console.WriteLine("Inicio")
             'EnviaCorreoInteresBonificacion()
@@ -12,7 +11,7 @@ Module Mod_Main
             Mod_CXP.EnviaAitorizacion(2)
 
             Console.WriteLine("Autorizaciones CXP Pagos")
-             Mod_CXP.EnviaAitorizacionPagos(1)
+            Mod_CXP.EnviaAitorizacionPagos(1)
             Mod_CXP.EnviaAitorizacionPagos(2)
 
 

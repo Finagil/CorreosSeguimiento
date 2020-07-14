@@ -2,7 +2,7 @@
 
 Module Mod_Main
     Sub Main()
-
+        EnviaCorreo365()
         Try
             Console.WriteLine("Inicio")
             'EnviaCorreoInteresBonificacion()

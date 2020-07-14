@@ -7,6 +7,8 @@ Module Mod_Global
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
+        de = de.Replace("@finagil.com.mx", "@cmoderna.com")
+        de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
@@ -67,6 +69,32 @@ Module Mod_Global
 
     End Function
 
+    Public Sub EnviaCorreo365()
+        Dim msg = New MailMessage()
+        'msg.To.Add(New MailAddress("viapolo@Finagil.com.mx", "Vicente Apolo"))
+        msg.To.Add(New MailAddress("delia.jimenez@cmoderna.com", "Delia"))
+        msg.From = New MailAddress("ecacerest@cmoderna.com", "Notificaciones")
+        msg.Subject = "This is a Test Mail"
+        msg.Body = "This is a test message using Exchange OnLine"
+        msg.IsBodyHtml = True
+        Dim Att As New Attachment(My.Settings.RutaTmp & "\AVISOS\AVISO_421213.PDF")
+        msg.Attachments.Add(Att)
 
+        Dim client = New SmtpClient()
+        client.UseDefaultCredentials = False
+        client.Credentials = New System.Net.NetworkCredential("ecacerest@cmoderna.com", "c4c3r1t0s")
+        client.Port = 25
+        client.Host = "smtp.office365.com"
+        client.DeliveryMethod = SmtpDeliveryMethod.Network
+        client.EnableSsl = True
+        Try
+
+            client.Send(msg)
+            Console.WriteLine("Message Sent Succesfully")
+
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString())
+        End Try
+    End Sub
 
 End Module

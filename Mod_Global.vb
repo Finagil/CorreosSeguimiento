@@ -7,6 +7,7 @@ Module Mod_Global
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
+        de = de.ToLower
         de = de.Replace("@finagil.com.mx", "@cmoderna.com")
         de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
         Para = Para.Replace("Ñ", "N")

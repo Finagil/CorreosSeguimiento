@@ -4,7 +4,7 @@ Module Mod_Main
     Sub Main()
         Try
             Console.WriteLine("Inicio")
-            'EnviaCorreoInteresBonificacion()
+            'EnviacORREO("edgar_caceres@hotmail.com", "Aviso", "Aviso", "Avisos@finagil.com.mx")
 
             Console.WriteLine("Autorizaciones CXP Gastos")
             Mod_CXP.EnviaAitorizacion(1)

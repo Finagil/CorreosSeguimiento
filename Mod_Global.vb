@@ -8,8 +8,11 @@ Module Mod_Global
     Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
         de = de.ToLower
-        de = de.Replace("@finagil.com.mx", "@cmoderna.com")
-        de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
+        If de.ToLower <> "avisos@finagil.com.mx" Then
+            de = de.Replace("@finagil.com.mx", "@cmoderna.com")
+            de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
+        End If
+
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
@@ -17,7 +20,13 @@ Module Mod_Global
         If Mensaje.Length > 2000 And AsuntoLimitado = True Then
             Mensaje = Mid(Mensaje, 1, 2000)
         End If
+
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
+
+        If de.ToLower = "avisos@finagil.com.mx" Then
+            Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
+        End If
+
         Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
         If RespaldaCorreo = True And AsuntoLimitado = True Then
             taMail.Insert(Trim(de), Trim(Para), Mid(Trim(Asunto), 1, 100), Mensaje, True, Date.Now, "")
@@ -44,6 +53,7 @@ Module Mod_Global
                     End If
                 Next
             End If
+
             Cliente.Send(Mensage)
         Catch ex As Exception
             Console.WriteLine(ex.Message)

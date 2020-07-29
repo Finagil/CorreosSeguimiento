@@ -20,7 +20,7 @@
       <Value Profile="(Default)">465,465</Value>
     </Setting>
     <Setting Name="SMTP_creden" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ecacerest,c4c3r1t0s,cmoderna</Value>
+      <Value Profile="(Default)">ecacerest,h3Pd1BsQ,cmoderna</Value>
     </Setting>
   </Settings>
 </SettingsFile>

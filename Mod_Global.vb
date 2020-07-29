@@ -93,7 +93,8 @@ Module Mod_Global
 
         Dim client = New SmtpClient()
         client.UseDefaultCredentials = False
-        client.Credentials = New System.Net.NetworkCredential("ecacerest@cmoderna.com", "c4c3r1t0s")
+        Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
+        client.Credentials = New System.Net.NetworkCredential(Credenciales(0) & "@cmoderna.com", Credenciales(1))
         client.Port = 25
         client.Host = "smtp.office365.com"
         client.DeliveryMethod = SmtpDeliveryMethod.Network

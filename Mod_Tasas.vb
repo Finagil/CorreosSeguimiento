@@ -27,6 +27,7 @@
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            Mensaje += "Indicadores: " & r.Indicadores & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/2cf0d94b-dcd6.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             EnviacORREO("cmonroy@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@lamoderna.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
@@ -34,6 +35,7 @@
             Mensaje += "Cliente: " & r.Cliente.Trim & "<br>"
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
+            Mensaje += "Indicadores: " & r.Indicadores & "<br>"
             EnviacORREO("ajoshin@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("maria.bautista@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere autorización de Tasas (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
@@ -43,7 +45,7 @@
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/951sb999-7xx8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             If r.Nombre_Sucursal.Trim = "NAVOJOA" Or r.Nombre_Sucursal.Trim = "MEXICALI" Then
-                EnviacORREO("mbeltran@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
+                EnviacORREO("mleal@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             Else
                 EnviacORREO("mleal@finagil.com.mx", Mensaje, "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>")
             End If

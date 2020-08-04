@@ -34,7 +34,7 @@
             If r.Convenio = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Convenio<br>"
             If r.Escritura = True Then Mensaje += "&nbsp&nbsp&nbsp&nbsp Escritura<br>"
             Mensaje += "Justificación: " & r.Justificacion & "<br>"
-            Select Case UCase(Trim(r.Solicito))
+            Select Case LCase(Trim(r.Solicito))
                 Case "vcruz", "mbautista", "asagar", "gramirez", "kvazquez"
                     If r.AuditoriaExterna = False Then
                         Vobo = "epineda"

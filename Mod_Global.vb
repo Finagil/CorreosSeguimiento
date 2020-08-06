@@ -16,29 +16,35 @@ Module Mod_Global
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
+        If InStr(Para, "@finagil") > 0 Or
+            InStr(Para, "@pirineos") > 0 Or InStr(Para, "@tamisa") > 0 Or InStr(Para, "@mofesa") > 0 Or
+            InStr(Para, "@mosusa") > 0 Or InStr(Para, "@papelesc") > 0 Or InStr(Para, "@peliculasp") > 0 Then
+            Para = Para.Replace("@finagil.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@peliculasplasticas.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@papelescorrugados.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@pirineos.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@mofesa.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@tamisa.com.mx", "@cmoderna.com")
+            Para = Para.Replace("@mosusa.com.mx", "@cmoderna.com")
+        End If
+
+        Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
         Dim Cliente As SmtpClient
+        Cliente = New SmtpClient(My.Settings.SMTP, Puerto(0))
+
         If Mensaje.Length > 2000 And AsuntoLimitado = True Then
             Mensaje = Mid(Mensaje, 1, 2000)
         End If
 
-        Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-
-        If de.ToLower = "avisos@finagil.com.mx" Then
-            Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
-        End If
-
-        Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
         If RespaldaCorreo = True And AsuntoLimitado = True Then
             taMail.Insert(Trim(de), Trim(Para), Mid(Trim(Asunto), 1, 100), Mensaje, True, Date.Now, "")
         End If
 
-        If InStr(Para, "@lamoderna") > 0 Or InStr(Para, "@cmoderna") > 0 Or InStr(Para, "@finagil") > 0 Or
-            InStr(Para, "@pirineos") > 0 Or InStr(Para, "@tamisa") > 0 Or InStr(Para, "@mofesa") > 0 Or
-            InStr(Para, "@mosusa") > 0 Or InStr(Para, "@papelesc") > 0 Or InStr(Para, "@peliculasp") > 0 Then
-            Cliente = New SmtpClient(My.Settings.SMTP, Puerto(0))
-        Else
-            Cliente = New SmtpClient(My.Settings.SMTP, Puerto(1))
+        Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
+        If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
+            Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
         End If
+
 
         Try
             Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")

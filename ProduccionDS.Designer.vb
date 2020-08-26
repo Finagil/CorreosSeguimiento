@@ -11453,11 +11453,11 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Cultivo() As String
             Get
-                Try 
+                If Me.IsCultivoNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableAviosVoboRES.CultivoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Cultivo' de la tabla 'AviosVoboRES' es DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableAviosVoboRES.CultivoColumn) = value

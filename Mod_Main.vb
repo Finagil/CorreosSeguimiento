@@ -2,28 +2,56 @@
 
 Module Mod_Main
     Sub Main()
+        Dim Cadena As String = ""
+        Console.WriteLine("Inicio")
+        'EnviacORREO("edgar_caceres@hotmail.com", "Aviso", "Aviso", "Avisos@finagil.com.mx")
         Try
-            Console.WriteLine("Inicio")
-            'EnviacORREO("edgar_caceres@hotmail.com", "Aviso", "Aviso", "Avisos@finagil.com.mx")
-
-            Console.WriteLine("Autorizaciones CXP Gastos")
+            Cadena = "Autorizaciones CXP Gastos"
+            Console.WriteLine(Cadena)
             Mod_CXP.EnviaAitorizacion(1)
             Mod_CXP.EnviaAitorizacion(2)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Autorizaciones CXP Pagos")
+        Try
+            Cadena = "Autorizaciones CXP Pagos"
+            Console.WriteLine(Cadena)
             Mod_CXP.EnviaAitorizacionPagos(1)
             Mod_CXP.EnviaAitorizacionPagos(2)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-
-            Console.WriteLine("Facturas sin Movimientos contables")
+        Try
             If Date.Now.Minute <= 1 Then 'se ejecutan cada hora
+                Cadena = "Facturas sin Movimientos contables"
+                Console.WriteLine(Cadena)
                 CorreosSistemaFinagil_FactSinConta()
             End If
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Vobo Avio")
+        Try
+            Cadena = "Vobo Avio"
+            Console.WriteLine(Cadena)
             EnviaCorreoAVIO()
-            Console.WriteLine("Seguimiento de Crédito")
-            Console.WriteLine(Date.Now.Hour)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
+
+        Try
+            Cadena = "Seguimiento de Crédito"
+            Console.WriteLine(Cadena)
             If Date.Now.Hour = 7 And Date.Now.Minute = 10 Then 'se ejecutan una sola ves al dia a las 6 am
                 EnviaCorreoAvio_TESO_Aviso()
                 EnviaCorreoPAGOS_PASIVO(Date.Now.Date)
@@ -74,39 +102,111 @@ Module Mod_Main
                 EnviaCorreoLINEAS_CRED("CONTRATO_VENCIDO", 0, 0, "CC", hOY)
                 EnviacORREO("ecacerest@finagil.com.mx", Date.Now.ToShortDateString, "EnviaCorreoLINEAS_CRED", "Correos@finagil.com.mx")
             End If
-            Console.WriteLine("Cierre Diario")
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
+
+        Try
+            Cadena = "Cierre Diario"
+            Console.WriteLine(Cadena)
             Call EnviaCorreoCierreDiario()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Factoraje 15")
+        Try
+            Cadena = "Factoraje 15"
+            Console.WriteLine(Cadena)
             EnviaCorreoNotificaFACTOR(15)
-            Console.WriteLine("Factoraje 30")
+            Cadena = "Factoraje 30"
+            Console.WriteLine(Cadena)
             EnviaCorreoNotificaFACTOR(30)
-            Console.WriteLine("Factoraje correoPagos")
+            Cadena = "Factoraje correoPagos"
+            Console.WriteLine(Cadena)
             EnviaCorreoPagosFACTOR()
-            Console.WriteLine("Factoraje Notifica InteresBonificacion")
+            Cadena = "Factoraje Notifica InteresBonificacion"
+            Console.WriteLine(Cadena)
             EnviaCorreoInteresBonificacion()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Bloqueo de Tasas")
+        Try
+            Cadena = "Bloqueo de Tasas"
+            Console.WriteLine(Cadena)
             EnviaCorreoTasas()
-            Console.WriteLine("Hojas de Cambio")
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
+
+        Try
+            Cadena = "Hojas de Cambio"
+            Console.WriteLine(Cadena)
             EnviaCorreoHC()
-            Console.WriteLine("Bitacora MC")
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
+
+        Try
+            Cadena = "Bitacora MC"
+            Console.WriteLine(Cadena)
             EnviaCorreoBitacoraMC(True)
             EnviaCorreoBitacoraMC(False)
             EnviaCorreoBitacoraMC_Autorizacion()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Autoriza IVA")
+        Try
+            Cadena = "Autoriza IVA"
+            Console.WriteLine(Cadena)
             EnviaCorreoAutorizaIVA()
-            Console.WriteLine("Autoriza IVA Interes")
+            Cadena = "Autoriza IVA Interes"
+            Console.WriteLine(Cadena)
             EnviaCorreoAutorizaIVA_Interes()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
-            Console.WriteLine("Correos Masivos")
+        Try
+            Cadena = "Correos Masivos"
+            Console.WriteLine(Cadena)
             CorreosMasivosSistemaFinagil()
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
 
+        Try
+            Cadena = "DEYEL"
+            Console.WriteLine(Cadena)
+            CorreosSistemaFinagil(Cadena)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            EscribeLOG(ex.Message)
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
+        End Try
+
+        Try
             'SIMEPRE AL FINAL+++++++++++++
-            Console.WriteLine("Sistema Finagil")
+            Cadena = "Sistema Finagil"
+            Console.WriteLine(Cadena)
             CorreosSistemaFinagil("DG_LIQ_SIN")
-
             If Date.Now.Hour = 9 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             ElseIf Date.Now.Hour = 12 And Date.Now.Minute <= 1 Then
@@ -114,18 +214,12 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
-
-            Console.WriteLine("DEYEL")
-            CorreosSistemaFinagil("DEYEL")
-            'SIMEPRE AL FINAL+++++++++++++
-
-            Console.WriteLine("Terminado")
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)
-            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos", "Correos@finagil.com.mx")
+            EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " - " & Date.Now, "Error de Correos:" & Cadena, "Correos@finagil.com.mx")
         End Try
-
+        Console.WriteLine("Terminado")
         'EnviaCorreoCarta()
     End Sub
 

@@ -69,16 +69,16 @@
             MensajeVobo += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Vobo & "&Tipo=V'>Liga para visto bueno.</A>"
             Dim asunto As String = "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")"
             If Vobo = Autoriza Then
-                taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje & MensajeAAutoriza, False, Date.Now, "")
                 solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
             Else
                 If BanderaVOBO = True Then
                     asunto = "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")"
-                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
+                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje & MensajeVobo, False, Date.Now, "")
                     solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 Else
-                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
+                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje & MensajeAutoriza, False, Date.Now, "")
                     solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 End If
             End If
@@ -134,7 +134,7 @@
             For Each f In FaseT.Rows
                 taMail.Insert("BitacoraMC@lamoderna.com.mx", f.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            taMail.Insert("BitacoraMC@lamoderna.com.mx", r.Solicito.Trim, Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("BitacoraMC@lamoderna.com.mx", r.Solicito.Trim & "@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             taMail.Insert("BitacoraMC@lamoderna.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             solicitudesMC.UpdateEnviadoAUTO(r.Autoriza, r.PldB, r.Pld.Substring(0, r.Pld.Length - 1), r.Id_Bitacora, r.Id_Bitacora)
         Next

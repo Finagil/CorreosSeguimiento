@@ -5,7 +5,7 @@
         Dim T As New ProduccionDS.Vw_ClientesCartaSATDataTable
         Dim r As ProduccionDS.Vw_ClientesCartaSATRow
         Dim ar As New System.IO.StreamReader(My.Computer.FileSystem.CurrentDirectory & "\Carta.txt")
-        Dim Linea As String
+        Dim Linea, Asunto As String
         Dim x As Integer
 
 
@@ -23,15 +23,13 @@
                 Mensaje += Linea
             End While
             x += 1
-            'EnviacORREO("atorres@finagil.com.mx", Mensaje, "Confirmación de Métodos de Pago (FINAGIL) ", "Atorres@finagil.com.mx")
-            'EnviacORREO("vcruz@finagil.com.mx", Mensaje, "Confirmación de Métodos de Pago (FINAGIL) ", "Atorres@finagil.com.mx")
-            'EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Confirmación de Métodos de Pago (FINAGIL) ", "Atorres@finagil.com.mx")
             Console.WriteLine(r.Cliente.Trim)
+            Asunto = "Confirmación de Métodos de Pago (FINAGIL) "
             If r.EMail1.Trim <> "" And InStr(r.EMail1.Trim, "@") > 0 Then
-                EnviacORREO(r.EMail1, Mensaje, "Confirmación de Métodos de Pago (FINAGIL) ", "Abraham Torres (Finagil) <atorres@finagil.com.mx>")
+                taMail.Insert("Abraham Torres (Finagil) <atorres@finagil.com.mx>", r.EMail1, Asunto, Mensaje, False, Date.Now, "")
             End If
             If r.EMail2.Trim <> "" And InStr(r.EMail2.Trim, "@") > 0 Then
-                EnviacORREO(r.EMail2, Mensaje, "Confirmación de Métodos de Pago (FINAGIL) ", "Abraham Torres (Finagil) <atorres@finagil.com.mx>")
+                taMail.Insert("Abraham Torres (Finagil) <atorres@finagil.com.mx>", r.EMail2, Asunto, Mensaje, False, Date.Now, "")
             End If
 
 
@@ -39,6 +37,7 @@
     End Sub
 
     Sub EnviaCorreoCierreDiario()
+        Dim Asunto As String
         Dim TaWEB As New WEB_FinagilDSTableAdapters.CorreosTableAdapter
         Dim TaFechas As New ProduccionDSTableAdapters.FechasAplicacionTableAdapter
         Dim Cierres As New ProduccionDS.FechasAplicacionDataTable
@@ -53,7 +52,8 @@
             For Each rr In Grupos.Rows
                 Mensaje = "El cierre de operaciones diario se ha realizado: " & r.Fecha.ToShortDateString & "<br>"
                 Mensaje += "Ya no es posible relizar aplicaciones con esta fecha.<br>"
-                EnviacORREO(rr.Correo, Mensaje, "Cierre Diario de Operaciones realizado: " & r.Fecha.ToShortDateString, "Notificaciones@finagil.com.mx")
+                asunto = "Cierre Diario de Operaciones realizado: " & r.Fecha.ToShortDateString
+                taMail.Insert("Notificaciones@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             Shell("C:\Jobs\TraspasosCartera.exe", AppWinStyle.Hide, True) ' se activa traspasos de cartera
             Shell("C:\Jobs\TraspasosCartera.exe V", AppWinStyle.Hide, True) ' se activa traspasos de cartera

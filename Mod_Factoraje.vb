@@ -7,6 +7,7 @@
         Dim r As ProduccionDS.SEG_FactorRow
         Dim Grupos As New WEB_FinagilDS.CorreosDataTable
         Dim rr As WEB_FinagilDS.CorreosRow
+        Dim Asunto As String
         If Dias = 15 Then
             TaNotifi.Fill15dias(Notifi)
         ElseIf Dias = 30 Then
@@ -27,7 +28,8 @@
                 Mensaje += "Vigencia: " & r.Vigencia.ToShortDateString & "<br>"
                 Mensaje += "Dias antes de vencer: " & r.Dias & "<br>"
 
-                EnviacORREO(rr.Correo, Mensaje, "Aviso de Vencimiento de poliza (Factoraje): " & r.Nombre, "Notificaciones@finagil.com.mx")
+                Asunto = "Aviso de Vencimiento de poliza (Factoraje): " & r.Nombre
+                taMail.Insert("Notificaciones@Finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
 
             If Dias = 15 Then
@@ -43,6 +45,7 @@
         '+++++++++++FACTORAJE+++++++++++++++++++++++++++++++
         Dim pag As New Factor100TableAdapters.PagosClientesTableAdapter
         Dim Tpag As New Factor100.PagosClientesDataTable
+        Dim Asunto As String
         pag.Fill(Tpag)
         If Tpag.Rows.Count > 0 Then
             Mensaje = "Pagos Registrados:<br><br><table border=1>"
@@ -51,9 +54,10 @@
                 Mensaje += "<tr><td>" & r.Nombre & "</td><td>" & r.Factura & "</td><td style='text-align: right'>" & r.Importe.ToString("n2") & "</td><td>" & r.Fecha.ToShortDateString & "</td></tr>"
             Next
             Mensaje += "</table>"
-            EnviacORREO("ecacerest@lamoderna.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
-            EnviacORREO("cordone@lamoderna.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
-            EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Pagos de Clientes a PALM (Factoraje)", "Notificaciones@Finagil.com.mx")
+            asunto = "Notificación de Pagos de Clientes a PALM (Factoraje)"
+            taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("Notificaciones@Finagil.com.mx", "cordone@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             pag.UpdateEnviados()
         End If
     End Sub
@@ -64,8 +68,9 @@
         Dim Fecha As Date
         Dim Dias As Integer
         Dim InteBoni, TotalFIN, TotalPALM As Decimal
-        Dim Correo, Cliente As String
+        Dim Correo, Cliente, Asunto As String
         ta.Fill(t)
+        Asunto = "Notificación de Interés-Bonificación (Factoraje)"
         If t.Rows.Count > 0 Then
             Correo = t.Rows(0).Item("Correo")
             Cliente = t.Rows(0).Item("Nombre")
@@ -78,9 +83,9 @@
                 Mensaje += "</table>"
                 Mensaje += "<br><b>TOTAL A PAGAR A FINAGIL: " & TotalFIN.ToString("n2") & "</b>"
                 Mensaje += "<br><b>TOTAL DE BONIFICACION A REALIZAR: " & TotalPALM.ToString("n2") & "</b>"
-                EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
-                EnviacORREO(r.Correo, Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
-                EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True)
+                taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("Notificaciones@Finagil.com.mx", r.Correo, Asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
                 Mensaje = "Pagos Registrados:<br><br><table border=1>"
                 TotalFIN = 0
                 TotalPALM = 0
@@ -112,9 +117,9 @@
             Mensaje += "</table>"
             Mensaje += "<br><b>TOTAL A PAGAR A FINAGIL: " & TotalFIN.ToString("n2") & "</b>"
             Mensaje += "<br><b>TOTAL DE BONIFICACION A REALIZAR: " & TotalPALM.ToString("n2") & "</b>"
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
-            EnviacORREO(Correo, Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
-            EnviacORREO("layala@finagil.com.mx", Mensaje, "Notificación de Interés-Bonificación (Factoraje)", "Notificaciones@Finagil.com.mx", "", True, False)
+            taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("Notificaciones@Finagil.com.mx", Correo, Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
         End If
     End Sub
 

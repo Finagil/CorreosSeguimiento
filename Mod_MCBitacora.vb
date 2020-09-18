@@ -67,31 +67,25 @@
             MensajeAAutoriza += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=AA'>Liga de Autorización</A>"
             MensajeAutoriza += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=A'>Liga de Autorización</A>"
             MensajeVobo += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Vobo & "&Tipo=V'>Liga para visto bueno.</A>"
-
+            Dim asunto As String = "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")"
             If Vobo = Autoriza Then
-                EnviacORREO(Autoriza & "@finagil.com.mx", Mensaje & MensajeAAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeAAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
                 solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
             Else
                 If BanderaVOBO = True Then
-                    EnviacORREO(Vobo & "@finagil.com.mx", Mensaje & MensajeVobo, "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                    'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeVobo, "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                    asunto = "Se requiere visto bueno para Solicitar Documentos(" & r.Descr.Trim & ")"
+                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
                     solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 Else
-                    EnviacORREO(Autoriza & "@finagil.com.mx", Mensaje & MensajeAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-                    'EnviacORREO("ecacerest@finagil.com.mx", Mensaje & MensajeAutoriza, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                    taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje, False, Date.Now, "")
                     solicitudesMC.UpdateEnviadoAUTO(Autoriza, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)
                 End If
-
             End If
             CORREOS_FASE.Fill(TMAIL, "PLD")
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", rrr.Correo, asunto, Mensaje, False, Date.Now, "")
             Next
-
-            'EnviacORREO("lmercado@finagil.com.mx", Mensaje, "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-            'solicitudesMC.UpdateEnviado(Vobo, Autoriza, r.Id_Bitacora, r.Id_Bitacora)
         Next
 
     End Sub
@@ -103,6 +97,7 @@
         Dim Vobo As String = ""
         Dim Autoriza As String = ""
         Dim Mensaje As String = ""
+        Dim Asunto As String = ""
 
         solicitudesMC.FillBySinPLD(tsol)
         For Each r As ProduccionDS.MC_BitacoraRow In tsol.Rows
@@ -126,21 +121,21 @@
             Dim Fase As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
             Dim FaseT As New ProduccionDS.CorreosFasesDataTable
             Dim f As ProduccionDS.CorreosFasesRow
-
+            Asunto = "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")"
             Fase.Fill(FaseT, "MESA_CONTROL")
             For Each f In FaseT.Rows
-                EnviacORREO(f.Correo, Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", f.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             Fase.Fill(FaseT, "PLD")
             For Each f In FaseT.Rows
-                EnviacORREO(f.Correo, Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", f.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             Fase.Fill(FaseT, "GV_" & r.Nombre_Sucursal.Trim)
             For Each f In FaseT.Rows
-                EnviacORREO(f.Correo, Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+                taMail.Insert("BitacoraMC@lamoderna.com.mx", f.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO(r.Solicito.Trim & "@finagil.com.mx", Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Solicitud de Documentos Autorizada(" & r.Descr.Trim & ")", "BitacoraMC@lamoderna.com.mx")
+            taMail.Insert("BitacoraMC@lamoderna.com.mx", r.Solicito.Trim, Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert("BitacoraMC@lamoderna.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             solicitudesMC.UpdateEnviadoAUTO(r.Autoriza, r.PldB, r.Pld.Substring(0, r.Pld.Length - 1), r.Id_Bitacora, r.Id_Bitacora)
         Next
 

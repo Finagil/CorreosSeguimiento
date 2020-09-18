@@ -3,7 +3,6 @@ Imports CrystalDecisions.Shared
 Imports System.IO
 Module Mod_SistemaFinagil
     Public Sub CorreosSistemaFinagil(Opcion As String)
-        Dim taCorreos As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
         Dim t As New ProduccionDS.GEN_Correos_SistemaFinagilDataTable
         Dim r As ProduccionDS.GEN_Correos_SistemaFinagilRow
         Dim TT As New ProduccionDS.CorreosFasesDataTable
@@ -21,12 +20,12 @@ Module Mod_SistemaFinagil
         Dim Correos() As String
         Select Case Opcion.ToUpper
             Case "DG_LIQ"
-                taCorreos.FillByDG_LIQ(t)
+                taMail.FillByDG_LIQ(t)
                 EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now & " - " & t.Rows.Count, "Correo Liquidez", "Correos@finagil.com.mx")
             Case "DG_LIQ_SIN"
-                taCorreos.FillByDG_LIQ_sin(t)
+                taMail.FillByDG_LIQ_sin(t)
             Case "DEYEL"
-                taCorreos.FillByDeyel(t)
+                taMail.FillByDeyel(t)
                 For Each r In t.Rows
                     CORREOS_FASE.Fill(TT, "DEYEL_" & r.Para)
                     For Each RR In TT.Rows
@@ -48,7 +47,7 @@ Module Mod_SistemaFinagil
                         End If
                         EnviacORREO(correo, r.Mensaje, r.Asunto, r.De)
                     Next
-                    taCorreos.Enviado(r.id_Correo)
+                    taMail.Enviado(r.id_Correo)
                 Next
                 Exit Sub
             Case "TODO"
@@ -90,7 +89,7 @@ Module Mod_SistemaFinagil
                     End If
                 Next
             End If
-            taCorreos.Enviado(r.id_Correo)
+            taMail.Enviado(r.id_Correo)
         Next
         If Opcion.ToUpper = "DG_LIQ" And ASUN.Length > 3 Then
             For x As Integer = 0 To Y - 1
@@ -168,13 +167,13 @@ Module Mod_SistemaFinagil
     End Sub
 
     Public Sub CorreosMasivosSistemaFinagil()
-        Dim taCorreos As New ProduccionDSTableAdapters.GEN_CorreoMasivoTableAdapter
+        Dim taMail As New ProduccionDSTableAdapters.GEN_CorreoMasivoTableAdapter
         Dim t As New ProduccionDS.GEN_CorreoMasivoDataTable
         Dim r As ProduccionDS.GEN_CorreoMasivoRow
         Dim ASUNTO As String = ""
         Dim MENSAJE As String = ""
 
-        taCorreos.Fill(t)
+        taMail.Fill(t)
 
         For Each r In t.Rows
             ASUNTO = r.Asunto
@@ -192,7 +191,7 @@ Module Mod_SistemaFinagil
             MENSAJE = MENSAJE.Replace("|Var5|", r.Var5)
 
             EnviacORREO(r.Para, MENSAJE, ASUNTO, r.De, r.Adjunto)
-            taCorreos.Procesar(True, r.id_CorreoMasivo)
+            taMail.Procesar(True, r.id_CorreoMasivo)
             Console.WriteLine("Correo: " & r.Para)
         Next
 

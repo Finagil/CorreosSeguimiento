@@ -1,5 +1,4 @@
 ﻿Module Mod_Avio
-    Dim taCorreo As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviaCorreoAVIO()
         Try
             Console.WriteLine("vobo")
@@ -63,6 +62,7 @@
         Dim Aux(10) As String
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
+        Dim Asunto As String = ""
 
         solicitudAVIO.PasaCC() ' pasa los CC despues del pag 02
         'pasa los de segunda ministracion
@@ -91,11 +91,11 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
-
-            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx", "", True)
+            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
+            For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")" & r.TipoCredito, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
 
@@ -112,6 +112,7 @@
         Dim Mensaje As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
+        Dim Asunto As String = ""
         solicitudAVIO.FillVobo2(tsol)
 
         For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
@@ -132,11 +133,11 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
-
+            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.VoboMail(Aux(0), r.Anexo)
         Next
 
@@ -180,9 +181,9 @@
 
             correos.Fill(Tmail, "PLD")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.PLD_mail()
         End If
 
@@ -219,9 +220,9 @@
 
             correos.Fill(Tmail, "CREDITO_AV")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.CRED_mail()
         End If
 
@@ -251,9 +252,9 @@
 
             correos.Fill(Tmail, "MESA_CONTROL")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.MC_mail()
         End If
 
@@ -283,17 +284,17 @@
 
             correos.Fill(Tmail, Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "MESA_CONTROL")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "CREDITO")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
         End If
 
     End Sub
@@ -307,6 +308,7 @@
         Dim Aux(10) As String
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
+        Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         solicitudAVIO.FillSUB(tsol)
@@ -328,11 +330,11 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-Suba.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
-
+            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")"
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere visto bueno para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.SUB_mail(Aux(0), r.Anexo)
         Next
 
@@ -347,6 +349,7 @@
         Dim Aux(10) As String
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
+        Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         solicitudAVIO.FillByDG_CRED(tsol)
@@ -368,11 +371,11 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-DGxo.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Avio (enviado por Crédito).</A>"
-
+            Asunto = "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")"
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Autorización de Ministración (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.DG_mail_CRED(Aux(0), r.Anexo)
         Next
 
@@ -387,6 +390,7 @@
         Dim Aux(10) As String
         Dim Anexo As String = ""
         Dim Mensaje As String = ""
+        Dim Asunto As String = ""
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         solicitudAVIO.FillByDG(tsol)
@@ -408,11 +412,11 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-DGxa.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para autorización de Anticipo.</A>"
-
+            Asunto = "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")"
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Se requiere Autorización para Anticipo (" & r.Descr.Trim & ")", "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.DG_mail(Aux(0), r.Anexo)
         Next
 
@@ -454,9 +458,9 @@
 
             correos.Fill(Tmail, "FIRA")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
 
             If GastosNoIraputato = True Then
                 solicitudAVIO.Fira_MailGastos()
@@ -496,9 +500,9 @@
 
             correos.Fill(Tmail, "TESORERIA")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx", "", True)
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx", "", True)
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.TESO_mail()
         End If
 
@@ -531,13 +535,13 @@
 
             correos.Fill(Tmail, Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "MESA_CONTROL")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.PAG_mail(Sucursal)
         End If
 
@@ -566,9 +570,9 @@
 
             correos.Fill(Tmail, "FIRA")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.PAG_mail(Sucursal)
         End If
 
@@ -596,11 +600,11 @@
                 Mensaje += "<td>" & r.TipoCredito & "</td>"
                 Mensaje += "<td>" & r.CicloPagare & "</td></tr>"
                 Mensaje += "</table>"
-                EnviacORREO(solicitudAVIO.CorreoPromo(r.Anexo), Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")
-                EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")
+                taMail.Insert("CuentaCorriente@finagil.com.mx", solicitudAVIO.CorreoPromo(r.Anexo), Asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("CuentaCorriente@finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
                 correos.Fill(Tmail, "MESA_CONTROL")
                 For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                    EnviacORREO(rrr.Correo, Mensaje, Asunto, "CuentaCorriente@Finagil.com.mx")
+                    taMail.Insert("CuentaCorriente@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
                 Next
             Next
             solicitudAVIO.PAG_CC()
@@ -632,17 +636,17 @@
 
             correos.Fill(Tmail, Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "CREDITO_AV")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "CREDITOX")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
         End If
 
     End Sub
@@ -672,17 +676,17 @@
 
             correos.Fill(Tmail, Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "PLD")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             correos.Fill(Tmail, "CREDITOX")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
         End If
 
     End Sub
@@ -716,9 +720,9 @@
         End If
         correos.Fill(Tmail, "TESORERIA")
         For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-            EnviacORREO(rrr.Correo, Mensaje, Asunto, "Avio@Finagil.com.mx")
+            taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
         Next
-        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Avio@Finagil.com.mx")
+        taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
 
     End Sub
 End Module

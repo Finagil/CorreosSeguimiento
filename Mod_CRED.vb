@@ -1,10 +1,9 @@
 ﻿Module Mod_CRED
-
     Public Sub EnviaCorreoSEGUI_CRED(Opcion As String, Dias As Integer, Dias1 As Integer, Dias2 As Integer)
         '************Solucitud de Documentos MC********************
         Dim solicitudes As New ProduccionDSTableAdapters.CRED_SeguimientosTableAdapter
         Dim tsol As New ProduccionDS.CRED_SeguimientosDataTable
-        Dim Resposble As String = ""
+        Dim Responsable As String = ""
         Dim Asunto As String = ""
         Dim Mensaje As String = ""
 
@@ -31,12 +30,10 @@
             Mensaje += "Notas: " & r.Notas & "<br>"
             Mensaje += "No. Seguimiento: " & r.id_Seguimiento & "<br>"
 
-            Resposble = CORREOS.ScalarCorreo(r.Responsable)
-            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
-            'Resposble = CORREOS.ScalarCorreo(r.Analista)
-            'EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx")
+            Responsable = CORREOS.ScalarCorreo(r.Responsable)
+            taMail.Insert("Seguimiento@finagil.com.mx", Responsable, Asunto, Mensaje, False, Date.Now, "")
         Next
-        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
+        taMail.Insert("Seguimiento@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
 
     End Sub
 
@@ -44,7 +41,7 @@
         '************Solucitud de Documentos MC********************
         Dim solicitudes As New ProduccionDSTableAdapters.CRED_SeguimientosTableAdapter
         Dim tsol As New ProduccionDS.CRED_SeguimientosDataTable
-        Dim Resposble As String = ""
+        Dim Responsable As String = ""
         Dim Asunto As String = ""
         Dim Mensaje As String = ""
 
@@ -55,7 +52,7 @@
             & "<td><strong>Días de Retraso</strong></td><td><strong>Area</strong></td><td><strong>Notas</strong></td><td></tr>"
 
             For Each r As ProduccionDS.CRED_SeguimientosRow In tsol.Rows
-                Mensaje += "<tr><td>" & r.id_seguimiento & "</td>"
+                Mensaje += "<tr><td>" & r.id_Seguimiento & "</td>"
                 Mensaje += "<td>" & r.Anexo & "</td>"
                 Mensaje += "<td>" & r.Cliente & "</td>"
                 Mensaje += "<td>" & r.Responsable & "</td>"
@@ -63,16 +60,16 @@
                 Mensaje += "<td>" & r.DiasRetraso & "</td>"
                 Mensaje += "<td>" & r.Tipo & "</td>"
                 Mensaje += "<td>" & r.Notas & "</td></tr>"
-                Resposble = CORREOS.ScalarCorreo(r.Analista)
+                Responsable = CORREOS.ScalarCorreo(r.Analista)
             Next
             Mensaje += "</table>"
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & Sucursal)
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
+                taMail.Insert("Seguimiento@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO(Resposble, Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
+            taMail.Insert("Seguimiento@finagil.com.mx", Responsable, Asunto, Mensaje, False, Date.Now, "")
         End If
-        EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Seguimiento@finagil.com.mx", "", False, False)
+        taMail.Insert("Seguimiento@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
     End Sub
 
     Public Sub EnviaCorreoLINEAS_CRED(Tipo As String, MesMas As Integer, AñoMas As Integer, Porducto As String, fecha1 As Date)
@@ -81,7 +78,7 @@
         Dim tlin As New vw_Prod_DS.Vw_CRED_LienasFactorCCDataTable
         Dim Aux() As String
         Dim Cad As String = ""
-        Dim Resposble As String = ""
+        Dim Responsable As String = ""
         Dim Asunto As String = ""
         Dim Mensaje As String = ""
         Dim CRED As Boolean = True
@@ -130,19 +127,19 @@
             Mensaje += "Fecha Fin de Contrato: " & r.FechaFin.ToShortDateString & "<br>"
             Mensaje += "Notas: " & r.Notas & Cad & "<br>"
 
-            EnviacORREO(r.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'PROMOTOR
+            taMail.Insert("Credito@finagil.com.mx", r.Correo, Asunto, Mensaje, False, Date.Now, "") ' promotor
             CORREOS_FASE.Fill(TMAIL, "JEFE_" & r.Nombre_Sucursal.Trim)
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
+                taMail.Insert("Credito@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             CORREOS_FASE.Fill(TMAIL, "SISTEMAS")
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'JEFE
+                taMail.Insert("Credito@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
             If CRED Then
                 CORREOS_FASE.Fill(TMAIL, "CREDITO")
                 For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
-                    EnviacORREO(rrr.Correo, Mensaje, Asunto, "Credito@finagil.com.mx") 'CREDITO
+                    taMail.Insert("Credito@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
                 Next
             End If
         Next

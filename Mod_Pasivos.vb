@@ -9,7 +9,7 @@
         Dim tabla As New WEB_FinagilDS.PagosAutomaticosDataTable
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
-
+        Dim Asunto As String
         '************bloqueo de tasas********************
         Ta_PagosAUT.Fill(tabla, Fecha)
         For Each r As WEB_FinagilDS.PagosAutomaticosRow In tabla.Rows
@@ -19,12 +19,12 @@
             Mensaje += "Tasa: " & r.TasaDiferencial.ToString("n4") & "<br>"
             Mensaje += "Capital: " & r.Capital.ToString("n2") & "<br>"
             Mensaje += "Interes: " & CDec(r.Interes * -1).ToString("n2") & "<br>"
-
+            Asunto = "Pago de Pasivo Bancario (" & r.Fondeador.Trim & ")"
             correos.Fill(Tmail, "TESORERIA")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                EnviacORREO(rrr.Correo, Mensaje, "Pago de Pasivo Bancario (" & r.Fondeador.Trim & ")", "Pasivos@finagil.com.mx")
+                taMail.Insert("Pasivos@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
-            EnviacORREO("ecacerest@finagil.com.mx", Mensaje, "Pago de Pasivo Bancario (" & r.Fondeador.Trim & ")", "Pasivos@finagil.com.mx")
+            taMail.Insert("Pasivos@finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
         Next
     End Sub
 End Module

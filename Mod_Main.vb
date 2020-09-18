@@ -4,7 +4,6 @@ Module Mod_Main
     Sub Main()
         Dim Cadena As String = ""
         Console.WriteLine("Inicio")
-        'EnviacORREO("edgar_caceres@hotmail.com", "Aviso", "Aviso", "Avisos@finagil.com.mx")
         Try
             Cadena = "Autorizaciones CXP Gastos"
             Console.WriteLine(Cadena)

@@ -5,7 +5,7 @@ Module Mod_Global
     Public CORREOS As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
-    Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+    Public taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
         de = de.ToLower
         If de.ToLower <> "avisos@finagil.com.mx" Then

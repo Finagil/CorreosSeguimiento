@@ -54,10 +54,10 @@
                 Mensaje += "<tr><td>" & r.Nombre & "</td><td>" & r.Factura & "</td><td style='text-align: right'>" & r.Importe.ToString("n2") & "</td><td>" & r.Fecha.ToShortDateString & "</td></tr>"
             Next
             Mensaje += "</table>"
-            asunto = "Notificación de Pagos de Clientes a PALM (Factoraje)"
-            taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
-            taMail.Insert("Notificaciones@Finagil.com.mx", "cordone@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
-            taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            Asunto = "Notificación de Pagos de Clientes a PALM (Factoraje)" ' se manda directo por que puede tener mas de 2mil caracteres
+            Mod_Global.EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Notificaciones@Finagil.com.mx", "", False, False)
+            Mod_Global.EnviacORREO("cordone@finagil.com.mx", Mensaje, Asunto, "Notificaciones@Finagil.com.mx", "", False, False)
+            Mod_Global.EnviacORREO("layala@finagil.com.mx", Mensaje, Asunto, "Notificaciones@Finagil.com.mx", "", False, False)
             pag.UpdateEnviados()
         End If
     End Sub

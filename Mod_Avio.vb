@@ -49,7 +49,7 @@
             EnviaCorreo_PAG_CC()
         Catch ex As Exception
             Console.WriteLine(ex.Message)
-            EscribeLOG(ex.Message)
+            taMail.Insert("CorreosSeg@cmoderna.com", "ecacerest@cmoderna.com", "Error Correos Avio", ex.Message, False, Date.Now, "")
         End Try
     End Sub
 
@@ -91,7 +91,7 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
-            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
+            Asunto = "Se requiere vobo para Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
             For Each rrr As ProduccionDS.CorreosFasesRow In TMAIL.Rows
                 taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
@@ -133,7 +133,7 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-oiva.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno " & r.TipoCredito & " .</A>"
-            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
+            Asunto = "Se requiere vobo para Ministración (" & r.Descr.Trim & ") " & r.TipoCredito
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
@@ -330,7 +330,7 @@
             Next
             Mensaje += "<br>Importe Total: " & r.Importe.ToString("n2") & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/232db951-Suba.aspx?User=" & Aux(0) & "&Anexo=0&ID=0'>Liga para visto bueno AVIO .</A>"
-            Asunto = "Se requiere visto bueno para Solicitar Ministración (" & r.Descr.Trim & ")"
+            Asunto = "Se requiere vobo para Ministración (" & r.Descr.Trim & ")" & r.TipoCredito
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next

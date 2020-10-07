@@ -94,7 +94,7 @@
                     Asunto = "Tasa RECHAZADA  (" & r.Cliente.Trim & ")"
                     taMail.Insert(De, r.Correo, Asunto, Mensaje, False, Date.Now, "")
                     taMail.Insert(De, "lmercado@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
-                    taMail.Insert(De, "ecacerest@finagil.com.mx", Mensaje, Asunto, False, Date.Now, "")
+                    taMail.Insert(De, "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
                     Aux = "R" & r.AnexoCon.Substring(1, 4) & r.AnexoCon.Substring(6, 4)
                     Btasas.RechazarAnexo(Aux, r.id)
             End Select
@@ -118,8 +118,8 @@
             Mensaje += "Cliente: " & r.Descr & "<br>"
             Mensaje += "Mensaje: " & r.Asunto & "<br>"
             De = CORREOS.ScalarCorreo(r.UsuarioFin)
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", Mensaje, "Compromiso Cancelado por " & r.UsuarioORG_NOM, False, Date.Now, "")
-            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), Mensaje, "Compromiso Cancelado por " & r.UsuarioORG_NOM, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Compromiso Cancelado por " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), "Compromiso Cancelado por " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
             pendientes.UpdateStatus("CAX", r.id_seguimineto)
         Next
         pendientes.Fill(tpen, "OLD")
@@ -128,8 +128,8 @@
             Mensaje += "Cliente: " & r.Descr & "<br>"
             Mensaje += "Mensaje: " & r.Asunto & "<br>"
             De = CORREOS.ScalarCorreo(r.UsuarioFin)
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", Mensaje, "Compromiso Concluido por " & r.UsuarioORG_NOM, False, Date.Now, "")
-            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), Mensaje, "Compromiso Concluido por " & r.UsuarioORG_NOM, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Compromiso Concluido por " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), "Compromiso Concluido por " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
             pendientes.UpdateStatus("OLX", r.id_seguimineto)
         Next
         pendientes.Fill(tpen, "TMP")
@@ -139,8 +139,8 @@
             Mensaje += "Cliente: " & r.Descr & "<br>"
             Mensaje += "Mensaje: " & r.Asunto & "<br>"
             De = CORREOS.ScalarCorreo(r.UsuarioFin)
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", Mensaje, "Compromiso por Aceptar de " & r.UsuarioORG_NOM, False, Date.Now, "")
-            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), Mensaje, "Compromiso por Aceptar de " & r.UsuarioORG_NOM, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Compromiso por Aceptar de " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioORG), "Compromiso por Aceptar de " & r.UsuarioORG_NOM, Mensaje, False, Date.Now, "")
             pendientes.UpdateStatus("TMX", r.id_seguimineto)
         Next
         pendientes.Fill(tpen, "NEW")
@@ -149,23 +149,23 @@
             Mensaje += "Cliente: " & r.Descr & "<br>"
             Mensaje += "Mensaje: " & r.Asunto & "<br>"
             De = CORREOS.ScalarCorreo(r.UsuarioORG)
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", Mensaje, "Compromiso hecho por " & r.UsuarioNOM, False, Date.Now, "")
-            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioFin), Mensaje, "Compromiso hecho por " & r.UsuarioNOM, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Compromiso hecho por " & r.UsuarioNOM, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioFin), "Compromiso hecho por " & r.UsuarioNOM, Mensaje, False, Date.Now, "")
             pendientes.UpdateStatus("NEX", r.id_seguimineto)
         Next
         pendientes.Fill(tpen, "PCC")
         For Each r As ProduccionDS.GEN_PendientesRow In tpen.Rows
             Mensaje = "Usuario : " & r.UsuarioNOM & "<br>"
-            Mensaje += "Cliente: " & r.Descr & "<br>"
+            Mensaje += "Cliente: " & r.Descr.Trim & "<br>"
             Mensaje += "Mensaje: " & r.Asunto & "<br>"
             De = CORREOS.ScalarCorreo(r.UsuarioORG)
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", Mensaje, "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, False, Date.Now, "")
-            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioFin), Mensaje, "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, CORREOS.ScalarCorreo(r.UsuarioFin), "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, Mensaje, False, Date.Now, "")
             Dim correosX As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
             Dim Tmail As New ProduccionDS.CorreosFasesDataTable
             correosX.Fill(Tmail, "MESA_CONTROL")
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                taMail.Insert(De, rrr.Correo, Mensaje, "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, False, Date.Now, "")
+                taMail.Insert(De, rrr.Correo, "Alta de pagare Cuenta Corriente " & r.UsuarioNOM, Mensaje, False, Date.Now, "")
             Next
             pendientes.UpdateStatus("OLX", r.id_seguimineto)
         Next

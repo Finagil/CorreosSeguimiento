@@ -41,8 +41,10 @@ Module Mod_Global
         End If
 
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-        If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
-            Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
+        If Asunto.Length > 6 Then
+            If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
+                Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
+            End If
         End If
 
 

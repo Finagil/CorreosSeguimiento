@@ -65,10 +65,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>64990FF588056F89BB8B3456A59A71A61859E990</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2F37F715FD06CE5215F2720BEDD1AE3CB1B584B2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>CorreosSeguimiento_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>CorreosSeguimiento_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -189,7 +189,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CorreosSeguimiento_1_TemporaryKey.pfx" />
+    <None Include="CorreosSeguimiento_TemporaryKey.pfx" />
     <None Include="Factor100.xsc">
       <DependentUpon>Factor100.xsd</DependentUpon>
     </None>

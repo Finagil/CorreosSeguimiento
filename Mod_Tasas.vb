@@ -81,9 +81,9 @@
             Select Case r.Autoriza.Trim
                 Case "DG"
                     De = "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>"
-                    taMail.Insert(r.Correo, Asunto, Mensaje, "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", False, Date.Now, "")
-                    taMail.Insert("lmercado@finagil.com.mx", Asunto, Mensaje, "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", False, Date.Now, "")
-                    taMail.Insert("ecacerest@finagil.com.mx", Asunto, Mensaje, "Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", False, Date.Now, "")
+                    taMail.Insert("Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", r.Correo, Asunto, Mensaje, False, Date.Now, "")
+                    taMail.Insert("Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", "lmercado@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+                    taMail.Insert("Gabriel Bello (Finagil) <gbello@lamoderna.com.mx>", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
                 Case "RI"
                     De = "Carlos E Monroy (Finagil) <cmonroy@finagil.com.mx>"
                     taMail.Insert(De, r.Correo, Asunto, Mensaje, False, Date.Now, "")

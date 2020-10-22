@@ -18069,17 +18069,17 @@ Namespace ProduccionDSTableAdapters
                 " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
                 "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
                 "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
-                "esoreria <> 'Tesoreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.Tesoreria"& _ 
-                "PAG = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas"& _ 
-                " <> 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Document"& _ 
-                "o = N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (mF"& _ 
-                "INAGIL.Procesado = 0) AND (mFINAGIL.TesoreriaAut = 0) AND (mFINAGIL.TesoreriaPAG"& _ 
-                " = 0) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas <>"& _ 
-                " 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento <"& _ 
-                "> N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_A"& _ 
-                "nexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo"& _ 
-                ", Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministra"& _ 
-                "cion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
+                "esoreria <> '= Tesoreria') AND (mFINAGIL.TesoreriaAut = 1) AND (mFINAGIL.Tesorer"& _ 
+                "iaPAG = 1) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Not"& _ 
+                "as <> 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Docume"& _ 
+                "nto = N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ("& _ 
+                "mFINAGIL.Procesado = 0) AND (mFINAGIL.TesoreriaAut = 0) AND (mFINAGIL.TesoreriaP"& _ 
+                "AG = 0) AND (mFINAGIL.Notas IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         mFINAGIL.Notas "& _ 
+                "<> 'PAGADO') AND (Vw_Anexos.Nombre_Sucursal = @Sucursal) AND (mFINAGIL.Documento"& _ 
+                " <> N'EFECTIVO') AND (mFINAGIL.AutorizaAut = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw"& _ 
+                "_Anexos.CicloPagare, Vw_Anexos.Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Culti"& _ 
+                "vo, Vw_Anexos.TipoCredito, Vw_Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Minist"& _ 
+                "racion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Sucursal", Global.System.Data.SqlDbType.NChar, 12, Global.System.Data.ParameterDirection.Input, 0, 0, "Nombre_Sucursal", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(17) = New Global.System.Data.SqlClient.SqlCommand()

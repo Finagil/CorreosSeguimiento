@@ -18158,11 +18158,11 @@ Namespace ProduccionDSTableAdapters
                 " mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            mFINAGIL INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
                 "                       Vw_Anexos ON mFINAGIL.Anexo = Vw_Anexos.Anexo AND mFINAGI"& _ 
                 "L.Ciclo = Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mFINAGIL.Procesado = 0) AND (mFINAGIL.T"& _ 
-                "esoreria = 'TesoreriaX') AND (mFINAGIL.AutorizaAut = 1) AND (mFINAGIL.Documento "& _ 
-                "= N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos.De"& _ 
-                "scr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_Ane"& _ 
-                "xos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
-                " Vw_Anexos.AnexoCon"
+                "esoreria = 'TesoreriaCXPX') AND (mFINAGIL.AutorizaAut = 1) AND (mFINAGIL.Documen"& _ 
+                "to = N'EFECTIVO')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Vw_Anexos.AnexoCon, Vw_Anexos.CicloPagare, Vw_Anexos"& _ 
+                ".Descr, Vw_Anexos.Nombre_Sucursal, Vw_Anexos.Cultivo, Vw_Anexos.TipoCredito, Vw_"& _ 
+                "Anexos.Anexo, Vw_Anexos.Fondeotit, mFINAGIL.Ministracion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     Vw_Anexos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Vw_Anexos.AnexoCon"
             Me._commandCollection(21).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(22) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(22).Connection = Me.Connection
@@ -18422,8 +18422,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(48).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(49) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(49).Connection = Me.Connection
-            Me._commandCollection(49).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'Tesoreria'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
-                "Tesoreria = 'TesoreriaX') AND (AutorizaAut = 1)"
+            Me._commandCollection(49).CommandText = "UPDATE       mFINAGIL"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Tesoreria = 'TesoreriaCXP'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE      "& _ 
+                "  (Tesoreria = 'TesoreriaCXPX') AND (AutorizaAut = 1)"
             Me._commandCollection(49).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(50) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(50).Connection = Me.Connection

@@ -502,6 +502,10 @@
             For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
                 taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
             Next
+            correos.Fill(Tmail, "MESA_CONTROL")
+            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
+            Next
             taMail.Insert("Avio@finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             solicitudAVIO.TESO_mail()
         End If

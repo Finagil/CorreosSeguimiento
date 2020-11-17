@@ -7382,6 +7382,8 @@ Partial Public Class ProduccionDS
         
         Private columnDescr As Global.System.Data.DataColumn
         
+        Private columnnoContrato As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -7514,6 +7516,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property noContratoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnoContrato
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -7550,9 +7560,9 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddVw_CXP_AutorizacionesRow(ByVal Empresa As String, ByVal Solicitud As Decimal, ByVal Solicita As String, ByVal Total As Decimal, ByVal Estatus As String, ByVal Correo As String, ByVal Autorizante As String, ByVal idEmpresa As Decimal, ByVal MailSolicitante As String, ByVal NombreCorto As String, ByVal razonSocial As String, ByVal Descr As String) As Vw_CXP_AutorizacionesRow
+        Public Overloads Function AddVw_CXP_AutorizacionesRow(ByVal Empresa As String, ByVal Solicitud As Decimal, ByVal Solicita As String, ByVal Total As Decimal, ByVal Estatus As String, ByVal Correo As String, ByVal Autorizante As String, ByVal idEmpresa As Decimal, ByVal MailSolicitante As String, ByVal NombreCorto As String, ByVal razonSocial As String, ByVal Descr As String, ByVal noContrato As String) As Vw_CXP_AutorizacionesRow
             Dim rowVw_CXP_AutorizacionesRow As Vw_CXP_AutorizacionesRow = CType(Me.NewRow,Vw_CXP_AutorizacionesRow)
-            Dim columnValuesArray() As Object = New Object() {Empresa, Solicitud, Solicita, Total, Estatus, Correo, Autorizante, idEmpresa, MailSolicitante, NombreCorto, razonSocial, Descr}
+            Dim columnValuesArray() As Object = New Object() {Empresa, Solicitud, Solicita, Total, Estatus, Correo, Autorizante, idEmpresa, MailSolicitante, NombreCorto, razonSocial, Descr, noContrato}
             rowVw_CXP_AutorizacionesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowVw_CXP_AutorizacionesRow)
             Return rowVw_CXP_AutorizacionesRow
@@ -7593,6 +7603,7 @@ Partial Public Class ProduccionDS
             Me.columnNombreCorto = MyBase.Columns("NombreCorto")
             Me.columnrazonSocial = MyBase.Columns("razonSocial")
             Me.columnDescr = MyBase.Columns("Descr")
+            Me.columnnoContrato = MyBase.Columns("noContrato")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7622,6 +7633,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnrazonSocial)
             Me.columnDescr = New Global.System.Data.DataColumn("Descr", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDescr)
+            Me.columnnoContrato = New Global.System.Data.DataColumn("noContrato", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnoContrato)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSolicitud, Me.columnEstatus, Me.columnidEmpresa}, true))
             Me.columnEmpresa.MaxLength = 150
             Me.columnSolicitud.AllowDBNull = false
@@ -7636,6 +7649,7 @@ Partial Public Class ProduccionDS
             Me.columnNombreCorto.MaxLength = 30
             Me.columnrazonSocial.MaxLength = 200
             Me.columnDescr.MaxLength = 120
+            Me.columnnoContrato.MaxLength = 10
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14196,6 +14210,22 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property noContrato() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVw_CXP_Autorizaciones.noContratoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'noContrato' de la tabla 'Vw_CXP_Autorizaciones' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVw_CXP_Autorizaciones.noContratoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsEmpresaNull() As Boolean
             Return Me.IsNull(Me.tableVw_CXP_Autorizaciones.EmpresaColumn)
         End Function
@@ -14300,6 +14330,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDescrNull()
             Me(Me.tableVw_CXP_Autorizaciones.DescrColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsnoContratoNull() As Boolean
+            Return Me.IsNull(Me.tableVw_CXP_Autorizaciones.noContratoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetnoContratoNull()
+            Me(Me.tableVw_CXP_Autorizaciones.noContratoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -22182,6 +22224,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("NombreCorto", "NombreCorto")
             tableMapping.ColumnMappings.Add("razonSocial", "razonSocial")
             tableMapping.ColumnMappings.Add("Descr", "Descr")
+            tableMapping.ColumnMappings.Add("noContrato", "noContrato")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -22195,16 +22238,17 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        nombreEmpresa AS Empresa, folioSolicitud AS Solicitud, nombre AS So"& _ 
                 "licita, SUM(totalPagado) AS Total, estatus AS Estatus, mailAutoriza1 AS Correo, "& _ 
                 "Autoriza1 AS Autorizante, idEmpresas AS idEmpresa, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ma"& _ 
-                "ilGenero AS MailSolicitante, NombreCorto, razonSocial, Descr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw"& _ 
-                "_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza1 LIKE '#%') AND (estatus <> 'Com"& _ 
-                "pGtos')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus, nombreEmpre"& _ 
-                "sa, nombre, idEmpresas, mailGenero, NombreCorto, razonSocial, Descr"
+                "ilGenero AS MailSolicitante, NombreCorto, razonSocial, Descr, noContrato"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
+                "          Vw_CXP_Autorizaciones"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (mailAutoriza1 LIKE '#%') AND (est"& _ 
+                "atus <> 'CompGtos')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY folioSolicitud, mailAutoriza1, Autoriza1, estatus,"& _ 
+                " nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto, razonSocial, Descr,"& _ 
+                " noContrato"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -22233,6 +22277,12 @@ Namespace ProduccionDSTableAdapters
                 "utoriza2, estatus, nombreEmpresa, nombre, idEmpresas, mailGenero, NombreCorto, r"& _ 
                 "azonSocial, Descr"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT        ISNULL(Tipar, 'X') AS Tipar"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
+                "Anexo = @Anexo)"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22355,6 +22405,37 @@ Namespace ProduccionDSTableAdapters
                 End If
             End Try
             Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function SacaTipar(ByVal Anexo As String) As String
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            If (Anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Anexo")
+            Else
+                command.Parameters(0).Value = CType(Anexo,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,String)
+            End If
         End Function
     End Class
     

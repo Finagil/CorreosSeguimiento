@@ -68,6 +68,7 @@
             MensajeAutoriza += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Autoriza & "&Tipo=A'>Liga de Autorización</A>"
             MensajeVobo += "<A HREF='https://finagil.com.mx/WEBtasas/552db804-scod.aspx?ID=" & r.Id_Bitacora & "&User=" & Vobo & "&Tipo=V'>Liga para visto bueno.</A>"
             Dim asunto As String = "Se requiere autorización para Solicitar Documentos(" & r.Descr.Trim & ")"
+            If asunto.Length > 100 Then asunto = asunto.Substring(0, 100)
             If Vobo = Autoriza Then
                 taMail.Insert("BitacoraMC@lamoderna.com.mx", Autoriza & "@finagil.com.mx", asunto, Mensaje & MensajeAAutoriza, False, Date.Now, "")
                 solicitudesMC.UpdateEnviadoVOBO(Vobo, PLDB, PLDX, r.Id_Bitacora, r.Id_Bitacora)

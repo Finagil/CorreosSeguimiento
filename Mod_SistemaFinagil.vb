@@ -145,16 +145,10 @@ Module Mod_SistemaFinagil
             reporte.SetDataSource(DS)
             'Console.WriteLine("Datos2")
             reporte.SetParameterValue("var_antiguedad", Antiguedad)
-            reporte.SetParameterValue("Autorizo", "C.P. GABRIEL BELLO HERNANDEZ")
             reporte.SetParameterValue("AreaAutorizo", "DIRECCION GENERAL")
-
             reporte.SetParameterValue("Analista", UCase(Trim(ta1.ScalarNombre(r.UsuarioCredito))))
-            reporte.SetParameterValue("FirmaAnalista", Encriptar(r.UsuarioCredito & Date.Now.ToString))
-            reporte.SetParameterValue("Firma", Encriptar(User & Date.Now.ToString))
             Dim Aux As String = ta.SacaCorreoPromo(r.Cliente)
             Dim Promo() As String = Aux.Split("@")
-            reporte.SetParameterValue("FirmaPromo", Encriptar(Promo(0) & Date.Now.ToString))
-
 
             File.Delete(Archivo)
             reporte.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Archivo)

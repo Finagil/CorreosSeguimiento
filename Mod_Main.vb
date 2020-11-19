@@ -7,8 +7,8 @@ Module Mod_Main
         Try
             Cadena = "Autorizaciones CXP Gastos"
             Console.WriteLine(Cadena)
-            Mod_CXP.EnviaAitorizacion(1)
-            Mod_CXP.EnviaAitorizacion(2)
+            Mod_CXP.EnviaAutorizacion(1)
+            Mod_CXP.EnviaAutorizacion(2)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)
@@ -18,8 +18,8 @@ Module Mod_Main
         Try
             Cadena = "Autorizaciones CXP Pagos"
             Console.WriteLine(Cadena)
-            Mod_CXP.EnviaAitorizacionPagos(1)
-            Mod_CXP.EnviaAitorizacionPagos(2)
+            Mod_CXP.EnviaAutorizacionPagos(1)
+            Mod_CXP.EnviaAutorizacionPagos(2)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)

@@ -1,6 +1,6 @@
 ﻿Module Mod_CXP
 
-    Public Sub EnviaAitorizacion(Autoriza As Integer)
+    Public Sub EnviaAutorizacion(Autoriza As Integer)
         '************Solucitud Avio********************
         Dim solicitud As New ProduccionDSTableAdapters.Vw_CXP_AutorizacionesTableAdapter
         Dim tsoli As New ProduccionDS.Vw_CXP_AutorizacionesDataTable
@@ -62,8 +62,8 @@
                         Next
                     End If
                 End If
-                ElseIf Autoriza = 2 Then
-                    solicitud.Enviado2(Correo, r.idEmpresa, r.Solicitud)
+            ElseIf Autoriza = 2 Then
+                solicitud.Enviado2(Correo, r.idEmpresa, r.Solicitud)
             End If
         Next
 

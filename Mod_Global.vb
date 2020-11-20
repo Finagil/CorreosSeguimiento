@@ -36,6 +36,12 @@ Module Mod_Global
             Mensaje = Mid(Mensaje, 1, 2000)
         End If
 
+        If Asunto.Length > 6 Then
+            If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
+                de = "elizabeth.romero@finagil.com.mx"
+            End If
+        End If
+
         If RespaldaCorreo = True And AsuntoLimitado = True Then
             taMail.Insert(Trim(de), Trim(Para), Mid(Trim(Asunto), 1, 100), Mensaje, True, Date.Now, "")
         End If
@@ -44,6 +50,7 @@ Module Mod_Global
         If Asunto.Length > 6 Then
             If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
                 Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
+                'Mensage.CC.Add("elizabeth.romero@lamoderna.com.mx")
             End If
         End If
 

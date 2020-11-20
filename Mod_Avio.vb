@@ -561,25 +561,26 @@
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
         solicitudAVIO.FillByPAG_FIRA(tsol, Sucursal)
-        If tsol.Rows.Count > 0 And tsol.Rows(0).Item("FondeoTit") = "Fira" Then
-            Asunto = "Ministraciones liberadas por Tesoreria (Fira) (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
-            Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
-            For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
-                Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
-                Mensaje += "<td>" & r.Descr.Trim & "</td>"
-                Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
-                Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
-            Next
-            Mensaje += "</table>"
+        If tsol.Rows.Count > 0 Then
+            If tsol.Rows(0).Item("FondeoTit") = "Fira" Then
+                Asunto = "Ministraciones liberadas por Tesoreria (Fira) (" & tsol.Rows.Count & " solicitudes) - " & Sucursal.ToUpper
+                Mensaje = "<table BORDER=1><tr><td><strong>Contrato</strong></td><td><strong>Cliente</strong></td><td><strong>Importe</strong></td><td><strong>Producto</strong></td></tr>"
+                For Each r As ProduccionDS.AviosVoboRESRow In tsol.Rows
+                    Mensaje += "<tr><td>" & r.AnexoCon & "</td>"
+                    Mensaje += "<td>" & r.Descr.Trim & "</td>"
+                    Mensaje += "<td ALIGN=RIGHT>" & r.Importe.ToString("n2") & "</td>"
+                    Mensaje += "<td>" & r.TipoCredito & "</td></tr>"
+                Next
+                Mensaje += "</table>"
 
-            correos.Fill(Tmail, "FIRA")
-            For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
-                taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
-            Next
-            taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
-            solicitudAVIO.PAG_mail(Sucursal)
+                correos.Fill(Tmail, "FIRA")
+                For Each rrr As ProduccionDS.CorreosFasesRow In Tmail.Rows
+                    taMail.Insert("Avio@finagil.com.mx", rrr.Correo, Asunto, Mensaje, False, Date.Now, "")
+                Next
+                taMail.Insert("Avio@finagil.com.mx", "ecacerest@cmoderna.com", Asunto, Mensaje, False, Date.Now, "")
+                solicitudAVIO.PAG_mail(Sucursal)
+            End If
         End If
-
     End Sub
 
     Private Sub EnviaCorreo_PAG_CC()

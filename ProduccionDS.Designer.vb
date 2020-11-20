@@ -8705,7 +8705,7 @@ Partial Public Class ProduccionDS
             Me.columnDe.MaxLength = 200
             Me.columnPara.MaxLength = 400
             Me.columnAsunto.MaxLength = 100
-            Me.columnMensaje.MaxLength = 2000
+            Me.columnMensaje.MaxLength = 4000
             Me.columnfecha.AllowDBNull = false
             Me.columnAttach.MaxLength = 400
         End Sub
@@ -23514,22 +23514,20 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_id_Correo", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id_Correo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        id_Correo, De, Para, Asunto, Mensaje, Enviado, Attach, fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
-                "           GEN_Correos_SistemaFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Asunto LIKE 'DEYEL%') AND ("& _ 
-                "Enviado = 0)"
+            Me._commandCollection(2).CommandText = "SELECT Asunto, Attach, De, Enviado, Mensaje, Para, fecha, id_Correo FROM GEN_Corr"& _ 
+                "eos_SistemaFinagil WHERE (Asunto LIKE 'DEYEL%') AND (Enviado = 0)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        id_Correo, De, Para, Asunto, Mensaje, Enviado, Attach, fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
-                "           GEN_Correos_SistemaFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Asunto LIKE 'Solicitud de L"& _ 
-                "iquidez Inmediata para Autorización%') AND (Enviado = 0)"
+            Me._commandCollection(3).CommandText = "SELECT Asunto, Attach, De, Enviado, Mensaje, Para, fecha, id_Correo FROM GEN_Corr"& _ 
+                "eos_SistemaFinagil WHERE (Asunto LIKE 'Solicitud de Liquidez Inmediata para Auto"& _ 
+                "rización%') AND (Enviado = 0)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT        id_Correo, De, Para, Asunto, Mensaje, Enviado, Attach, fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
-                "           GEN_Correos_SistemaFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (NOT (Asunto LIKE 'Solicitud"& _ 
-                " de Liquidez Inmediata para Autorización%')) AND (NOT (Asunto LIKE '%deyel%')) A"& _ 
-                "ND (Enviado = 0)"
+            Me._commandCollection(4).CommandText = "SELECT Asunto, Attach, De, Enviado, Mensaje, Para, fecha, id_Correo FROM GEN_Corr"& _ 
+                "eos_SistemaFinagil WHERE (NOT (Asunto LIKE 'Solicitud de Liquidez Inmediata para"& _ 
+                " Autorización%')) AND (NOT (Asunto LIKE '%deyel%')) AND (Enviado = 0)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

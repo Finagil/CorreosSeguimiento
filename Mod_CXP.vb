@@ -14,7 +14,6 @@
         Dim correos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
-        correos.Fill(Tmail, "SISTEMAS_CXP")
         If Autoriza = 1 Then
             solicitud.FillAutoriza1(tsoli)
         ElseIf Autoriza = 2 Then
@@ -43,6 +42,7 @@
             MensajeSinLiga = Mensaje
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/5Afdb804-7cXp.aspx?User=" & Correo & "&ID1=0&ID2=0&ID3=0'>Liga para Autorización.</A>"
 
+            correos.Fill(Tmail, "SISTEMAS_CXP")
             For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
                 taMail.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, Mensaje, False, Date.Now, Archivo)
             Next
@@ -54,14 +54,14 @@
 
             If Autoriza = 1 Then
                 solicitud.Enviado1(Correo, r.idEmpresa, r.Solicitud)
-                If r.IsnoContratoNull = False Then
-                    If solicitud.SacaTipar(r.noContrato) = "L" Then
-                        correos.Fill(Tmail, "TESORERIA_CXP")
-                        For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
-                            taMail.Insert("Pagos@finagil.com.mx", rr.Correo, Asunto, MensajeSinLiga, False, Date.Now, Archivo)
-                        Next
-                    End If
-                End If
+                'If r.IsnoContratoNull = False Then
+                '    If solicitud.SacaTipar(r.noContrato) = "L" Then
+                '        correos.Fill(Tmail, "TESORERIA_CXP")
+                '        For Each rr As ProduccionDS.CorreosFasesRow In Tmail.Rows()
+                '            taMail.Insert("Pagos@finagil.com.mx", rr.Correo, AsuntoSinLiga, MensajeSinLiga, False, Date.Now, Archivo)
+                '        Next
+                '    End If
+                'End If
             ElseIf Autoriza = 2 Then
                 solicitud.Enviado2(Correo, r.idEmpresa, r.Solicitud)
             End If

@@ -117,9 +117,17 @@
             Mensaje += "</table>"
             Mensaje += "<br><b>TOTAL A PAGAR A FINAGIL: " & TotalFIN.ToString("n2") & "</b>"
             Mensaje += "<br><b>TOTAL DE BONIFICACION A REALIZAR: " & TotalPALM.ToString("n2") & "</b>"
-            taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
-            taMail.Insert("Notificaciones@Finagil.com.mx", Correo, Asunto, Mensaje, False, Date.Now, "")
-            taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            If Mensaje.Length > 4000 Then
+                EnviacORREO("ecacerest@finagil.com.mx", Mensaje, Asunto, "Notificaciones@Finagil.com.mx")
+                EnviacORREO(Correo, Mensaje, Asunto, "Notificaciones@Finagil.com.mx")
+                EnviacORREO("layala@finagil.com.mx", Mensaje, Asunto, "Notificaciones@Finagil.com.mx")
+                Console.WriteLine("Correo muy largo: " & Mensaje.Length)
+            Else
+                taMail.Insert("Notificaciones@Finagil.com.mx", "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("Notificaciones@Finagil.com.mx", Correo, Asunto, Mensaje, False, Date.Now, "")
+                taMail.Insert("Notificaciones@Finagil.com.mx", "layala@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            End If
+
         End If
     End Sub
 

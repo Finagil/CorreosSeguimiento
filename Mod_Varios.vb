@@ -38,15 +38,14 @@
 
     Sub EnviaCorreoCierreDiario()
         Dim Asunto As String
-        Dim TaWEB As New WEB_FinagilDSTableAdapters.CorreosTableAdapter
         Dim TaFechas As New ProduccionDSTableAdapters.FechasAplicacionTableAdapter
         Dim Cierres As New ProduccionDS.FechasAplicacionDataTable
         Dim r As ProduccionDS.FechasAplicacionRow
-        Dim Grupos As New WEB_FinagilDS.CorreosDataTable
-        Dim rr As WEB_FinagilDS.CorreosRow
+        Dim Grupos As New ProduccionDS.CorreosFasesDataTable
+        Dim rr As ProduccionDS.CorreosFasesRow
         TaFechas.Fill(Cierres, "Cerrado")
         If Cierres.Rows.Count > 0 Then
-            TaWEB.Fill(Grupos, "CIERRE_DIARIO")
+            CORREOS_FASE.Fill(Grupos, "CIERRE_DIARIO")
         End If
         For Each r In Cierres.Rows
             For Each rr In Grupos.Rows

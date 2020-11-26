@@ -191,4 +191,40 @@ Module Mod_SistemaFinagil
 
     End Sub
 
+    Public Sub CorreosAvisos(CuentaCorreoAvisos As String, pwd As String)
+        Dim t As New ProduccionDS.GEN_Correos_SistemaFinagilDataTable
+        Dim r As ProduccionDS.GEN_Correos_SistemaFinagilRow
+        Dim Y As Integer
+        Dim Para(10) As String
+        Dim De As String
+        Dim cad() As String
+        Dim AUXatt As String = ""
+        Dim ASUN As String = ""
+        Dim MENSA As String = ""
+        Dim MensajAux As String = ""
+        Dim Aux() As String
+        Dim correo As String = ""
+        Dim Correos() As String
+
+        taMail.FillByAvisos(t)
+        If t.Rows.Count > 0 Then
+            CLIENTE_SMTP = New System.Net.Mail.SmtpClient("smtp.office365.com")
+            CLIENTE_SMTP.Port = 587
+            CLIENTE_SMTP.UseDefaultCredentials = False
+            CLIENTE_SMTP.EnableSsl = True
+            CLIENTE_SMTP.Credentials = New System.Net.NetworkCredential(CuentaCorreoAvisos, pwd)
+            CLIENTE_SMTP.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network
+            CLIENTE_SMTP.TargetName = "STARTTLS/smtp.office365.com"
+        End If
+        For Each r In t.Rows
+            Correos = r.Para.Split(";")
+            For X As Integer = 0 To Correos.Length - 1
+                If Correos(X).Length > 0 Then
+                    EnviacORREO(Correos(X), r.Mensaje, r.Asunto, CuentaCorreoAvisos, r.Attach)
+                End If
+            Next
+            taMail.Enviado(r.id_Correo)
+        Next
+    End Sub
+
 End Module

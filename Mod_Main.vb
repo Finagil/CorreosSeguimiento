@@ -1,7 +1,13 @@
-﻿
+﻿Imports System.Net.Mail
 
 Module Mod_Main
+    Public PUERTOS() As String = My.Settings.SMTP_port.Split(",")
+    Public CLIENTE_SMTP As SmtpClient = New SmtpClient(My.Settings.SMTP, PUERTOS(0))
+    Public CREDENCIALES As String() = My.Settings.SMTP_creden.Split(",")
     Sub Main()
+        CLIENTE_SMTP.Credentials = New System.Net.NetworkCredential(CREDENCIALES(0), CREDENCIALES(1), CREDENCIALES(2))
+        CLIENTE_SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
+
         Dim Cadena As String = ""
         Console.WriteLine("Inicio")
         Try
@@ -213,6 +219,7 @@ Module Mod_Main
             ElseIf Date.Now.Hour = 17 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             End If
+            CorreosAvisos("elizabeth.romero@cmoderna.com", "Hs7aW2Rt")
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)

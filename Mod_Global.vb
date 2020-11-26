@@ -1,18 +1,17 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Net.Mail
+Imports System.ComponentModel
 Module Mod_Global
     Public CORREOS As New SeguiridadDSTableAdapters.UsuariosFinagilTableAdapter
     Public CORREOS_FASE As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
     Public TMAIL As New ProduccionDS.CorreosFasesDataTable
     Public taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "", Optional RespaldaCorreo As Boolean = False, Optional AsuntoLimitado As Boolean = True)
         de = de.ToLower
-        If de.ToLower <> "avisos@finagil.com.mx" Then
-            de = de.Replace("@finagil.com.mx", "@cmoderna.com")
-            de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
-        End If
-
+        de = de.Replace("@finagil.com.mx", "@cmoderna.com")
+        de = de.Replace("@lamoderna.com.mx", "@cmoderna.com")
         Para = Para.Replace("Ñ", "N")
         Para = Para.Replace("ñ", "n")
         Para = Para.Replace(",", ".")
@@ -28,18 +27,8 @@ Module Mod_Global
             Para = Para.Replace("@mosusa.com.mx", "@cmoderna.com")
         End If
 
-        Dim Puerto() As String = My.Settings.SMTP_port.Split(",")
-        Dim Cliente As SmtpClient
-        Cliente = New SmtpClient(My.Settings.SMTP, Puerto(0))
-
-        If Mensaje.Length > 2000 And AsuntoLimitado = True Then
-            Mensaje = Mid(Mensaje, 1, 2000)
-        End If
-
-        If Asunto.Length > 6 Then
-            If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
-                de = "elizabeth.romero@finagil.com.mx"
-            End If
+        If Mensaje.Length > 4000 And AsuntoLimitado = True Then
+            Mensaje = Mid(Mensaje, 1, 4000)
         End If
 
         If RespaldaCorreo = True And AsuntoLimitado = True Then
@@ -50,14 +39,12 @@ Module Mod_Global
         If Asunto.Length > 6 Then
             If Asunto.ToUpper.Substring(0, 6) = "AVISO " Then
                 Mensage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
-                'Mensage.CC.Add("elizabeth.romero@lamoderna.com.mx")
             End If
         End If
 
-
         Try
-            Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
-            Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))
+            Mensage.BodyEncoding = System.Text.Encoding.UTF8
+            Mensage.SubjectEncoding = System.Text.Encoding.UTF8
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
                 Dim cad As String() = Attach.Trim.Split("|")
@@ -68,13 +55,25 @@ Module Mod_Global
                     End If
                 Next
             End If
-
-            Cliente.Send(Mensage)
+            Console.WriteLine(Asunto)
+            CLIENTE_SMTP.Send(Mensage)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             EscribeLOG(ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub SendCompletedCallback(sender As Object, e As AsyncCompletedEventArgs)
+        Dim msg As MailMessage = e.UserState
+        If e.Cancelled Then
+            Console.WriteLine(msg)
+        ElseIf IsNothing(e.Error) Then
+            Console.WriteLine(msg)
+        Else
+            Console.WriteLine(msg)
+        End If
+        msg.Dispose()
     End Sub
 
     Public Sub EscribeLOG(Mensaje)

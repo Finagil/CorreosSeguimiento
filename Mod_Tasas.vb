@@ -48,12 +48,12 @@
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Mensaje += "<A HREF='https://finagil.com.mx/WEBtasas/951sb999-7xx8.aspx?ID=" & r.id & "'>Liga de Autorización</A>"
             If r.Nombre_Sucursal.Trim = "NAVOJOA" Or r.Nombre_Sucursal.Trim = "MEXICALI" Then
-                taMail.Insert(De, "mleal@finagil.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", Mensaje, False, Date.Now, "")
+                taMail.Insert(De, "mleal@finagil.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim.Substring(0, 100) & ")", Mensaje, False, Date.Now, "")
             Else
-                taMail.Insert(De, "mleal@finagil.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", Mensaje, False, Date.Now, "")
+                taMail.Insert(De, "mleal@finagil.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim.Substring(0, 100) & ")", Mensaje, False, Date.Now, "")
             End If
 
-            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim & ")", Mensaje, False, Date.Now, "")
+            taMail.Insert(De, "ecacerest@lamoderna.com.mx", "Notificación de Tasa Especial (" & r.Cliente.Trim.Substring(0, 100) & ")", Mensaje, False, Date.Now, "")
             Btasas.Enviados(True, r.id)
         Next
         Btasas.FillByGD(bt)

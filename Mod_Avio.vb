@@ -433,6 +433,8 @@
         Dim Tmail As New ProduccionDS.CorreosFasesDataTable
 
         solicitudAVIO.QuitaGastos_CRE()
+        solicitudAVIO.QuitaGastosNoFira()
+
         If GastosNoIraputato = True Then
             solicitudAVIO.FillByFiraGastos(tsol)
         Else

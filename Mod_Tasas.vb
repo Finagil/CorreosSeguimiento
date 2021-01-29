@@ -17,7 +17,7 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Asunto = "Se requiere Validacion de porcentaje Reserva (" & r.Cliente.Trim & ")"
-            taMail.Insert(De, "ajoshin@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, "aaron.castillo@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             'taMail.Insert(De, "maria.bautista@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             taMail.Insert(De, "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             Btasas.Enviados(True, r.id)
@@ -39,7 +39,7 @@
             Mensaje += "Promotor: " & r.Promotor & "<br>"
             Mensaje += "Producto: " & r.TipoCredito & "<br>"
             Mensaje += "Indicadores: " & r.Indicadores & "<br>"
-            taMail.Insert(De, "ajoshin@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
+            taMail.Insert(De, "aaron.castillo@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             'taMail.Insert(De, "maria.bautista@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             taMail.Insert(De, "ecacerest@finagil.com.mx", Asunto, Mensaje, False, Date.Now, "")
             Mensaje = "Contrato: " & r.AnexoCon & "<br>"

@@ -10,7 +10,7 @@ Module Mod_Main
 
         Dim Cadena As String = ""
         Console.WriteLine("Inicio")
-        Console.WriteLine("Procesa CDM")
+        Console.WriteLine("Procesa CMD")
         ProcesaCMD()
 
         Try

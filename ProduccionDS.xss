@@ -24,7 +24,7 @@
     <Shape ID="DesignTable:CorreosFases" ZOrder="7" X="639" Y="419" Height="153" Width="250" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:Vw_CXP_ComprobacionGastos" ZOrder="6" X="70" Y="1170" Height="267" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
     <Shape ID="DesignTable:GEN_Correos_SistemaFinagil" ZOrder="2" X="1152" Y="428" Height="343" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
-    <Shape ID="DesignTable:GEN_ComandosCDM" ZOrder="1" X="69" Y="1484" Height="229" Width="265" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
+    <Shape ID="DesignTable:GEN_ComandosCMD" ZOrder="1" X="69" Y="1484" Height="229" Width="265" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

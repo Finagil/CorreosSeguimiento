@@ -123,4 +123,22 @@ Module Mod_Global
         End Try
     End Sub
 
+    Public Function ProcesaCMD()
+        Dim taCMD As New ProduccionDSTableAdapters.GEN_ComandosCDMTableAdapter
+        Dim tCMD As New ProduccionDS.GEN_ComandosCDMDataTable
+        Dim r As ProduccionDS.GEN_ComandosCDMRow
+        taCMD.Fill(tCMD)
+        For Each r In tCMD.Rows
+            Try
+                Shell(r.Rura & r.Comando & r.Parametros, AppWinStyle.NormalNoFocus, False)
+                Console.WriteLine(r.Rura & r.Comando & r.Parametros)
+            Catch ex As Exception
+                taMail.Insert("ecacerest@cmoderna.com", "ecacerest@cmoderna.com", "Error CMD", ex.Message & "-" & r.Rura & r.Comando & r.Parametros, False, Today, "")
+            End Try
+            taCMD.ProcesaCMD(r.id_comando)
+        Next
+        Return 0
+    End Function
+
+
 End Module

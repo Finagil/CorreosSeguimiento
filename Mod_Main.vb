@@ -10,6 +10,9 @@ Module Mod_Main
 
         Dim Cadena As String = ""
         Console.WriteLine("Inicio")
+        Console.WriteLine("Procesa CDM")
+        ProcesaCMD()
+
         Try
             Cadena = "Autorizaciones CXP Gastos"
             Console.WriteLine(Cadena)

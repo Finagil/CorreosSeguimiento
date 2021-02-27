@@ -24199,7 +24199,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT        Asunto, Attach, De, Enviado, Mensaje, Para, fecha, id_Correo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
                 "           GEN_Correos_SistemaFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Asunto LIKE 'Aviso %') AND "& _ 
-                "(Enviado = 0)"
+                "(Enviado = 0) AND (NOT (Asunto LIKE 'Aviso c%'))"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
@@ -24218,7 +24218,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(5).CommandText = "SELECT        Asunto, Attach, De, Enviado, Mensaje, Para, fecha, id_Correo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
                 "           GEN_Correos_SistemaFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (NOT (Asunto LIKE 'Solicitud"& _ 
                 " de Liquidez Inmediata para Autorización%')) AND (NOT (Asunto LIKE '%deyel%')) A"& _ 
-                "ND (Enviado = 0) AND (NOT (Asunto LIKE 'Aviso %'))"
+                "ND (Enviado = 0) AND (Asunto LIKE 'Aviso C%')"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

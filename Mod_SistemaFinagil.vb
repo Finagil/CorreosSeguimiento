@@ -19,6 +19,8 @@ Module Mod_SistemaFinagil
         Dim correo As String = ""
         Dim Correos() As String
         Select Case Opcion.ToUpper
+            Case "AVISOS_CANCELADOS"
+                taMail.FillByAvisoCancelado(t)
             Case "DG_LIQ"
                 taMail.FillByDG_LIQ(t)
                 EnviacORREO("ecacerest@finagil.com.mx", "Correo Liquidez: " & Date.Now & " - " & t.Rows.Count, "Correo Liquidez", "Correos@finagil.com.mx")
@@ -30,7 +32,7 @@ Module Mod_SistemaFinagil
                     CORREOS_FASE.Fill(TT, "DEYEL_" & r.Para)
                     For Each RR In TT.Rows
                         correo = RR.Correo.Trim
-                        If InStr(Correo, "<") Then
+                        If InStr(correo, "<") Then
                             Aux = correo.Split("<")
                             Aux = Aux(1).Split(">")
                             correo = Aux(0)

@@ -212,9 +212,14 @@ Module Mod_Main
 
         Try
             'SIMEPRE AL FINAL+++++++++++++
+            Cadena = "AVISOS_CANCELADOS"
+            Console.WriteLine(Cadena)
+            CorreosSistemaFinagil("AVISOS_CANCELADOS")
+
             Cadena = "Sistema Finagil"
             Console.WriteLine(Cadena)
             CorreosSistemaFinagil("DG_LIQ_SIN")
+
             If Date.Now.Hour = 9 And Date.Now.Minute <= 1 Then
                 CorreosSistemaFinagil("DG_LIQ")
             ElseIf Date.Now.Hour = 12 And Date.Now.Minute <= 1 Then
